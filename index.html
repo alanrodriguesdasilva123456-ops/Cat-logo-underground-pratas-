@@ -73,7 +73,7 @@
         .img-container {
             position: relative;
             width: 100%;
-            padding-top: 100%; /* ProporÃ§Ã£o 1:1 */
+            padding-top: 100%; /* Proporção 1:1 */
             background-color: #25252b;
         }
 
@@ -180,7 +180,7 @@
 
     <header>
         <h1>Underground Pratas</h1>
-        <p>Prata 925 LegÃ­tima</p>
+        <p>Prata 925 Legítima</p>
     </header>
 
     <div class="container">
@@ -189,28 +189,28 @@
             <!-- Item 155 - Argola Fio Quadrado 1,5 mm -->
             <div class="product-card">
                 <div class="img-container">
-                    <span class="badge-prata">Prata 925 LegÃ­tima</span>
+                    <span class="badge-prata">Prata 925 Legítima</span>
                     <img src="https://img1.conectavenda.com.br/cristiano_rafael_vendramini_/413/50e3d37d-52d5-46cc-9f08-8ba5cbc4383f.webp" alt="Argola Fio Quadrado 1,5 mm">
                 </div>
                 <div class="info">
                     <div class="product-title">Argola Fio Quadrado 1,5 mm</div>
                     <div class="product-price">R$ 60,00</div>
                     <button class="btn-cart" onclick="addCart('Argola Fio Quadrado 1,5 mm', 60.00)">+ Adicionar ao Carrinho</button>
-                    <a href="https://wa.me/5561981642480?text=OlÃ¡!%20Gostaria%20de%20consultar%20a%20disponibilidade/tamanho%20da%20Argola%20Fio%20Quadrado%201,5%20mm" class="btn-whatsapp" target="_blank">Consultar Tamanhos</a>
+                    <a href="https://wa.me/5561981642480?text=Olá!%20Gostaria%20de%20consultar%20a%20disponibilidade/tamanho%20da%20Argola%20Fio%20Quadrado%201,5%20mm" class="btn-whatsapp" target="_blank">Consultar Tamanhos</a>
                 </div>
             </div>
 
-            <!-- Item 156 - Argola CoraÃ§Ã£o Fio Chanfrado 1,5cm 2mm -->
+            <!-- Item 156 - Argola Coração Fio Chanfrado 1,5cm 2mm -->
             <div class="product-card">
                 <div class="img-container">
-                    <span class="badge-prata">Prata 925 LegÃ­tima</span>
-                    <img src="https://img1.conectavenda.com.br/cristiano_rafael_vendramini_/413/a6575ac2-8b45-402f-b697-2ef4dec35ae2.webp" alt="Argola CoraÃ§Ã£o Fio Chanfrado 1,5cm 2mm">
+                    <span class="badge-prata">Prata 925 Legítima</span>
+                    <img src="https://img1.conectavenda.com.br/cristiano_rafael_vendramini_/413/a6575ac2-8b45-402f-b697-2ef4dec35ae2.webp" alt="Argola Coração Fio Chanfrado 1,5cm 2mm">
                 </div>
                 <div class="info">
-                    <div class="product-title">Argola CoraÃ§Ã£o Fio Chanfrado 1,5cm 2mm</div>
+                    <div class="product-title">Argola Coração Fio Chanfrado 1,5cm 2mm</div>
                     <div class="product-price">R$ 65,00</div>
-                    <button class="btn-cart" onclick="addCart('Argola CoraÃ§Ã£o Fio Chanfrado 1,5cm 2mm', 65.00)">+ Adicionar ao Carrinho</button>
-                    <a href="https://wa.me/5561981642480?text=OlÃ¡!%20Gostaria%20de%20consultar%20a%20disponibilidade/tamanho%20da%20Argola%20CoraÃ§Ã£o%20Fio%20Chanfrado%201,5cm%202mm" class="btn-whatsapp" target="_blank">Consultar Tamanhos</a>
+                    <button class="btn-cart" onclick="addCart('Argola Coração Fio Chanfrado 1,5cm 2mm', 65.00)">+ Adicionar ao Carrinho</button>
+                    <a href="https://wa.me/5561981642480?text=Olá!%20Gostaria%20de%20consultar%20a%20disponibilidade/tamanho%20da%20Argola%20Coração%20Fio%20Chanfrado%201,5cm%202mm" class="btn-whatsapp" target="_blank">Consultar Tamanhos</a>
                 </div>
             </div>
 
@@ -236,10 +236,10 @@
 
         function sendOrder() {
             if (cart.length === 0) {
-                alert('Seu carrinho estÃ¡ vazio!');
+                alert('Seu carrinho está vazio!');
                 return;
             }
-            let texto = 'OlÃ¡! Gostaria de fazer o pedido dos seguintes itens:\n\n';
+            let texto = 'Olá! Gostaria de fazer o pedido dos seguintes itens:\n\n';
             let total = 0;
             cart.forEach((item, index) => {
                 texto += `${index + 1}. ${item.nome} - R$ ${item.preco.toFixed(2)}\n`;
