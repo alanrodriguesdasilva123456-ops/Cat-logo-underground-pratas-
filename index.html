@@ -1,466 +1,373 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Underground Pratas 925</title>
-    <style>
-        :root {
-            --bg-dark: #0a0e17;
-            --card-bg: #111827;
-            --accent-silver: #e2e8f0;
-            --text-light: #f8fafc;
-            --whatsapp-green: #25d366;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Underground Pratas 925 - Catálogo</title>
+  <style>
+    /* ESTILOS GERAIS */
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0d1117;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            margin: 0;
-            padding: 0;
-        }
+    /* CABEÇALHO E NAVEGAÇÃO */
+    .site-header {
+      background-color: #0b0e14;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .brand-logo img {
+      max-height: 50px;
+      width: auto;
+      display: block;
+    }
+    .cart-icon-wrapper {
+      position: relative;
+      cursor: pointer;
+      font-size: 26px;
+    }
+    .cart-badge {
+      position: absolute;
+      top: -5px;
+      right: -8px;
+      background-color: #d4af37;
+      color: #000;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 50%;
+    }
+    .category-nav {
+      margin-top: 15px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .category-nav ul {
+      display: flex;
+      gap: 15px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      justify-content: center;
+    }
+    .category-nav a {
+      color: #cccccc;
+      text-decoration: none;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .category-nav a:hover {
+      color: #ffffff;
+      border-bottom: 2px solid #d4af37;
+    }
 
-        /* Topo & Logo */
-        header {
-            text-align: center;
-            padding: 20px;
-            background-color: #05070a;
-            border-bottom: 1px solid #1e293b;
-        }
+    /* GRADE DE PRODUTOS LADO A LADO */
+    .catalog-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+    .section-title {
+      font-size: 20px;
+      color: #d4af37;
+      border-bottom: 1px solid #2a2f3a;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 15px;
+    }
+    @media (min-width: 600px) {
+      .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+      }
+    }
+    .product-card {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .product-title {
+      font-size: 14px;
+      margin: 5px 0;
+      font-weight: 600;
+    }
+    .product-price {
+      font-size: 15px;
+      color: #d4af37;
+      font-weight: bold;
+      margin: 5px 0 10px 0;
+    }
+    .btn-add-cart {
+      background-color: #238636;
+      color: #ffffff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 13px;
+      width: 100%;
+    }
+    .btn-add-cart:active {
+      transform: scale(0.98);
+    }
 
-        .logo {
-            max-width: 250px;
-            height: auto;
-        }
-
-        /* Banner de Atendimento Exclusivo */
-        .info-banner {
-            background: linear-gradient(90deg, #1e293b, #0f172a);
-            padding: 12px;
-            text-align: center;
-            font-size: 0.9em;
-            color: var(--accent-silver);
-            border-bottom: 1px solid #334155;
-        }
-
-        /* Navegação por Categorias */
-        nav {
-            display: flex;
-            overflow-x: auto;
-            white-space: nowrap;
-            background-color: #0f172a;
-            padding: 10px;
-            gap: 10px;
-            justify-content: center;
-            border-bottom: 1px solid #1e293b;
-        }
-
-        nav a {
-            color: var(--accent-silver);
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            background-color: #1e293b;
-            font-size: 0.85em;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            background-color: #38bdf8;
-            color: #000;
-        }
-
-        /* Layout Grid */
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-
-        .category-title {
-            font-size: 1.4em;
-            margin: 30px 0 15px;
-            border-bottom: 2px solid #334155;
-            padding-bottom: 5px;
-            color: var(--accent-silver);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        /* Cartão de Produto */
-        .product-card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #1e293b;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .img-container {
-            position: relative;
-            width: 100%;
-            padding-top: 100%;
-        }
-
-        .img-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .badge-prata {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.75);
-            color: #fff;
-            font-size: 0.7em;
-            padding: 3px 8px;
-            border-radius: 4px;
-            border: 1px solid var(--accent-silver);
-        }
-
-        .info {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .product-title {
-            font-size: 0.9em;
-            margin-bottom: 8px;
-            height: 2.7em;
-            overflow: hidden;
-        }
-
-        .product-price {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #38bdf8;
-            margin-bottom: 12px;
-        }
-
-        .btn-cart, .btn-whatsapp {
-            border: none;
-            padding: 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8em;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-            margin-bottom: 6px;
-        }
-
-        .btn-cart {
-            background-color: #334155;
-            color: #fff;
-        }
-
-        .btn-whatsapp {
-            background-color: var(--whatsapp-green);
-            color: #fff;
-        }
-
-        /* Botão Flutuante do Carrinho */
-        .cart-float-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #38bdf8;
-            color: #000;
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            z-index: 100;
-        }
-
-        /* Modal do Carrinho */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 500px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .cart-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #1e293b;
-            padding-bottom: 10px;
-        }
-
-        .cart-item img {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        /* Aviso do WhatsApp sobre Fotos */
-        .wa-notice {
-            font-size: 0.75em;
-            color: #94a3b8;
-            margin-top: 5px;
-            line-height: 1.2;
-        }
-    </style>
+    /* MODAL DO CARRINHO */
+    .cart-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .cart-content {
+      background: #161b22;
+      color: #fff;
+      width: 90%; max-width: 420px;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+    .cart-header {
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid #30363d; padding-bottom: 10px;
+    }
+    .cart-header h2 { font-size: 16px; margin: 0; color: #d4af37; }
+    .close-btn { font-size: 24px; cursor: pointer; }
+    .cart-items-list { max-height: 280px; overflow-y: auto; margin: 15px 0; }
+    .cart-item {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px; border-bottom: 1px solid #21262d; padding-bottom: 8px;
+    }
+    .cart-item img { width: 45px; height: 45px; object-fit: cover; border-radius: 4px; }
+    .item-info { flex: 1; margin-left: 10px; text-align: left; }
+    .item-title { font-size: 13px; margin: 0; font-weight: bold; }
+    .item-price { font-size: 12px; color: #d4af37; margin: 2px 0 0 0; }
+    .remove-btn { background: none; border: none; color: #ff7b72; cursor: pointer; font-size: 16px; }
+    .cart-footer { border-top: 1px solid #30363d; padding-top: 15px; }
+    .cart-total { display: flex; justify-content: space-between; font-weight: bold; font-size: 16px; margin-bottom: 12px; }
+    .btn-whatsapp {
+      width: 100%; background: #238636; color: #fff; border: none; padding: 12px;
+      font-weight: bold; border-radius: 5px; cursor: pointer; font-size: 14px;
+    }
+    .empty-msg { text-align: center; color: #8b949e; font-size: 14px; padding: 20px 0; }
+  </style>
 </head>
 <body>
 
-    <header>
-        <img src="image.png" alt="Underground Pratas 925" class="logo">
-    </header>
-
-    <div class="info-banner">
-        ✨ Atendimento em Brasília e Região: Agende uma visita! Atendemos em salões, bares e no seu local de trabalho.
+  <!-- CABEÇALHO -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#" class="brand-logo">
+        <img src="https://i.ibb.co/PvPYX1TB/IMG-0962.png" alt="Underground Pratas 925">
+      </a>
+      <div class="cart-icon-wrapper" onclick="toggleCartModal()">
+        <span>🛒</span>
+        <span id="cart-count" class="cart-badge">0</span>
+      </div>
     </div>
 
-    <nav>
-        <a href="#pulseiras">Pulseiras</a>
-        <a href="#aneis">Anéis</a>
-        <a href="#colares">Colares</a>
-        <a href="#brincos">Brincos</a>
-        <a href="#chocker">Chocker</a>
-        <a href="#bracelete">Bracelete</a>
-        <a href="#masculino">Masculino</a>
-        <a href="#argolas">Argolas</a>
+    <!-- CATEGORIAS EM ORDEM ALFABÉTICA -->
+    <nav class="category-nav">
+      <ul>
+        <li><a href="#aneis">Anéis</a></li>
+        <li><a href="#argolas">Argolas</a></li>
+        <li><a href="#braceletes">Braceletes</a></li>
+        <li><a href="#brincos">Brincos</a></li>
+        <li><a href="#chocker">Chocker</a></li>
+        <li><a href="#colares">Colares</a></li>
+        <li><a href="#masculino">Masculino</a></li>
+        <li><a href="#pulseiras">Pulseiras</a></li>
+      </ul>
     </nav>
+  </header>
 
-    <div class="container">
+  <!-- CATÁLOGO DE PRODUTOS -->
+  <main class="catalog-container">
+    <h2 class="section-title" id="aneis">Anéis</h2>
+    
+    <div class="products-grid">
+      
+      <!-- PEÇA 1 -->
+      <div class="product-card">
+        <img src="https://i.ibb.co/jksZmwyG/IMG-1104.webp" alt="Anel regulável verde">
+        <div class="product-title">Anel Regulável Verde</div>
+        <div class="product-price">R$ 89,99</div>
+        <button class="btn-add-cart" onclick="addToCart('Anel Regulável Verde', 89.99, 'https://i.ibb.co/jksZmwyG/IMG-1104.webp')">
+          Adicionar 🛒
+        </button>
+      </div>
 
-        <!-- CATEGORIA: ANÉIS -->
-        <div id="aneis" class="category-title">Anéis</div>
-        <div class="grid">
-            
-            <!-- Item 58 -->
-            <div class="product-card">
-                <div class="img-container">
-                    <span class="badge-prata">Prata 925 Legítima</span>
-                    <img src="https://cdn1.e-macro.com.br/cypratascombr/images/photos/800/83990011-7fbb-4d66-4cee-1c88990022ff.cy10104_02.jpg" alt="Anel Solitário Zircônia Central">
-                </div>
-                <div class="info">
-                    <div class="product-title">Anel Solitário Zircônia Central</div>
-                    <div class="product-price">R$ 69,99</div>
-                    <button class="btn-cart" onclick="addCart('Anel Solitário Zircônia Central', 69.99, 'https://cdn1.e-macro.com.br/cypratascombr/images/photos/800/83990011-7fbb-4d66-4cee-1c88990022ff.cy10104_02.jpg')">+ Adicionar ao Carrinho</button>
-                    <a href="https://wa.me/5561981642480?text=Olá!%20Tenho%20interesse%20no%20Anel%20Solitário%20Zircônia%20Central%20(Prata%20925).%20Foto:%20https://cdn1.e-macro.com.br/cypratascombr/images/photos/800/83990011-7fbb-4d66-4cee-1c88990022ff.cy10104_02.jpg" class="btn-whatsapp" target="_blank">Consultar no WhatsApp</a>
-                    <div class="wa-notice">O link da foto vai anexado para o atendente ver o modelo exato.</div>
-                </div>
-            </div>
+      <!-- PEÇA 2 -->
+      <div class="product-card">
+        <img src="https://i.ibb.co/1GkdsSQk/IMG-1102.webp" alt="Anel zircônias">
+        <div class="product-title">Anel Zircônias</div>
+        <div class="product-price">R$ 119,99</div>
+        <button class="btn-add-cart" onclick="addToCart('Anel Zircônias', 119.99, 'https://i.ibb.co/1GkdsSQk/IMG-1102.webp')">
+          Adicionar 🛒
+        </button>
+      </div>
 
-            <!-- Item 59 -->
-            <div class="product-card">
-                <div class="img-container">
-                    <span class="badge-prata">Prata 925 Legítima</span>
-                    <img src="https://cdn1.e-macro.com.br/cypratascombr/images/photos/800/72001122-8acc-4e77-5dff-2d99001133aa.cy10105_02.jpg" alt="Anel V Vazado Delicado">
-                </div>
-                <div class="info">
-                    <div class="product-title">Anel V Vazado Delicado</div>
-                    <div class="product-price">R$ 49,99</div>
-                    <button class="btn-cart" onclick="addCart('Anel V Vazado Delicado', 49.99, 'https://cdn1.e-macro.com.br/cypratascombr/images/photos/800/72001122-8acc-4e77-5dff-2d99001133aa.cy10105_02.jpg')">+ Adicionar ao Carrinho</button>
-                    <a href="https://wa.me/5561981642480?text=Olá!%20Tenho%20interesse%20no%20Anel%20V%20Vazado%20Delicado%20(Prata%20925).%20Foto:%20https://cdn1.e-macro.com.br/cypratascombr/images/photos/800/72001122-8acc-4e77-5dff-2d99001133aa.cy10105_02.jpg" class="btn-whatsapp" target="_blank">Consultar no WhatsApp</a>
-                    <div class="wa-notice">O link da foto vai anexado para o atendente ver o modelo exato.</div>
-                </div>
-            </div>
+      <!-- PEÇA 3 -->
+      <div class="product-card">
+        <img src="https://i.ibb.co/Q7FJF3gD/IMG-1103.webp" alt="Anel bolinha">
+        <div class="product-title">Anel Bolinha</div>
+        <div class="product-price">R$ 89,99</div>
+        <button class="btn-add-cart" onclick="addToCart('Anel Bolinha', 89.99, 'https://i.ibb.co/Q7FJF3gD/IMG-1103.webp')">
+          Adicionar 🛒
+        </button>
+      </div>
 
-        </div>
-
-        <!-- CATEGORIA: ARGOLAS -->
-        <div id="argolas" class="category-title">Argolas</div>
-        <div class="grid">
-            
-            <!-- Argola 1 -->
-            <div class="product-card">
-                <div class="img-container">
-                    <span class="badge-prata">Prata 925 Legítima</span>
-                    <img src="https://cdn1.e-macro.com.br/cypratascombr/images/photos/800/61112233-9bdd-4588-6eaa-3f00112244bb.cy10106_02.jpg" alt="Argola Fecho Click Cravejada Zircônias">
-                </div>
-                <div class="info">
-                    <div class="product-title">Argola Fecho Click Cravejada Zircônias</div>
-                    <div class="product-price">R$ 79,99</div>
-                    <button class="btn-cart" onclick="addCart('Argola Fecho Click Cravejada Zircônias', 79.99, 'https://cdn1.e-macro.com.br/cypratascombr/images/photos/800/61112233-9bdd-4588-6eaa-3f00112244bb.cy10106_02.jpg')">+ Adicionar ao Carrinho</button>
-                    <a href="https://wa.me/5561981642480?text=Olá!%20Tenho%20interesse%20na%20Argola%20Fecho%20Click%20Cravejada%20Zircônias%20(Prata%20925).%20Foto:%20https://cdn1.e-macro.com.br/cypratascombr/images/photos/800/61112233-9bdd-4588-6eaa-3f00112244bb.cy10106_02.jpg" class="btn-whatsapp" target="_blank">Consultar no WhatsApp</a>
-                    <div class="wa-notice">O link da foto vai anexado para o atendente ver o modelo exato.</div>
-                </div>
-            </div>
-
-            <!-- Argola 2 -->
-            <div class="product-card">
-                <div class="img-container">
-                    <span class="badge-prata">Prata 925 Legítima</span>
-                    <img src="https://cdn1.e-macro.com.br/cypratascombr/images/photos/800/50223344-0cee-4699-7fbb-4c11223355cc.cy10107_02.jpg" alt="Argola Lisa Tubo Médio 20mm">
-                </div>
-                <div class="info">
-                    <div class="product-title">Argola Lisa Tubo Médio 20mm</div>
-                    <div class="product-price">R$ 59,99</div>
-                    <button class="btn-cart" onclick="addCart('Argola Lisa Tubo Médio 20mm', 59.99, 'https://cdn1.e-macro.com.br/cypratascombr/images/photos/800/50223344-0cee-4699-7fbb-4c11223355cc.cy10107_02.jpg')">+ Adicionar ao Carrinho</button>
-                    <a href="https://wa.me/5561981642480?text=Olá!%20Tenho%20interesse%20na%20Argola%20Lisa%20Tubo%20Médio%2020mm%20(Prata%20925).%20Foto:%20https://cdn1.e-macro.com.br/cypratascombr/images/photos/800/50223344-0cee-4699-7fbb-4c11223355cc.cy10107_02.jpg" class="btn-whatsapp" target="_blank">Consultar no WhatsApp</a>
-                    <div class="wa-notice">O link da foto vai anexado para o atendente ver o modelo exato.</div>
-                </div>
-            </div>
-
-        </div>
+      <!-- PEÇA 4 -->
+      <div class="product-card">
+        <img src="https://i.ibb.co/svWQyFfC/IMG-1105.webp" alt="Anel paz">
+        <div class="product-title">Anel Paz</div>
+        <div class="product-price">R$ 89,99</div>
+        <button class="btn-add-cart" onclick="addToCart('Anel Paz', 89.99, 'https://i.ibb.co/svWQyFfC/IMG-1105.webp')">
+          Adicionar 🛒
+        </button>
+      </div>
 
     </div>
+  </main>
 
-    <!-- Botão Flutuante do Carrinho -->
-    <div class="cart-float-btn" onclick="toggleCart()">
-        🛒 Carrinho (<span id="cart-count">0</span>)
-    </div>
+  <!-- MODAL CARRINHO -->
+  <div id="cart-modal" class="cart-modal">
+    <div class="cart-content">
+      <div class="cart-header">
+        <h2>Seu Pedido - Underground Pratas</h2>
+        <span class="close-btn" onclick="toggleCartModal()">&times;</span>
+      </div>
+      
+      <div id="cart-items" class="cart-items-list">
+        <p class="empty-msg">Seu carrinho está vazio.</p>
+      </div>
 
-    <!-- Modal do Carrinho -->
-    <div id="cartModal" class="modal">
-        <div class="modal-content">
-            <h3>Seu Carrinho</h3>
-            <div id="cart-items"></div>
-            <p><strong>Total: R$ <span id="cart-total">0.00</span></strong></p>
-            <button class="btn-whatsapp" onclick="checkoutWhatsApp()" style="width: 100%; padding: 12px; margin-top: 10px;">Enviar Pedido pelo WhatsApp</button>
-            <button class="btn-cart" onclick="toggleCart()" style="width: 100%; background-color: #64748b; margin-top: 6px;">Fechar</button>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cart-total-price">R$ 0,00</span>
         </div>
+        <button class="btn-whatsapp" onclick="sendToWhatsApp()">
+          Finalizar Pedido via WhatsApp 📲
+        </button>
+      </div>
     </div>
+  </div>
 
-    <script>
-        let cart = [];
+  <!-- JAVASCRIPT -->
+  <script>
+    // Digite seu WhatsApp abaixo (ex: 5561999999999)
+    const phoneWhatsApp = "5561999999999"; 
 
-        function addCart(title, price, imgUrl) {
-            cart.push({ title, price, imgUrl });
-            updateCart();
-            alert('Item adicionado ao carrinho!');
-        }
+    let cart = [];
 
-        function updateCart() {
-            document.getElementById('cart-count').innerText = cart.length;
-            const cartItemsContainer = document.getElementById('cart-items');
-            cartItemsContainer.innerHTML = '';
-            let total = 0;
+    function toggleCartModal() {
+      const modal = document.getElementById('cart-modal');
+      modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+    }
 
-            cart.forEach((item, index) => {
-                total += item.price;
-                cartItemsContainer.innerHTML += `
-                    <div class="cart-item">
-                        <img src="${item.imgUrl}" alt="${item.title}">
-                        <div style="flex-grow: 1;">
-                            <div style="font-size: 0.85em;">${item.title}</div>
-                            <div style="color: #38bdf8; font-weight: bold;">R$ ${item.price.toFixed(2)}</div>
-                        </div>
-                        <button onclick="removeItem(${index})" style="background: none; border: none; color: #ef4444; cursor: pointer;">✕</button>
-                    </div>
-                `;
-            });
+    function addToCart(name, price, imageUrl) {
+      cart.push({ name, price: parseFloat(price), imageUrl });
+      updateCartUI();
+    }
 
-            document.getElementById('cart-total').innerText = total.toFixed(2);
-        }
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
 
-        function removeItem(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
+    function updateCartUI() {
+      const cartCount = document.getElementById('cart-count');
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartTotalPrice = document.getElementById('cart-total-price');
 
-        function toggleCart() {
-            const modal = document.getElementById('cartModal');
-            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
-        }
+      cartCount.innerText = cart.length;
 
-        function checkoutWhatsApp() {
-            if(cart.length === 0) {
-                alert('Seu carrinho está vazio!');
-                return;
-            }
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p class="empty-msg">Seu carrinho está vazio.</p>';
+        cartTotalPrice.innerText = 'R$ 0,00';
+        return;
+      }
 
-            let message = "Olá! Gostaria de fazer o pedido das seguintes peças (Prata 925):\n\n";
-            cart.forEach((item, i) => {
-                message += `${i+1}. *${item.title}* - R$ ${item.price.toFixed(2)}\nFoto: ${item.imgUrl}\n\n`;
-            });
+      cartItemsContainer.innerHTML = '';
+      let total = 0;
 
-            let total = document.getElementById('cart-total').innerText;
-            message += `*Total: R$ ${total}*`;
+      cart.forEach((item, index) => {
+        total += item.price;
+        cartItemsContainer.innerHTML += `
+          <div class="cart-item">
+            <img src="${item.imageUrl}" alt="${item.name}">
+            <div class="item-info">
+              <p class="item-title">${item.name}</p>
+              <p class="item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</p>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart(${index})">✕</button>
+          </div>
+        `;
+      });
 
-            let url = `https://wa.me/5561981642480?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-        }
-    </script>
+      cartTotalPrice.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    }
+
+    function sendToWhatsApp() {
+      if (cart.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+      }
+
+      let message = "✨ *NOVO PEDIDO - UNDERGROUND PRATAS 925* ✨\n\n";
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        message += `*${index + 1}. ${item.name}*\n`;
+        message += `   Preço: R$ ${item.price.toFixed(2).replace('.', ',')}\n`;
+        message += `   Foto: ${item.imageUrl}\n\n`;
+      });
+
+      message += `-------------------------------\n`;
+      message += `💰 *Valor Total:* R$ ${total.toFixed(2).replace('.', ',')}\n\n`;
+      message += `Gostaria de confirmar a disponibilidade para entrega!`;
+
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/${phoneWhatsApp}?text=${encodedMessage}`, '_blank');
+    }
+  </script>
 </body>
 </html>
-<!-- Item 58 -->
-<div class="product-card">
-    <div class="img-container">
-        <img src="https://img1.conectavenda.com.br/cristiano_rafael_vendramini_/413/4aca0c6c-599b-452e-8955-6fa196706e0c.webp" alt="Anel Falange Infinito">
-    </div>
-    <div class="info">
-        <div class="product-title">Anel Falange Infinito</div>
-        <div class="product-price">R$ 89,99</div>
-        <button class="btn-cart" onclick="addCart('Anel Falange Infinito', 89.99)">+ Adicionar ao Carrinho</button>
-        <a href="https://wa.me/5561981642480?text=Olá!%20Gostaria%20de%20consultar%20a%20disponibilidade/numeração%20do%20Anel%20Falange%20Infinito" class="btn-whatsapp" target="_blank">Consultar Numeração</a>
-    </div>
-</div> <!-- Item 59 -->
-<div class="product-card">
-    <div class="img-container">
-        <img src="https://img1.conectavenda.com.br/cristiano_rafael_vendramini_/413/bc9e98ce-ee14-4c67-b680-0aeb960ca1ac.webp" alt="Anel Falange Duas Folhas">
-    </div>
-    <div class="info">
-        <div class="product-title">Anel Falange Duas Folhas</div>
-        <div class="product-price">R$ 89,99</div>
-        <button class="btn-cart" onclick="addCart('Anel Falange Duas Folhas', 89.99)">+ Adicionar ao Carrinho</button>
-        <a href="https://wa.me/5561981642480?text=Olá!%20Gostaria%20de%20consultar%20a%20disponibilidade/numeração%20do%20Anel%20Falange%20Duas%20Folhas" class="btn-whatsapp" target="_blank">Consultar Numeração</a>
-    </div>
-</div> <!-- Item 60 -->
-<div class="product-card">
-    <div class="img-container">
-        <img src="https://img1.conectavenda.com.br/cristiano_rafael_vendramini_/413/9d801cbc-24b4-482b-bc90-c5f937bd5b85.webp" alt="Anel Cravejado Espírito Santo">
-    </div>
-    <div class="info">
-        <div class="product-title">Anel Cravejado Espírito Santo</div>
-        <div class="product-price">R$ 119,99</div>
-        <button class="btn-cart" onclick="addCart('Anel Cravejado Espírito Santo', 119.99)">+ Adicionar ao Carrinho</button>
-        <a href="https://wa.me/5561981642480?text=Olá!%20Gostaria%20de%20consultar%20a%20disponibilidade/numeração%20do%20Anel%20Cravejado%20Espírito%20Santo" class="btn-whatsapp" target="_blank">Consultar Numeração</a>
-    </div>
-</div> <!-- Item 61 -->
-<div class="product-card">
-    <div class="img-container">
-        <img src="https://img1.conectavenda.com.br/cristiano_rafael_vendramini_/413/2c3832e5-5cf2-483a-b6de-acbb287e4dc5.webp" alt="Anel Fé">
-    </div>
-    <div class="info">
-        <div class="product-title">Anel Fé</div>
-        <div class="product-price">R$ 119,99</div>
-        <button class="btn-cart" onclick="addCart('Anel Fé', 119.99)">+ Adicionar ao Carrinho</button>
-        <a href="https://wa.me/5561981642480?text=Olá!%20Gostaria%20de%20consultar%20a%20disponibilidade/numeração%20do%20Anel%20Fé" class="btn-whatsapp" target="_blank">Consultar Numeração</a>
-    </div>
-</div> <!-- Item 62 -->
-<div class="product-card">
-    <div class="img-container">
-        <img src="https://img1.conectavenda.com.br/cristiano_rafael_vendramini_/413/f2501865-e6d6-45d6-89ae-1a0777244808.webp" alt="Anel Solitário Infinito Lateral">
-    </div>
-    <div class="info">
-        <div class="product-title">Anel Solitário Infinito Lateral</div>
-        <div class="product-price">R$ 129,99</div>
-        <button class="btn-cart" onclick="addCart('Anel Solitário Infinito Lateral', 129.99)">+ Adicionar ao Carrinho</button>
-        <a href="https://wa.me/5561981642480?text=Olá!%20Gostaria%20de%20consultar%20a%20disponibilidade/numeração%20do%20Anel%20Solitário%20Infinito%20Lateral" class="btn-whatsapp" target="_blank">Consultar Numeração</a>
-    </div>
-</div>
