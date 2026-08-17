@@ -9,23 +9,19 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background-color: #0f0f0f; color: #f1f1f1; padding-bottom: 90px; }
     
-    /* Header e Logo Banner Retangular */
     header { width: 100%; background: #000; border-bottom: 2px solid #333; text-align: center; }
     .logo-banner { width: 100%; height: auto; max-height: 200px; object-fit: contain; display: block; margin: 0 auto; }
     
-    /* Banner Atendimento Itinerante */
     .banner-itinerante { background: linear-gradient(135deg, #1c1c1c, #292929); border: 1px solid #444; border-radius: 10px; margin: 15px; padding: 15px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.6); }
     .banner-itinerante h3 { color: #fff; font-size: 1.15rem; margin-bottom: 6px; font-weight: bold; }
     .banner-itinerante p { color: #ddd; font-size: 0.9rem; margin-bottom: 12px; line-height: 1.4; }
     .destaque-rua { color: #25d366; font-weight: bold; }
     .btn-agendar { background-color: #25d366; color: #fff; text-decoration: none; font-weight: bold; padding: 10px 20px; border-radius: 20px; display: inline-block; font-size: 0.9rem; box-shadow: 0 2px 8px rgba(37,211,102,0.3); }
     
-    /* Filtros e Navegação */
     .filtros { display: flex; justify-content: center; gap: 8px; margin: 15px; flex-wrap: wrap; }
     .btn-filtro { background: #222; color: #fff; border: 1px solid #444; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; }
     .btn-filtro.ativo { background: #fff; color: #000; font-weight: bold; }
     
-    /* Grid de Produtos */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 10px; }
     .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; min-height: 200px; }
     .card { background: #181818; border: 1px solid #282828; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
@@ -36,19 +32,16 @@
     .card-preco { font-size: 1.1rem; font-weight: bold; color: #25d366; margin: 6px 0; }
     .btn-add { background: #fff; color: #000; border: none; padding: 8px; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%; font-size: 0.8rem; }
     
-    /* Paginação */
     .paginacao { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 25px 0; }
     .btn-pag { background: #222; color: #fff; border: 1px solid #444; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
     .btn-pag:disabled { opacity: 0.4; cursor: not-allowed; }
     #info-pagina { font-size: 0.9rem; font-weight: bold; }
 
-    /* Carrinho Fixo Rodapé */
     .carrinho-fixo { position: fixed; bottom: 0; left: 0; width: 100%; background: #111; border-top: 1px solid #333; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 15px rgba(0,0,0,0.8); z-index: 100; }
     .carrinho-info { font-size: 0.9rem; }
     .carrinho-total { font-weight: bold; color: #25d366; font-size: 1.1rem; }
     .btn-finalizar { background: #25d366; color: #fff; border: none; padding: 10px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 0.9rem; }
 
-    /* Modal de Zoom */
     .modal-zoom { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
     .modal-zoom img { max-width: 90%; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
     .fechar-modal { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 35px; font-weight: bold; cursor: pointer; z-index: 1001; }
@@ -61,17 +54,16 @@
   </header>
 
   <div class="container">
-    <!-- Atendimento Itinerante -->
     <div class="banner-itinerante">
       <h3>Vendas na Rua & Atendimento Itinerante</h3>
       <p>Nosso diferencial é levar a loja até você! Vendemos <span class="destaque-rua">na rua, nos comércios, bares, restaurantes e locais de trabalho</span>. Agende uma visita!</p>
       <a href="https://wa.me/5561981642480?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20onde%20estou!" class="btn-agendar" target="_blank">Chamar no WhatsApp</a>
     </div>
 
-    <!-- Filtros de Categorias -->
     <div class="filtros">
       <button class="btn-filtro ativo" onclick="filtrar('todos')">Todos</button>
       <button class="btn-filtro" onclick="filtrar('Aneis')">Anéis</button>
+      <button class="btn-filtro" onclick="filtrar('AneisMasculinos')">Anéis Masculinos</button>
       <button class="btn-filtro" onclick="filtrar('Solitarios')">Anéis Solitários</button>
       <button class="btn-filtro" onclick="filtrar('Gargantilhas')">Gargantilhas</button>
       <button class="btn-filtro" onclick="filtrar('Correntes')">Correntes</button>
@@ -79,7 +71,6 @@
       <button class="btn-filtro" onclick="filtrar('Pingentes')">Pingentes</button>
     </div>
 
-    <!-- Grid de Produtos -->
     <div class="grid-produtos" id="grid-produtos">
       
       <!-- Peça 1 -->
@@ -517,9 +508,263 @@
         </div>
       </div>
 
+      <!-- Peça 30 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/hR4Gs19p/IMG-1242.webp" alt="Anel Masculino Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Masculino Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 239,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Prata 925', 239.99, 'https://i.ibb.co/hR4Gs19p/IMG-1242.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 31 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/20v79gfL/IMG-1241.webp" alt="Anel Masculino Caveira Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Masculino Caveira Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 339,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Caveira Prata 925', 339.99, 'https://i.ibb.co/20v79gfL/IMG-1241.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 32 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/2YjH52PB/IMG-1240.webp" alt="Anel Masculino Liso Giratório Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Masculino Liso Giratório Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 324,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Liso Giratório Prata 925', 324.99, 'https://i.ibb.co/2YjH52PB/IMG-1240.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 33 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/yFXNQWLY/IMG-1239.webp" alt="Anel Masculino Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Masculino Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 249,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Prata 925', 249.99, 'https://i.ibb.co/yFXNQWLY/IMG-1239.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 34 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/VYf6yMbD/IMG-1238.webp" alt="Anel Harley Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Harley Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 239,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Harley Prata 925', 239.99, 'https://i.ibb.co/VYf6yMbD/IMG-1238.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 35 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/PvfRjN57/IMG-1237.webp" alt="Anel Unissex Envelhecido" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Unissex Envelhecido</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 179,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Unissex Envelhecido', 179.99, 'https://i.ibb.co/PvfRjN57/IMG-1237.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 36 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/1SRWMYZ/IMG-1236.webp" alt="Anel Caveiras Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Caveiras Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 239,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Caveiras Prata 925', 239.99, 'https://i.ibb.co/1SRWMYZ/IMG-1236.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 37 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/6cYgqbjr/IMG-1235.webp" alt="Anel Caveira Flor Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Caveira Flor Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 379,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Caveira Flor Prata 925', 379.99, 'https://i.ibb.co/6cYgqbjr/IMG-1235.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 38 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/RkT88zV5/IMG-1234.webp" alt="Anel Masculino De Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Masculino De Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 189,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino De Prata 925', 189.99, 'https://i.ibb.co/RkT88zV5/IMG-1234.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 39 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/VpL8WfJJ/IMG-1232.webp" alt="Anel Masculino Listras Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Masculino Listras Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 239,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Listras Prata 925', 239.99, 'https://i.ibb.co/VpL8WfJJ/IMG-1232.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 40 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/60HQt9rh/IMG-1230.webp" alt="Anel Masculino Pedra Sintética Ônix Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Masculino Pedra Ônix Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 299,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Pedra Ônix Prata 925', 299.99, 'https://i.ibb.co/60HQt9rh/IMG-1230.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 41 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/HTZ9Zhc0/IMG-1229.webp" alt="Anel Masculino Rubi Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Masculino Rubi Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 289,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Rubi Prata 925', 289.99, 'https://i.ibb.co/HTZ9Zhc0/IMG-1229.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 42 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/0y68bCN3/IMG-1228.webp" alt="Anel Grande Regulável Liso Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Grande Regulável Liso Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 199,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Grande Regulável Liso Prata 925', 199.99, 'https://i.ibb.co/0y68bCN3/IMG-1228.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 43 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/Wv8t7Dgy/IMG-1226.webp" alt="Anel Masculino São Jorge Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Masculino São Jorge Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 289,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino São Jorge Prata 925', 289.99, 'https://i.ibb.co/Wv8t7Dgy/IMG-1226.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 44 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/vx34L1t0/IMG-1225.webp" alt="Anel Prata 925 Embutido" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Prata 925 Embutido</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 249,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Embutido', 249.99, 'https://i.ibb.co/vx34L1t0/IMG-1225.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 45 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/CK5xV46P/IMG-1223.webp" alt="Anel Masculino Caveira Asa Prata 925" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Masculino Caveira Asa Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 259,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Caveira Asa Prata 925', 259.99, 'https://i.ibb.co/CK5xV46P/IMG-1223.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 46 -->
+      <div class="card" data-categoria="AneisMasculinos">
+        <img src="https://i.ibb.co/k2KFGHpX/IMG-1224.webp" alt="Anel Quadrado Pedra Embutida Preto" onclick="abrirZoom(this.src)">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Masculinos</span>
+            <h4 class="card-titulo">Anel Quadrado Pedra Embutida Preto</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 249,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Quadrado Pedra Embutida Preto', 249.99, 'https://i.ibb.co/k2KFGHpX/IMG-1224.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Paginação -->
     <div class="paginacao">
       <button class="btn-pag" id="btn-ant" onclick="mudarPagina(-1)">Anterior</button>
       <span id="info-pagina">Página 1</span>
@@ -528,7 +773,6 @@
 
   </div>
 
-  <!-- Carrinho Fixo Rodapé -->
   <div class="carrinho-fixo">
     <div class="carrinho-info">
       <div><strong id="qtd-itens">0</strong> itens selecionados</div>
@@ -537,7 +781,6 @@
     <button class="btn-finalizar" onclick="enviarPedido()">Enviar Pedido</button>
   </div>
 
-  <!-- Modal Zoom -->
   <div class="modal-zoom" id="modal-zoom" onclick="fecharZoom()">
     <span class="fechar-modal">&times;</span>
     <img id="img-zoom" src="" alt="Zoom do Produto">
@@ -548,7 +791,6 @@
     let paginaAtual = 1;
     const itensPorPagina = 20;
 
-    // Zoom da foto
     function abrirZoom(src) {
       document.getElementById('img-zoom').src = src;
       document.getElementById('modal-zoom').style.display = 'flex';
@@ -558,7 +800,6 @@
       document.getElementById('modal-zoom').style.display = 'none';
     }
 
-    // Embaralha as peças na exibição inicial
     function embaralharProdutos() {
       const grid = document.getElementById('grid-produtos');
       const cards = Array.from(grid.children);
@@ -649,10 +890,8 @@
       }
     }
 
-    // Inicialização
     embaralharProdutos();
     renderizarPagina();
   </script>
 </body>
 </html>
-
