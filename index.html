@@ -67,14 +67,195 @@
     <div class="filtros">
       <button class="btn-filtro ativo" onclick="filtrar('todos')">Todos</button>
       <button class="btn-filtro" onclick="filtrar('Aneis')">Anéis</button>
+      <button class="btn-filtro" onclick="filtrar('Solitarios')">Anéis Solitários</button>
       <button class="btn-filtro" onclick="filtrar('Correntes')">Correntes</button>
       <button class="btn-filtro" onclick="filtrar('Pulseiras')">Pulseiras</button>
       <button class="btn-filtro" onclick="filtrar('Pingentes')">Pingentes</button>
     </div>
 
-    <!-- Grid de Produtos (As peças entram aqui) -->
+    <!-- Grid de Produtos -->
     <div class="grid-produtos" id="grid-produtos">
-      <!-- As fotos das peças serão inseridas aqui uma por uma -->
+      
+      <!-- Peça 1 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/4RpHNRzZ/IMG-1189.webp" alt="Anel Prata 925 Coração">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Coração</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 89,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Coração', 89.99, 'https://i.ibb.co/4RpHNRzZ/IMG-1189.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 2 -->
+      <div class="card" data-categoria="Solitarios">
+        <img src="https://i.ibb.co/YTYG7XRj/IMG-1188.webp" alt="Anel Solitário Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Solitários</span>
+            <h4 class="card-titulo">Anel Solitário Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 129,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Solitário Prata 925', 129.99, 'https://i.ibb.co/YTYG7XRj/IMG-1188.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 3 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/QFqNLC41/IMG-1187.webp" alt="Anel Folha Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Folha</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 79,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Folha', 79.99, 'https://i.ibb.co/QFqNLC41/IMG-1187.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 4 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/XZc1yRxc/IMG-1186.webp" alt="Anel Prata 925 Dois Palitos">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Dois Palitos</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 99,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Dois Palitos', 99.99, 'https://i.ibb.co/XZc1yRxc/IMG-1186.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 5 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/f3r8dCC/IMG-1185.webp" alt="Anel Prata 925 Coração">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Coração</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 84,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Coração', 84.99, 'https://i.ibb.co/f3r8dCC/IMG-1185.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 6 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/DPb9Q8Hr/IMG-1184.webp" alt="Anel Prata 925 3 Corações">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 3 Corações</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 99,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 3 Corações', 99.99, 'https://i.ibb.co/DPb9Q8Hr/IMG-1184.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 7 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/BHsJ9qj7/IMG-1183.webp" alt="Anel Prata 925 Tartaruga">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Tartaruga</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 129,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Tartaruga', 129.99, 'https://i.ibb.co/BHsJ9qj7/IMG-1183.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 8 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/fVj6Tw5K/IMG-1182.webp" alt="Anel Prata 925 Ondulado Quadrado">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Ondulado Quadrado</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 99,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Ondulado Quadrado', 99.99, 'https://i.ibb.co/fVj6Tw5K/IMG-1182.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 9 -->
+      <div class="card" data-categoria="Solitarios">
+        <img src="https://i.ibb.co/0RYhy6vG/IMG-1181.webp" alt="Anel Solitário Prata 925 Coração Verde">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Solitários</span>
+            <h4 class="card-titulo">Anel Solitário Coração Verde</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 129,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Solitário Coração Verde', 129.99, 'https://i.ibb.co/0RYhy6vG/IMG-1181.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 10 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/mVZ8tHwt/IMG-1180.webp" alt="Anel Prata 925 Regulável Estrela e Pedra">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Regulável Estrela e Pedra</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 89,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Regulável Estrela e Pedra', 89.99, 'https://i.ibb.co/mVZ8tHwt/IMG-1180.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 11 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/tPQ1RTDz/IMG-1179.webp" alt="Anel Prata 925 Patinha">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Patinha</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 84,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Patinha', 84.99, 'https://i.ibb.co/tPQ1RTDz/IMG-1179.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 12 -->
+      <div class="card" data-categoria="Solitarios">
+        <img src="https://i.ibb.co/vCVjzXFc/IMG-1178.webp" alt="Anel Solitário Prata 925 Infinito na Lateral">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Solitários</span>
+            <h4 class="card-titulo">Anel Solitário Infinito na Lateral</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 169,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Solitário Infinito na Lateral', 169.99, 'https://i.ibb.co/vCVjzXFc/IMG-1178.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- Paginação (20 fotos por página) -->
@@ -184,4 +365,5 @@
   </script>
 </body>
 </html>
+
 
