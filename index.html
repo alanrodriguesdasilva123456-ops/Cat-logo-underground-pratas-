@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" translate="no">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
   <title>Underground Pratas 925 | Catálogo Oficial</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background-color: #0f0f0f; color: #f1f1f1; padding-bottom: 90px; }
     
-    /* Header e Banner Retangular */
-    header { width: 100%; background: #000; border-bottom: 2px solid #333; overflow: hidden; line-height: 0; }
-    .logo-banner { width: 100%; max-height: 180px; object-fit: contain; background-color: #000; display: block; }
+    /* Header e Logo Banner Retangular */
+    header { width: 100%; background: #000; border-bottom: 2px solid #333; text-align: center; }
+    .logo-banner { width: 100%; height: auto; max-height: 200px; object-fit: contain; display: block; margin: 0 auto; }
     
-    /* Banner Atendimento Itinerante Curto e Atrativo */
+    /* Banner Atendimento Itinerante */
     .banner-itinerante { background: linear-gradient(135deg, #1c1c1c, #292929); border: 1px solid #444; border-radius: 10px; margin: 15px; padding: 15px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.6); }
     .banner-itinerante h3 { color: #fff; font-size: 1.15rem; margin-bottom: 6px; font-weight: bold; }
     .banner-itinerante p { color: #ddd; font-size: 0.9rem; margin-bottom: 12px; line-height: 1.4; }
-    .highlight-street { color: #25d366; font-weight: bold; }
+    .destaque-rua { color: #25d366; font-weight: bold; }
     .btn-agendar { background-color: #25d366; color: #fff; text-decoration: none; font-weight: bold; padding: 10px 20px; border-radius: 20px; display: inline-block; font-size: 0.9rem; box-shadow: 0 2px 8px rgba(37,211,102,0.3); }
     
     /* Filtros e Navegação */
@@ -26,7 +27,7 @@
     
     /* Grid de Produtos */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 10px; }
-    .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; min-height: 200px; }
     .card { background: #181818; border: 1px solid #282828; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
     .card img { width: 100%; height: 180px; object-fit: cover; background: #222; }
     .card-info { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
@@ -35,7 +36,7 @@
     .card-preco { font-size: 1.1rem; font-weight: bold; color: #25d366; margin: 6px 0; }
     .btn-add { background: #fff; color: #000; border: none; padding: 8px; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%; font-size: 0.8rem; }
     
-    /* Paginação (20 peças/página) */
+    /* Paginação */
     .paginacao { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 25px 0; }
     .btn-pag { background: #222; color: #fff; border: 1px solid #444; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
     .btn-pag:disabled { opacity: 0.4; cursor: not-allowed; }
@@ -51,19 +52,18 @@
 <body>
 
   <header>
-    <!-- Logo Retangular Atualizada -->
-    <img src="https://i.ibb.co/PvPYX1TB/IMG-0962.png" alt="Underground Pratas 925" class="logo-banner">
+    <img src="https://i.ibb.co/DHvbcwG3/IMG-0962.png" alt="Underground Pratas 925" class="logo-banner">
   </header>
 
   <div class="container">
-    <!-- Atendimento Itinerante Reformulado -->
+    <!-- Atendimento Itinerante -->
     <div class="banner-itinerante">
-      <h3> Venda Itinerante & Atendimento VIP</h3>
-      <p>Nosso diferencial é ir até você! Vendemos <span class="highlight-street">na rua, nos comércios, bares, restaurantes e no seu trabalho</span>. Agende uma visita e veja as peças ao vivo!</p>
-      <a href="https://wa.me/5561981642480?text=Ol%C3%A1!%20Vi%20o%20cat%C3%A1logo%20e%20gostaria%20de%20agendar%20uma%20visita%20onde%20estou!" class="btn-agendar" target="_blank">Chamar no WhatsApp</a>
+      <h3>Vendas na Rua & Atendimento Itinerante</h3>
+      <p>Nosso diferencial é levar a loja até você! Vendemos <span class="destaque-rua">na rua, nos comércios, bares, restaurantes e locais de trabalho</span>. Agende uma visita!</p>
+      <a href="https://wa.me/5561981642480?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20onde%20estou!" class="btn-agendar" target="_blank">Chamar no WhatsApp</a>
     </div>
 
-    <!-- Navegação de Categorias -->
+    <!-- Filtros de Categorias -->
     <div class="filtros">
       <button class="btn-filtro ativo" onclick="filtrar('todos')">Todos</button>
       <button class="btn-filtro" onclick="filtrar('Aneis')">Anéis</button>
@@ -72,72 +72,12 @@
       <button class="btn-filtro" onclick="filtrar('Pingentes')">Pingentes</button>
     </div>
 
-    <!-- Catálogo de Produtos -->
+    <!-- Grid de Produtos (As peças entram aqui) -->
     <div class="grid-produtos" id="grid-produtos">
-      
-      <!-- Peça 1 -->
-      <div class="card" data-categoria="Correntes">
-        <img src="https://i.ibb.co/L53923v/peca1.jpg" alt="Corrente Venetiana 925">
-        <div class="card-info">
-          <div>
-            <span class="card-categoria">Correntes</span>
-            <h4 class="card-titulo">Corrente Venetiana 45cm</h4>
-          </div>
-          <div>
-            <div class="card-preco">R$ 120,00</div>
-            <button class="btn-add" onclick="adicionarAoCarrinho('Corrente Venetiana 45cm', 120.00)">Adicionar</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Peça 2 -->
-      <div class="card" data-categoria="Pulseiras">
-        <img src="https://i.ibb.co/M9xK93B/peca2.jpg" alt="Pulseira Grumet 925">
-        <div class="card-info">
-          <div>
-            <span class="card-categoria">Pulseiras</span>
-            <h4 class="card-titulo">Pulseira Grumet Masculina</h4>
-          </div>
-          <div>
-            <div class="card-preco">R$ 145,00</div>
-            <button class="btn-add" onclick="adicionarAoCarrinho('Pulseira Grumet Masculina', 145.00)">Adicionar</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Peça 3 -->
-      <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/q9M1s4P/peca3.jpg" alt="Anel Solitário Prata 925">
-        <div class="card-info">
-          <div>
-            <span class="card-categoria">Anéis</span>
-            <h4 class="card-titulo">Anel Solitário Zircônia</h4>
-          </div>
-          <div>
-            <div class="card-preco">R$ 85,00</div>
-            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Solitário Zircônia', 85.00)">Adicionar</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Peça 4 -->
-      <div class="card" data-categoria="Pingentes">
-        <img src="https://i.ibb.co/K2D4071/peca4.jpg" alt="Pingente Cruz Prata 925">
-        <div class="card-info">
-          <div>
-            <span class="card-categoria">Pingentes</span>
-            <h4 class="card-titulo">Pingente Cruz Palito</h4>
-          </div>
-          <div>
-            <div class="card-preco">R$ 60,00</div>
-            <button class="btn-add" onclick="adicionarAoCarrinho('Pingente Cruz Palito', 60.00)">Adicionar</button>
-          </div>
-        </div>
-      </div>
-
+      <!-- As fotos das peças serão inseridas aqui uma por uma -->
     </div>
 
-    <!-- Paginação (Troca a cada 20 peças) -->
+    <!-- Paginação (20 fotos por página) -->
     <div class="paginacao">
       <button class="btn-pag" id="btn-ant" onclick="mudarPagina(-1)">Anterior</button>
       <span id="info-pagina">Página 1</span>
@@ -146,7 +86,7 @@
 
   </div>
 
-  <!-- Barra de Carrinho Fixo -->
+  <!-- Carrinho Fixo Rodapé -->
   <div class="carrinho-fixo">
     <div class="carrinho-info">
       <div><strong id="qtd-itens">0</strong> itens selecionados</div>
@@ -160,8 +100,8 @@
     let paginaAtual = 1;
     const itensPorPagina = 20;
 
-    function adicionarAoCarrinho(nome, preco) {
-      carrinho.push({ nome, preco });
+    function adicionarAoCarrinho(nome, preco, imagemUrl) {
+      carrinho.push({ nome, preco, imagemUrl });
       atualizarCarrinho();
     }
 
@@ -181,11 +121,11 @@
       let total = 0;
       
       carrinho.forEach((item, index) => {
-        mensagem += `${index + 1}. ${item.nome} - R$ ${item.preco.toFixed(2).replace('.', ',')}\n`;
+        mensagem += `${index + 1}. *${item.nome}* - R$ ${item.preco.toFixed(2).replace('.', ',')}\n   Foto: ${item.imagemUrl}\n\n`;
         total += item.preco;
       });
 
-      mensagem += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
+      mensagem += `*Total do Pedido: R$ ${total.toFixed(2).replace('.', ',')}*`;
       
       const numeroWhatsapp = "5561981642480";
       const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagem)}`;
@@ -244,3 +184,4 @@
   </script>
 </body>
 </html>
+
