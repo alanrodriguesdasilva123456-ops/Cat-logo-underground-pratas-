@@ -29,7 +29,7 @@
     .container { max-width: 1200px; margin: 0 auto; padding: 0 10px; }
     .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; min-height: 200px; }
     .card { background: #181818; border: 1px solid #282828; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
-    .card img { width: 100%; height: 180px; object-fit: cover; background: #222; }
+    .card img { width: 100%; height: 180px; object-fit: cover; background: #222; cursor: zoom-in; }
     .card-info { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
     .card-categoria { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
     .card-titulo { font-size: 0.9rem; margin: 4px 0; font-weight: 600; color: #fff; }
@@ -47,6 +47,11 @@
     .carrinho-info { font-size: 0.9rem; }
     .carrinho-total { font-weight: bold; color: #25d366; font-size: 1.1rem; }
     .btn-finalizar { background: #25d366; color: #fff; border: none; padding: 10px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 0.9rem; }
+
+    /* Modal de Zoom */
+    .modal-zoom { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+    .modal-zoom img { max-width: 90%; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
+    .fechar-modal { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 35px; font-weight: bold; cursor: pointer; z-index: 1001; }
   </style>
 </head>
 <body>
@@ -79,7 +84,7 @@
       
       <!-- Peça 1 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/4RpHNRzZ/IMG-1189.webp" alt="Anel Prata 925 Coração">
+        <img src="https://i.ibb.co/4RpHNRzZ/IMG-1189.webp" alt="Anel Prata 925 Coração" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -94,7 +99,7 @@
 
       <!-- Peça 2 -->
       <div class="card" data-categoria="Solitarios">
-        <img src="https://i.ibb.co/YTYG7XRj/IMG-1188.webp" alt="Anel Solitário Prata 925">
+        <img src="https://i.ibb.co/YTYG7XRj/IMG-1188.webp" alt="Anel Solitário Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis Solitários</span>
@@ -109,7 +114,7 @@
 
       <!-- Peça 3 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/QFqNLC41/IMG-1187.webp" alt="Anel Folha Prata 925">
+        <img src="https://i.ibb.co/QFqNLC41/IMG-1187.webp" alt="Anel Folha Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -124,7 +129,7 @@
 
       <!-- Peça 4 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/XZc1yRxc/IMG-1186.webp" alt="Anel Prata 925 Dois Palitos">
+        <img src="https://i.ibb.co/XZc1yRxc/IMG-1186.webp" alt="Anel Prata 925 Dois Palitos" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -139,7 +144,7 @@
 
       <!-- Peça 5 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/f3r8dCC/IMG-1185.webp" alt="Anel Prata 925 Coração">
+        <img src="https://i.ibb.co/f3r8dCC/IMG-1185.webp" alt="Anel Prata 925 Coração" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -154,7 +159,7 @@
 
       <!-- Peça 6 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/DPb9Q8Hr/IMG-1184.webp" alt="Anel Prata 925 3 Corações">
+        <img src="https://i.ibb.co/DPb9Q8Hr/IMG-1184.webp" alt="Anel Prata 925 3 Corações" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -169,7 +174,7 @@
 
       <!-- Peça 7 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/BHsJ9qj7/IMG-1183.webp" alt="Anel Prata 925 Tartaruga">
+        <img src="https://i.ibb.co/BHsJ9qj7/IMG-1183.webp" alt="Anel Prata 925 Tartaruga" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -184,7 +189,7 @@
 
       <!-- Peça 8 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/fVj6Tw5K/IMG-1182.webp" alt="Anel Prata 925 Ondulado Quadrado">
+        <img src="https://i.ibb.co/fVj6Tw5K/IMG-1182.webp" alt="Anel Prata 925 Ondulado Quadrado" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -199,7 +204,7 @@
 
       <!-- Peça 9 -->
       <div class="card" data-categoria="Solitarios">
-        <img src="https://i.ibb.co/0RYhy6vG/IMG-1181.webp" alt="Anel Solitário Prata 925 Coração Verde">
+        <img src="https://i.ibb.co/0RYhy6vG/IMG-1181.webp" alt="Anel Solitário Prata 925 Coração Verde" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis Solitários</span>
@@ -214,7 +219,7 @@
 
       <!-- Peça 10 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/mVZ8tHwt/IMG-1180.webp" alt="Anel Prata 925 Regulável Estrela e Pedra">
+        <img src="https://i.ibb.co/mVZ8tHwt/IMG-1180.webp" alt="Anel Prata 925 Regulável Estrela e Pedra" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -229,7 +234,7 @@
 
       <!-- Peça 11 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/tPQ1RTDz/IMG-1179.webp" alt="Anel Prata 925 Patinha">
+        <img src="https://i.ibb.co/tPQ1RTDz/IMG-1179.webp" alt="Anel Prata 925 Patinha" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -244,7 +249,7 @@
 
       <!-- Peça 12 -->
       <div class="card" data-categoria="Solitarios">
-        <img src="https://i.ibb.co/vCVjzXFc/IMG-1178.webp" alt="Anel Solitário Prata 925 Infinito na Lateral">
+        <img src="https://i.ibb.co/vCVjzXFc/IMG-1178.webp" alt="Anel Solitário Prata 925 Infinito na Lateral" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis Solitários</span>
@@ -259,7 +264,7 @@
 
       <!-- Peça 13 -->
       <div class="card" data-categoria="Solitarios">
-        <img src="https://i.ibb.co/rGXrffx1/IMG-1177.webp" alt="Anel Solitário Prata 925 4 Garras">
+        <img src="https://i.ibb.co/rGXrffx1/IMG-1177.webp" alt="Anel Solitário Prata 925 4 Garras" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis Solitários</span>
@@ -274,7 +279,7 @@
 
       <!-- Peça 14 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/s98FHwmt/IMG-1176.webp" alt="Anel Prata 925 Pendurado">
+        <img src="https://i.ibb.co/s98FHwmt/IMG-1176.webp" alt="Anel Prata 925 Pendurado" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -289,7 +294,7 @@
 
       <!-- Peça 15 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/bg05BzMt/IMG-1175.webp" alt="Anel Prata 925 Fé">
+        <img src="https://i.ibb.co/bg05BzMt/IMG-1175.webp" alt="Anel Prata 925 Fé" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -304,7 +309,7 @@
 
       <!-- Peça 16 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/JRkdB9YS/IMG-1173.webp" alt="Anel Infinito Prata 925">
+        <img src="https://i.ibb.co/JRkdB9YS/IMG-1173.webp" alt="Anel Infinito Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -319,7 +324,7 @@
 
       <!-- Peça 17 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/Z6pGrkx8/IMG-1172.webp" alt="Anel Prata 925 Triângulo">
+        <img src="https://i.ibb.co/Z6pGrkx8/IMG-1172.webp" alt="Anel Prata 925 Triângulo" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -334,7 +339,7 @@
 
       <!-- Peça 18 -->
       <div class="card" data-categoria="Aneis">
-        <img src="https://i.ibb.co/V0X4jRDL/IMG-1171.webp" alt="Anel Prata 925 Trançado">
+        <img src="https://i.ibb.co/V0X4jRDL/IMG-1171.webp" alt="Anel Prata 925 Trançado" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Anéis</span>
@@ -349,7 +354,7 @@
 
       <!-- Peça 19 -->
       <div class="card" data-categoria="Gargantilhas">
-        <img src="https://i.ibb.co/6cc02nWY/IMG-1222.webp" alt="Gargantilha Ponto de Luz Redondo 8mm Prata 925">
+        <img src="https://i.ibb.co/6cc02nWY/IMG-1222.webp" alt="Gargantilha Ponto de Luz Redondo 8mm Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Gargantilhas</span>
@@ -364,7 +369,7 @@
 
       <!-- Peça 20 -->
       <div class="card" data-categoria="Gargantilhas">
-        <img src="https://i.ibb.co/NgGrCwx1/IMG-1211.webp" alt="Gargantilha Ponto de Luz Redondo Prata 925">
+        <img src="https://i.ibb.co/NgGrCwx1/IMG-1211.webp" alt="Gargantilha Ponto de Luz Redondo Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Gargantilhas</span>
@@ -379,7 +384,7 @@
 
       <!-- Peça 21 -->
       <div class="card" data-categoria="Gargantilhas">
-        <img src="https://i.ibb.co/mFXbhN9K/IMG-1212.webp" alt="Gargantilha Ponto de Luz Gota Prata 925">
+        <img src="https://i.ibb.co/mFXbhN9K/IMG-1212.webp" alt="Gargantilha Ponto de Luz Gota Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Gargantilhas</span>
@@ -394,7 +399,7 @@
 
       <!-- Peça 22 -->
       <div class="card" data-categoria="Gargantilhas">
-        <img src="https://i.ibb.co/V51Hzbj/IMG-1213.webp" alt="Gargantilha Ponto de Luz Gota Colorido Prata 925">
+        <img src="https://i.ibb.co/V51Hzbj/IMG-1213.webp" alt="Gargantilha Ponto de Luz Gota Colorido Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Gargantilhas</span>
@@ -409,7 +414,7 @@
 
       <!-- Peça 23 -->
       <div class="card" data-categoria="Gargantilhas">
-        <img src="https://i.ibb.co/Pv3XHw3C/IMG-1214.webp" alt="Gargantilha Ponto de Luz Oval Prata 925">
+        <img src="https://i.ibb.co/Pv3XHw3C/IMG-1214.webp" alt="Gargantilha Ponto de Luz Oval Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Gargantilhas</span>
@@ -424,7 +429,7 @@
 
       <!-- Peça 24 -->
       <div class="card" data-categoria="Gargantilhas">
-        <img src="https://i.ibb.co/XZGmGJmr/IMG-1218.webp" alt="Gargantilha Ponto de Luz Hexagonal Prata 925">
+        <img src="https://i.ibb.co/XZGmGJmr/IMG-1218.webp" alt="Gargantilha Ponto de Luz Hexagonal Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Gargantilhas</span>
@@ -439,7 +444,7 @@
 
       <!-- Peça 25 -->
       <div class="card" data-categoria="Gargantilhas">
-        <img src="https://i.ibb.co/1YJ0HfMP/IMG-1215.webp" alt="Gargantilha Ponto de Luz Retangular Prata 925">
+        <img src="https://i.ibb.co/1YJ0HfMP/IMG-1215.webp" alt="Gargantilha Ponto de Luz Retangular Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Gargantilhas</span>
@@ -454,7 +459,7 @@
 
       <!-- Peça 26 -->
       <div class="card" data-categoria="Gargantilhas">
-        <img src="https://i.ibb.co/zVy6gR43/IMG-1216.webp" alt="Gargantilha Trevo Hematita 40+5 cm V12 Prata 925">
+        <img src="https://i.ibb.co/zVy6gR43/IMG-1216.webp" alt="Gargantilha Trevo Hematita 40+5 cm V12 Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Gargantilhas</span>
@@ -469,7 +474,7 @@
 
       <!-- Peça 27 -->
       <div class="card" data-categoria="Gargantilhas">
-        <img src="https://i.ibb.co/pBBX27Qc/IMG-1217.webp" alt="Gargantilha Sereia P Prata 925">
+        <img src="https://i.ibb.co/pBBX27Qc/IMG-1217.webp" alt="Gargantilha Sereia P Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Gargantilhas</span>
@@ -484,7 +489,7 @@
 
       <!-- Peça 28 -->
       <div class="card" data-categoria="Gargantilhas">
-        <img src="https://i.ibb.co/TMxhwkvf/IMG-1221.webp" alt="Gargantilha Nossa Senhora Cravejada Prata 925">
+        <img src="https://i.ibb.co/TMxhwkvf/IMG-1221.webp" alt="Gargantilha Nossa Senhora Cravejada Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Gargantilhas</span>
@@ -499,7 +504,7 @@
 
       <!-- Peça 29 -->
       <div class="card" data-categoria="Gargantilhas">
-        <img src="https://i.ibb.co/xt44y397/IMG-1220.webp" alt="Gargantilha 3 Zircônia Penduradas Prata 925">
+        <img src="https://i.ibb.co/xt44y397/IMG-1220.webp" alt="Gargantilha 3 Zircônia Penduradas Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
           <div>
             <span class="card-categoria">Gargantilhas</span>
@@ -514,7 +519,7 @@
 
     </div>
 
-    <!-- Paginação (20 fotos por página) -->
+    <!-- Paginação -->
     <div class="paginacao">
       <button class="btn-pag" id="btn-ant" onclick="mudarPagina(-1)">Anterior</button>
       <span id="info-pagina">Página 1</span>
@@ -532,10 +537,26 @@
     <button class="btn-finalizar" onclick="enviarPedido()">Enviar Pedido</button>
   </div>
 
+  <!-- Modal Zoom -->
+  <div class="modal-zoom" id="modal-zoom" onclick="fecharZoom()">
+    <span class="fechar-modal">&times;</span>
+    <img id="img-zoom" src="" alt="Zoom do Produto">
+  </div>
+
   <script>
     let carrinho = [];
     let paginaAtual = 1;
     const itensPorPagina = 20;
+
+    // Zoom da foto
+    function abrirZoom(src) {
+      document.getElementById('img-zoom').src = src;
+      document.getElementById('modal-zoom').style.display = 'flex';
+    }
+
+    function fecharZoom() {
+      document.getElementById('modal-zoom').style.display = 'none';
+    }
 
     // Embaralha as peças na exibição inicial
     function embaralharProdutos() {
@@ -569,7 +590,7 @@
       let total = 0;
       
       carrinho.forEach((item, index) => {
-        mensagem += `${index + 1}. *${item.nome}* - R$ ${item.preco.toFixed(2).replace('.', ',')}\n   Foto: ${item.imagemUrl}\n\n`;
+        mensagem += `${index + 1}. *${item.nome}* - R$ ${item.preco.toFixed(2).replace('.', ',')}\n${item.imagemUrl}\n\n`;
         total += item.preco;
       });
 
@@ -628,9 +649,10 @@
       }
     }
 
-    // Inicialização: embaralha e renderiza a primeira página
+    // Inicialização
     embaralharProdutos();
     renderizarPagina();
   </script>
 </body>
 </html>
+
