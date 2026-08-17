@@ -3,371 +3,244 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Underground Pratas 925 - Catálogo</title>
+  <title>Underground Pratas 925 | Catálogo Oficial</title>
   <style>
-    /* ESTILOS GERAIS */
-    * { box-sizing: border-box; }
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #0d1117;
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #0f0f0f; color: #f1f1f1; padding-bottom: 90px; }
+    
+    /* Header e Banner Ponta a Ponta */
+    header { width: 100%; background: #000; text-align: center; border-bottom: 2px solid #333; }
+    .logo-banner { width: 100%; height: auto; display: block; object-fit: cover; }
+    
+    /* Banner Atendimento Itinerante */
+    .banner-itinerante { background: linear-gradient(135deg, #1a1a1a, #2a2a2a); border: 1px solid #444; border-radius: 8px; margin: 15px; padding: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    .banner-itinerante h3 { color: #fff; font-size: 1.1rem; margin-bottom: 6px; }
+    .banner-itinerante p { color: #ccc; font-size: 0.85rem; margin-bottom: 12px; line-height: 1.4; }
+    .btn-agendar { background-color: #25d366; color: #fff; text-decoration: none; font-weight: bold; padding: 10px 18px; border-radius: 20px; display: inline-block; font-size: 0.9rem; }
+    
+    /* Filtros e Navegação */
+    .filtros { display: flex; justify-content: center; gap: 8px; margin: 15px; flex-wrap: wrap; }
+    .btn-filtro { background: #222; color: #fff; border: 1px solid #444; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; }
+    .btn-filtro.ativo { background: #fff; color: #000; font-weight: bold; }
+    
+    /* Grid de Produtos */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 10px; }
+    .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    .card { background: #181818; border: 1px solid #282828; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+    .card img { width: 100%; height: 180px; object-fit: cover; background: #222; }
+    .card-info { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-categoria { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    .card-titulo { font-size: 0.9rem; margin: 4px 0; font-weight: 600; color: #fff; }
+    .card-preco { font-size: 1.1rem; font-weight: bold; color: #25d366; margin: 6px 0; }
+    .btn-add { background: #fff; color: #000; border: none; padding: 8px; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%; font-size: 0.8rem; }
+    
+    /* Paginação */
+    .paginacao { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 25px 0; }
+    .btn-pag { background: #222; color: #fff; border: 1px solid #444; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+    .btn-pag:disabled { opacity: 0.4; cursor: not-allowed; }
+    #info-pagina { font-size: 0.9rem; font-weight: bold; }
 
-    /* CABEÇALHO E NAVEGAÇÃO */
-    .site-header {
-      background-color: #0b0e14;
-      padding: 15px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    }
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .brand-logo img {
-      max-height: 50px;
-      width: auto;
-      display: block;
-    }
-    .cart-icon-wrapper {
-      position: relative;
-      cursor: pointer;
-      font-size: 26px;
-    }
-    .cart-badge {
-      position: absolute;
-      top: -5px;
-      right: -8px;
-      background-color: #d4af37;
-      color: #000;
-      font-weight: bold;
-      font-size: 12px;
-      padding: 2px 6px;
-      border-radius: 50%;
-    }
-    .category-nav {
-      margin-top: 15px;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
-    .category-nav ul {
-      display: flex;
-      gap: 15px;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      justify-content: center;
-    }
-    .category-nav a {
-      color: #cccccc;
-      text-decoration: none;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .category-nav a:hover {
-      color: #ffffff;
-      border-bottom: 2px solid #d4af37;
-    }
-
-    /* GRADE DE PRODUTOS LADO A LADO */
-    .catalog-container {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 15px;
-    }
-    .section-title {
-      font-size: 20px;
-      color: #d4af37;
-      border-bottom: 1px solid #2a2f3a;
-      padding-bottom: 8px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-    }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 15px;
-    }
-    @media (min-width: 600px) {
-      .products-grid {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 20px;
-      }
-    }
-    .product-card {
-      background: #161b22;
-      border: 1px solid #21262d;
-      border-radius: 8px;
-      padding: 12px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .product-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
-    .product-title {
-      font-size: 14px;
-      margin: 5px 0;
-      font-weight: 600;
-    }
-    .product-price {
-      font-size: 15px;
-      color: #d4af37;
-      font-weight: bold;
-      margin: 5px 0 10px 0;
-    }
-    .btn-add-cart {
-      background-color: #238636;
-      color: #ffffff;
-      border: none;
-      padding: 10px;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 13px;
-      width: 100%;
-    }
-    .btn-add-cart:active {
-      transform: scale(0.98);
-    }
-
-    /* MODAL DO CARRINHO */
-    .cart-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-    }
-    .cart-content {
-      background: #161b22;
-      color: #fff;
-      width: 90%; max-width: 420px;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    }
-    .cart-header {
-      display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 1px solid #30363d; padding-bottom: 10px;
-    }
-    .cart-header h2 { font-size: 16px; margin: 0; color: #d4af37; }
-    .close-btn { font-size: 24px; cursor: pointer; }
-    .cart-items-list { max-height: 280px; overflow-y: auto; margin: 15px 0; }
-    .cart-item {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 12px; border-bottom: 1px solid #21262d; padding-bottom: 8px;
-    }
-    .cart-item img { width: 45px; height: 45px; object-fit: cover; border-radius: 4px; }
-    .item-info { flex: 1; margin-left: 10px; text-align: left; }
-    .item-title { font-size: 13px; margin: 0; font-weight: bold; }
-    .item-price { font-size: 12px; color: #d4af37; margin: 2px 0 0 0; }
-    .remove-btn { background: none; border: none; color: #ff7b72; cursor: pointer; font-size: 16px; }
-    .cart-footer { border-top: 1px solid #30363d; padding-top: 15px; }
-    .cart-total { display: flex; justify-content: space-between; font-weight: bold; font-size: 16px; margin-bottom: 12px; }
-    .btn-whatsapp {
-      width: 100%; background: #238636; color: #fff; border: none; padding: 12px;
-      font-weight: bold; border-radius: 5px; cursor: pointer; font-size: 14px;
-    }
-    .empty-msg { text-align: center; color: #8b949e; font-size: 14px; padding: 20px 0; }
+    /* Carrinho Fixo Rodapé */
+    .carrinho-fixo { position: fixed; bottom: 0; left: 0; width: 100%; background: #111; border-top: 1px solid #333; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 15px rgba(0,0,0,0.8); z-index: 100; }
+    .carrinho-info { font-size: 0.9rem; }
+    .carrinho-total { font-weight: bold; color: #25d366; font-size: 1.1rem; }
+    .btn-finalizar { background: #25d366; color: #fff; border: none; padding: 10px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 0.9rem; }
   </style>
 </head>
 <body>
 
-  <!-- CABEÇALHO -->
-  <header class="site-header">
-    <div class="header-container">
-      <a href="#" class="brand-logo">
-        <img src="https://i.ibb.co/PvPYX1TB/IMG-0962.png" alt="Underground Pratas 925">
-      </a>
-      <div class="cart-icon-wrapper" onclick="toggleCartModal()">
-        <span>🛒</span>
-        <span id="cart-count" class="cart-badge">0</span>
-      </div>
-    </div>
-
-    <!-- CATEGORIAS EM ORDEM ALFABÉTICA -->
-    <nav class="category-nav">
-      <ul>
-        <li><a href="#aneis">Anéis</a></li>
-        <li><a href="#argolas">Argolas</a></li>
-        <li><a href="#braceletes">Braceletes</a></li>
-        <li><a href="#brincos">Brincos</a></li>
-        <li><a href="#chocker">Chocker</a></li>
-        <li><a href="#colares">Colares</a></li>
-        <li><a href="#masculino">Masculino</a></li>
-        <li><a href="#pulseiras">Pulseiras</a></li>
-      </ul>
-    </nav>
+  <header>
+    <!-- Logo Ponta a Ponta -->
+    <img src="https://i.ibb.co/3mN9f3S/logo-underground.jpg" alt="Underground Pratas 925" class="logo-banner">
   </header>
 
-  <!-- CATÁLOGO DE PRODUTOS -->
-  <main class="catalog-container">
-    <h2 class="section-title" id="aneis">Anéis</h2>
-    
-    <div class="products-grid">
-      
-      <!-- PEÇA 1 -->
-      <div class="product-card">
-        <img src="https://i.ibb.co/jksZmwyG/IMG-1104.webp" alt="Anel regulável verde">
-        <div class="product-title">Anel Regulável Verde</div>
-        <div class="product-price">R$ 89,99</div>
-        <button class="btn-add-cart" onclick="addToCart('Anel Regulável Verde', 89.99, 'https://i.ibb.co/jksZmwyG/IMG-1104.webp')">
-          Adicionar 🛒
-        </button>
-      </div>
-
-      <!-- PEÇA 2 -->
-      <div class="product-card">
-        <img src="https://i.ibb.co/1GkdsSQk/IMG-1102.webp" alt="Anel zircônias">
-        <div class="product-title">Anel Zircônias</div>
-        <div class="product-price">R$ 119,99</div>
-        <button class="btn-add-cart" onclick="addToCart('Anel Zircônias', 119.99, 'https://i.ibb.co/1GkdsSQk/IMG-1102.webp')">
-          Adicionar 🛒
-        </button>
-      </div>
-
-      <!-- PEÇA 3 -->
-      <div class="product-card">
-        <img src="https://i.ibb.co/Q7FJF3gD/IMG-1103.webp" alt="Anel bolinha">
-        <div class="product-title">Anel Bolinha</div>
-        <div class="product-price">R$ 89,99</div>
-        <button class="btn-add-cart" onclick="addToCart('Anel Bolinha', 89.99, 'https://i.ibb.co/Q7FJF3gD/IMG-1103.webp')">
-          Adicionar 🛒
-        </button>
-      </div>
-
-      <!-- PEÇA 4 -->
-      <div class="product-card">
-        <img src="https://i.ibb.co/svWQyFfC/IMG-1105.webp" alt="Anel paz">
-        <div class="product-title">Anel Paz</div>
-        <div class="product-price">R$ 89,99</div>
-        <button class="btn-add-cart" onclick="addToCart('Anel Paz', 89.99, 'https://i.ibb.co/svWQyFfC/IMG-1105.webp')">
-          Adicionar 🛒
-        </button>
-      </div>
-
+  <div class="container">
+    <!-- Atendimento Itinerante Atualizado -->
+    <div class="banner-itinerante">
+      <h3> Atendimento Itinerante & Delivery</h3>
+      <p>Levamos nosso mostruário até você! Atendemos em <strong>bares, restaurantes, locais de trabalho</strong> ou residências em Brasília.</p>
+      <a href="https://wa.me/5561981642480?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20para%20conhecer%20as%20pe%C3%A7as%20da%20Underground%20Pratas." class="btn-agendar" target="_blank">Agendar Visita no WhatsApp</a>
     </div>
-  </main>
 
-  <!-- MODAL CARRINHO -->
-  <div id="cart-modal" class="cart-modal">
-    <div class="cart-content">
-      <div class="cart-header">
-        <h2>Seu Pedido - Underground Pratas</h2>
-        <span class="close-btn" onclick="toggleCartModal()">&times;</span>
-      </div>
+    <!-- Navegação de Categorias -->
+    <div class="filtros">
+      <button class="btn-filtro ativo" onclick="filtrar('todos')">Todos</button>
+      <button class="btn-filtro" onclick="filtrar('Aneis')">Anéis</button>
+      <button class="btn-filtro" onclick="filtrar('Correntes')">Correntes</button>
+      <button class="btn-filtro" onclick="filtrar('Pulseiras')">Pulseiras</button>
+      <button class="btn-filtro" onclick="filtrar('Pingentes')">Pingentes</button>
+    </div>
+
+    <!-- Catálogo de Produtos -->
+    <div class="grid-produtos" id="grid-produtos">
       
-      <div id="cart-items" class="cart-items-list">
-        <p class="empty-msg">Seu carrinho está vazio.</p>
-      </div>
-
-      <div class="cart-footer">
-        <div class="cart-total">
-          <span>Total:</span>
-          <span id="cart-total-price">R$ 0,00</span>
+      <!-- Peça 1 -->
+      <div class="card" data-categoria="Correntes">
+        <img src="https://i.ibb.co/L53923v/peca1.jpg" alt="Corrente Venetiana 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Correntes</span>
+            <h4 class="card-titulo">Corrente Venetiana 45cm</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 120,00</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Corrente Venetiana 45cm', 120.00)">Adicionar</button>
+          </div>
         </div>
-        <button class="btn-whatsapp" onclick="sendToWhatsApp()">
-          Finalizar Pedido via WhatsApp 📲
-        </button>
       </div>
+
+      <!-- Peça 2 -->
+      <div class="card" data-categoria="Pulseiras">
+        <img src="https://i.ibb.co/M9xK93B/peca2.jpg" alt="Pulseira Grumet 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Pulseiras</span>
+            <h4 class="card-titulo">Pulseira Grumet Masculina</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 145,00</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Pulseira Grumet Masculina', 145.00)">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 3 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/q9M1s4P/peca3.jpg" alt="Anel Solitário Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Solitário Zircônia</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 85,00</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Solitário Zircônia', 85.00)">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 4 -->
+      <div class="card" data-categoria="Pingentes">
+        <img src="https://i.ibb.co/K2D4071/peca4.jpg" alt="Pingente Cruz Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Pingentes</span>
+            <h4 class="card-titulo">Pingente Cruz Palito</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 60,00</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Pingente Cruz Palito', 60.00)">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+    <!-- Controles de Paginação (Troca a cada 20 peças) -->
+    <div class="paginacao">
+      <button class="btn-pag" id="btn-ant" onclick="mudarPagina(-1)">Anterior</button>
+      <span id="info-pagina">Página 1</span>
+      <button class="btn-pag" id="btn-prox" onclick="mudarPagina(1)">Próxima</button>
+    </div>
+
   </div>
 
-  <!-- JAVASCRIPT -->
+  <!-- Barra de Carrinho Fixo -->
+  <div class="carrinho-fixo">
+    <div class="carrinho-info">
+      <div><strong id="qtd-itens">0</strong> itens selecionados</div>
+      <div class="carrinho-total">Total: R$ <span id="valor-total">0,00</span></div>
+    </div>
+    <button class="btn-finalizar" onclick="enviarPedido()">Enviar Pedido</button>
+  </div>
+
   <script>
-    // Digite seu WhatsApp abaixo (ex: 5561999999999)
-    const phoneWhatsApp = "5561999999999"; 
+    let carrinho = [];
+    let paginaAtual = 1;
+    const itensPorPagina = 20;
 
-    let cart = [];
-
-    function toggleCartModal() {
-      const modal = document.getElementById('cart-modal');
-      modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+    function adicionarAoCarrinho(nome, preco) {
+      carrinho.push({ nome, preco });
+      atualizarCarrinho();
     }
 
-    function addToCart(name, price, imageUrl) {
-      cart.push({ name, price: parseFloat(price), imageUrl });
-      updateCartUI();
+    function atualizarCarrinho() {
+      document.getElementById('qtd-itens').innerText = carrinho.length;
+      const total = carrinho.reduce((sum, item) => sum + item.preco, 0);
+      document.getElementById('valor-total').innerText = total.toFixed(2).replace('.', ',');
     }
 
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCartUI();
-    }
-
-    function updateCartUI() {
-      const cartCount = document.getElementById('cart-count');
-      const cartItemsContainer = document.getElementById('cart-items');
-      const cartTotalPrice = document.getElementById('cart-total-price');
-
-      cartCount.innerText = cart.length;
-
-      if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p class="empty-msg">Seu carrinho está vazio.</p>';
-        cartTotalPrice.innerText = 'R$ 0,00';
-        return;
-      }
-
-      cartItemsContainer.innerHTML = '';
-      let total = 0;
-
-      cart.forEach((item, index) => {
-        total += item.price;
-        cartItemsContainer.innerHTML += `
-          <div class="cart-item">
-            <img src="${item.imageUrl}" alt="${item.name}">
-            <div class="item-info">
-              <p class="item-title">${item.name}</p>
-              <p class="item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</p>
-            </div>
-            <button class="remove-btn" onclick="removeFromCart(${index})">✕</button>
-          </div>
-        `;
-      });
-
-      cartTotalPrice.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
-    }
-
-    function sendToWhatsApp() {
-      if (cart.length === 0) {
+    function enviarPedido() {
+      if (carrinho.length === 0) {
         alert("Seu carrinho está vazio!");
         return;
       }
-
-      let message = "✨ *NOVO PEDIDO - UNDERGROUND PRATAS 925* ✨\n\n";
+      
+      let mensagem = "Olá! Gostaria de fazer o pedido das seguintes peças:\n\n";
       let total = 0;
-
-      cart.forEach((item, index) => {
-        total += item.price;
-        message += `*${index + 1}. ${item.name}*\n`;
-        message += `   Preço: R$ ${item.price.toFixed(2).replace('.', ',')}\n`;
-        message += `   Foto: ${item.imageUrl}\n\n`;
+      
+      carrinho.forEach((item, index) => {
+        mensagem += `${index + 1}. ${item.nome} - R$ ${item.preco.toFixed(2).replace('.', ',')}\n`;
+        total += item.preco;
       });
 
-      message += `-------------------------------\n`;
-      message += `💰 *Valor Total:* R$ ${total.toFixed(2).replace('.', ',')}\n\n`;
-      message += `Gostaria de confirmar a disponibilidade para entrega!`;
-
-      const encodedMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/${phoneWhatsApp}?text=${encodedMessage}`, '_blank');
+      mensagem += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
+      
+      const numeroWhatsapp = "5561981642480";
+      const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, '_blank');
     }
+
+    function renderizarPagina() {
+      const cards = Array.from(document.querySelectorAll('.card'));
+      const totalPaginas = Math.ceil(cards.length / itensPorPagina) || 1;
+
+      cards.forEach((card, index) => {
+        const inicio = (paginaAtual - 1) * itensPorPagina;
+        const fim = inicio + itensPorPagina;
+        
+        if (index >= inicio && index < fim) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('info-pagina').innerText = `Página ${paginaAtual} de ${totalPaginas}`;
+      document.getElementById('btn-ant').disabled = paginaAtual === 1;
+      document.getElementById('btn-prox').disabled = paginaAtual >= totalPaginas;
+    }
+
+    function mudarPagina(direcao) {
+      paginaAtual += direcao;
+      renderizarPagina();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function filtrar(categoria) {
+      const cards = document.querySelectorAll('.card');
+      const botoes = document.querySelectorAll('.btn-filtro');
+      
+      botoes.forEach(btn => btn.classList.remove('ativo'));
+      event.target.classList.add('ativo');
+
+      if (categoria === 'todos') {
+        paginaAtual = 1;
+        renderizarPagina();
+      } else {
+        cards.forEach(card => {
+          if (card.getAttribute('data-categoria') === categoria) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        document.getElementById('info-pagina').innerText = "Filtrado";
+      }
+    }
+
+    // Inicializar visualização
+    renderizarPagina();
   </script>
 </body>
 </html>
