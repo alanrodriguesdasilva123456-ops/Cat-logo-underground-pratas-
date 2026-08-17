@@ -9,20 +9,20 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background-color: #0f0f0f; color: #f1f1f1; padding-bottom: 90px; }
     
-    header { width: 100%; background: #000; border-bottom: 2px solid #333; padding: 15px 10px; text-align: center; }
-    .header-content { display: flex; align-items: center; justify-content: center; gap: 12px; max-width: 1200px; margin: 0 auto; }
-    .logo-u { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #25d366; object-fit: cover; }
-    .brand-name { font-size: 1.4rem; font-weight: 800; letter-spacing: 1.5px; color: #fff; text-transform: uppercase; }
-    .brand-name span { color: #25d366; }
+    /* Novo Cabeçalho */
+    header { width: 100%; background: #000; border-bottom: 2px solid #333; display: flex; align-items: center; justify-content: center; gap: 15px; padding: 15px 20px; }
+    .logo-u-img { width: 65px; height: 65px; object-fit: cover; object-position: center; border-radius: 50%; border: 2px solid #25d366; box-shadow: 0 0 10px rgba(37,211,102,0.3); }
+    .logo-texto { font-size: 1.6rem; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
     
-    .banner-itinerante { background: linear-gradient(135deg, #1c1c1c, #292929); border: 1px solid #444; border-radius: 8px; margin: 15px auto; padding: 12px 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.5); max-width: 1200px; }
-    .banner-itinerante h3 { color: #fff; font-size: 1rem; margin-bottom: 6px; font-weight: bold; }
-    .banner-itinerante p { color: #ddd; font-size: 0.85rem; margin-bottom: 10px; line-height: 1.4; }
-    .btn-agendar { background-color: #25d366; color: #fff; text-decoration: none; font-weight: bold; padding: 8px 18px; border-radius: 20px; display: inline-block; font-size: 0.85rem; box-shadow: 0 2px 6px rgba(37,211,102,0.3); }
+    .banner-itinerante { background: linear-gradient(135deg, #1c1c1c, #292929); border: 1px solid #444; border-radius: 8px; margin: 15px 15px; padding: 12px 15px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+    .banner-itinerante h3 { color: #25d366; font-size: 1.1rem; margin-bottom: 6px; font-weight: bold; text-transform: uppercase; }
+    .banner-itinerante p { color: #ddd; font-size: 0.9rem; margin-bottom: 12px; line-height: 1.4; }
+    .btn-agendar { background-color: #25d366; color: #fff; text-decoration: none; font-weight: bold; padding: 8px 18px; border-radius: 20px; display: inline-block; font-size: 0.85rem; box-shadow: 0 2px 6px rgba(37,211,102,0.3); transition: 0.3s; }
+    .btn-agendar:hover { background-color: #1ebe58; }
     
-    .controles-topo { display: flex; flex-direction: column; align-items: center; gap: 12px; margin: 15px 0; }
+    .controles-topo { display: flex; flex-direction: column; align-items: center; gap: 12px; margin: 15px; }
     .filtros { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-    .btn-filtro { background: #222; color: #fff; border: 1px solid #444; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; }
+    .btn-filtro { background: #222; color: #fff; border: 1px solid #444; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; transition: 0.2s; }
     .btn-filtro.ativo { background: #fff; color: #000; font-weight: bold; }
     
     .ordenacao-container { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #ccc; }
@@ -56,16 +56,14 @@
 <body>
 
   <header>
-    <div class="header-content">
-      <img src="https://i.ibb.co/DHvbcwG3/IMG-0962.png" alt="Logo Underground Pratas" class="logo-u">
-      <h1 class="brand-name">Underground <span>Pratas 925</span></h1>
-    </div>
+    <img src="https://i.ibb.co/DHvbcwG3/IMG-0962.png" alt="Ícone Underground" class="logo-u-img">
+    <h1 class="logo-texto">Underground Pratas</h1>
   </header>
 
   <div class="container">
     <div class="banner-itinerante">
-      <h3>Nosso Diferencial: Atendimento Onde Você Estiver!</h3>
-      <p>Nós levamos a loja até você! Atendemos presencialmente no conforto do seu lar, no trabalho ou enquanto você relaxa em bares e restaurantes. Agende uma visita VIP para ver as peças de perto!</p>
+      <h3>O nosso diferencial: A loja vai até você!</h3>
+      <p>Levamos as peças até o cliente. Atendemos no seu lar, no seu trabalho, em bares ou restaurantes. Agende uma visita e nós vamos até onde você estiver!</p>
       <a href="https://wa.me/5561981642480?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20onde%20estou!" class="btn-agendar" target="_blank">Agendar Visita no WhatsApp</a>
     </div>
 
@@ -94,6 +92,7 @@
     </div>
 
     <div class="grid-produtos" id="grid-produtos">
+      <!-- Anéis -->
       <div class="card" data-categoria="Aneis" data-id="1" data-preco="89.99">
         <img src="https://i.ibb.co/4RpHNRzZ/IMG-1189.webp" alt="Anel Prata 925 Coração" onclick="abrirZoom(this.src)">
         <div class="card-info">
@@ -238,6 +237,7 @@
         </div>
       </div>
 
+      <!-- Gargantilhas -->
       <div class="card" data-categoria="Gargantilhas" data-id="19" data-preco="144.99">
         <img src="https://i.ibb.co/6cc02nWY/IMG-1222.webp" alt="Gargantilha Ponto de Luz Redondo 8mm Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
@@ -326,6 +326,7 @@
         </div>
       </div>
 
+      <!-- Anéis Masculinos -->
       <div class="card" data-categoria="AneisMasculinos" data-id="30" data-preco="239.99">
         <img src="https://i.ibb.co/hR4Gs19p/IMG-1242.webp" alt="Anel Masculino Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
@@ -398,6 +399,7 @@
         </div>
       </div>
 
+      <!-- Aqui estava o erro com o link da imagem, foi ajustado para remover o espaço " focus/" -->
       <div class="card" data-categoria="AneisMasculinos" data-id="39" data-preco="189.99">
         <img src="https://i.ibb.co/53R3G53/IMG-1233.webp" alt="Anel Masculino Quadrado Prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
@@ -462,6 +464,7 @@
         </div>
       </div>
 
+      <!-- Categoria Brincos -->
       <div class="card" data-categoria="Brincos" data-id="47" data-preco="39.99">
         <img src="https://i.ibb.co/wNJ5RsBz/IMG-1262.webp" alt="Zircônia estrela 6mm prata 925" onclick="abrirZoom(this.src)">
         <div class="card-info">
@@ -643,9 +646,7 @@
       
       const botoes = document.querySelectorAll('.btn-filtro');
       botoes.forEach(btn => btn.classList.remove('ativo'));
-      if (event && event.target) {
-        event.target.classList.add('ativo');
-      }
+      event.target.classList.add('ativo');
 
       atualizarExibicao();
     }
