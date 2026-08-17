@@ -1,175 +1,636 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" translate="no">
 <head>
-    <meta charset="UTF-8">
-    <title>Catálogo Underground Pratas</title>
-    <style>
-        @page {
-            size: A4;
-            margin: 12mm 10mm;
-            background-color: #0f0f11;
-        }
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #0f0f11;
-            color: #f0f0f2;
-        }
-        .header {
-            text-align: center;
-            padding: 15px 0 20px 0;
-            border-bottom: 2px solid #33333e;
-            margin-bottom: 25px;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 26pt;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #ffffff;
-            font-weight: 800;
-        }
-        .header p {
-            margin: 6px 0 0 0;
-            font-size: 11pt;
-            color: #a0a0b0;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-        .catalog-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 12px;
-        }
-        .card {
-            background-color: #18181c;
-            border: 1px solid #2a2a35;
-            border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-            vertical-align: top;
-            width: 50%;
-        }
-        .image-container {
-            width: 100%;
-            height: 200px;
-            background-color: #22222b;
-            border-radius: 6px;
-            margin-bottom: 12px;
-            overflow: hidden;
-            display: block;
-        }
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .product-title {
-            font-size: 12pt;
-            font-weight: 600;
-            color: #e2e2e8;
-            margin: 8px 0 6px 0;
-            height: 36px;
-            line-height: 1.3;
-        }
-        .product-badge {
-            display: inline-block;
-            background-color: #252533;
-            color: #b0b0c0;
-            font-size: 8pt;
-            padding: 3px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-        .product-price {
-            font-size: 15pt;
-            font-weight: 700;
-            color: #52c41a;
-            margin-top: 4px;
-        }
-        .footer {
-            margin-top: 30px;
-            text-align: center;
-            padding-top: 15px;
-            border-top: 1px solid #2a2a35;
-            font-size: 9pt;
-            color: #707080;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <title>Underground Pratas 925 | Catálogo Oficial</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #0f0f0f; color: #f1f1f1; padding-bottom: 90px; }
+    
+    /* Header e Logo Banner Retangular */
+    header { width: 100%; background: #000; border-bottom: 2px solid #333; text-align: center; }
+    .logo-banner { width: 100%; height: auto; max-height: 200px; object-fit: contain; display: block; margin: 0 auto; }
+    
+    /* Banner Atendimento Itinerante */
+    .banner-itinerante { background: linear-gradient(135deg, #1c1c1c, #292929); border: 1px solid #444; border-radius: 10px; margin: 15px; padding: 15px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.6); }
+    .banner-itinerante h3 { color: #fff; font-size: 1.15rem; margin-bottom: 6px; font-weight: bold; }
+    .banner-itinerante p { color: #ddd; font-size: 0.9rem; margin-bottom: 12px; line-height: 1.4; }
+    .destaque-rua { color: #25d366; font-weight: bold; }
+    .btn-agendar { background-color: #25d366; color: #fff; text-decoration: none; font-weight: bold; padding: 10px 20px; border-radius: 20px; display: inline-block; font-size: 0.9rem; box-shadow: 0 2px 8px rgba(37,211,102,0.3); }
+    
+    /* Filtros e Navegação */
+    .filtros { display: flex; justify-content: center; gap: 8px; margin: 15px; flex-wrap: wrap; }
+    .btn-filtro { background: #222; color: #fff; border: 1px solid #444; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; }
+    .btn-filtro.ativo { background: #fff; color: #000; font-weight: bold; }
+    
+    /* Grid de Produtos */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 10px; }
+    .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; min-height: 200px; }
+    .card { background: #181818; border: 1px solid #282828; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+    .card img { width: 100%; height: 180px; object-fit: cover; background: #222; }
+    .card-info { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-categoria { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    .card-titulo { font-size: 0.9rem; margin: 4px 0; font-weight: 600; color: #fff; }
+    .card-preco { font-size: 1.1rem; font-weight: bold; color: #25d366; margin: 6px 0; }
+    .btn-add { background: #fff; color: #000; border: none; padding: 8px; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%; font-size: 0.8rem; }
+    
+    /* Paginação */
+    .paginacao { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 25px 0; }
+    .btn-pag { background: #222; color: #fff; border: 1px solid #444; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+    .btn-pag:disabled { opacity: 0.4; cursor: not-allowed; }
+    #info-pagina { font-size: 0.9rem; font-weight: bold; }
+
+    /* Carrinho Fixo Rodapé */
+    .carrinho-fixo { position: fixed; bottom: 0; left: 0; width: 100%; background: #111; border-top: 1px solid #333; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 15px rgba(0,0,0,0.8); z-index: 100; }
+    .carrinho-info { font-size: 0.9rem; }
+    .carrinho-total { font-weight: bold; color: #25d366; font-size: 1.1rem; }
+    .btn-finalizar { background: #25d366; color: #fff; border: none; padding: 10px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 0.9rem; }
+  </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Underground Pratas</h1>
-        <p>Catálogo Oficial &bull; Prata 925</p>
+  <header>
+    <img src="https://i.ibb.co/DHvbcwG3/IMG-0962.png" alt="Underground Pratas 925" class="logo-banner">
+  </header>
+
+  <div class="container">
+    <!-- Atendimento Itinerante -->
+    <div class="banner-itinerante">
+      <h3>Vendas na Rua & Atendimento Itinerante</h3>
+      <p>Nosso diferencial é levar a loja até você! Vendemos <span class="destaque-rua">na rua, nos comércios, bares, restaurantes e locais de trabalho</span>. Agende uma visita!</p>
+      <a href="https://wa.me/5561981642480?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20onde%20estou!" class="btn-agendar" target="_blank">Chamar no WhatsApp</a>
     </div>
 
-    <table class="catalog-table">
-        <tr>
-            <td class="card">
-                <div class="image-container">
-                    <img src="https://i.ibb.co/rGXrffx1/IMG-1177.webp" alt="Anel solitário prata 925 4 gavras">
-                </div>
-                <span class="product-badge">Prata 925</span>
-                <div class="product-title">Anel Solitário 4 Garras</div>
-                <div class="product-price">R$ 119,99</div>
-            </td>
-            <td class="card">
-                <div class="image-container">
-                    <img src="https://i.ibb.co/s98FHwmt/IMG-1176.webp" alt="Anel prata 925 pendurado">
-                </div>
-                <span class="product-badge">Prata 925</span>
-                <div class="product-title">Anel Pendurado</div>
-                <div class="product-price">R$ 119,99</div>
-            </td>
-        </tr>
-        <tr>
-            <td class="card">
-                <div class="image-container">
-                    <img src="https://i.ibb.co/bg05BzMt/IMG-1175.webp" alt="Anel prata 925 fé">
-                </div>
-                <span class="product-badge">Prata 925</span>
-                <div class="product-title">Anel Fé</div>
-                <div class="product-price">R$ 89,99</div>
-            </td>
-            <td class="card">
-                <div class="image-container">
-                    <img src="https://i.ibb.co/JRkdB9YS/IMG-1173.webp" alt="Anel infinito prata 925">
-                </div>
-                <span class="product-badge">Prata 925</span>
-                <div class="product-title">Anel Infinito</div>
-                <div class="product-price">R$ 89,99</div>
-            </td>
-        </tr>
-        <tr>
-            <td class="card">
-                <div class="image-container">
-                    <img src="https://i.ibb.co/Z6pGrkx8/IMG-1172.webp" alt="Anel prata 925 triângulo">
-                </div>
-                <span class="product-badge">Prata 925</span>
-                <div class="product-title">Anel Triângulo</div>
-                <div class="product-price">R$ 94,99</div>
-            </td>
-            <td class="card">
-                <div class="image-container">
-                    <img src="https://i.ibb.co/V0X4jRDL/IMG-1171.webp" alt="Anel prata 925 trançado">
-                </div>
-                <span class="product-badge">Prata 925</span>
-                <div class="product-title">Anel Trançado</div>
-                <div class="product-price">R$ 84,99</div>
-            </td>
-        </tr>
-    </table>
-
-    <div class="footer">
-        Underground Pratas &bull; Joias em Prata 925 com garantia
+    <!-- Filtros de Categorias -->
+    <div class="filtros">
+      <button class="btn-filtro ativo" onclick="filtrar('todos')">Todos</button>
+      <button class="btn-filtro" onclick="filtrar('Aneis')">Anéis</button>
+      <button class="btn-filtro" onclick="filtrar('Solitarios')">Anéis Solitários</button>
+      <button class="btn-filtro" onclick="filtrar('Gargantilhas')">Gargantilhas</button>
+      <button class="btn-filtro" onclick="filtrar('Correntes')">Correntes</button>
+      <button class="btn-filtro" onclick="filtrar('Pulseiras')">Pulseiras</button>
+      <button class="btn-filtro" onclick="filtrar('Pingentes')">Pingentes</button>
     </div>
 
+    <!-- Grid de Produtos -->
+    <div class="grid-produtos" id="grid-produtos">
+      
+      <!-- Peça 1 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/4RpHNRzZ/IMG-1189.webp" alt="Anel Prata 925 Coração">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Coração</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 89,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Coração', 89.99, 'https://i.ibb.co/4RpHNRzZ/IMG-1189.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 2 -->
+      <div class="card" data-categoria="Solitarios">
+        <img src="https://i.ibb.co/YTYG7XRj/IMG-1188.webp" alt="Anel Solitário Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Solitários</span>
+            <h4 class="card-titulo">Anel Solitário Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 129,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Solitário Prata 925', 129.99, 'https://i.ibb.co/YTYG7XRj/IMG-1188.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 3 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/QFqNLC41/IMG-1187.webp" alt="Anel Folha Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Folha</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 79,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Folha', 79.99, 'https://i.ibb.co/QFqNLC41/IMG-1187.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 4 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/XZc1yRxc/IMG-1186.webp" alt="Anel Prata 925 Dois Palitos">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Dois Palitos</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 99,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Dois Palitos', 99.99, 'https://i.ibb.co/XZc1yRxc/IMG-1186.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 5 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/f3r8dCC/IMG-1185.webp" alt="Anel Prata 925 Coração">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Coração</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 84,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Coração', 84.99, 'https://i.ibb.co/f3r8dCC/IMG-1185.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 6 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/DPb9Q8Hr/IMG-1184.webp" alt="Anel Prata 925 3 Corações">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 3 Corações</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 99,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 3 Corações', 99.99, 'https://i.ibb.co/DPb9Q8Hr/IMG-1184.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 7 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/BHsJ9qj7/IMG-1183.webp" alt="Anel Prata 925 Tartaruga">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Tartaruga</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 129,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Tartaruga', 129.99, 'https://i.ibb.co/BHsJ9qj7/IMG-1183.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 8 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/fVj6Tw5K/IMG-1182.webp" alt="Anel Prata 925 Ondulado Quadrado">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Ondulado Quadrado</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 99,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Ondulado Quadrado', 99.99, 'https://i.ibb.co/fVj6Tw5K/IMG-1182.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 9 -->
+      <div class="card" data-categoria="Solitarios">
+        <img src="https://i.ibb.co/0RYhy6vG/IMG-1181.webp" alt="Anel Solitário Prata 925 Coração Verde">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Solitários</span>
+            <h4 class="card-titulo">Anel Solitário Coração Verde</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 129,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Solitário Coração Verde', 129.99, 'https://i.ibb.co/0RYhy6vG/IMG-1181.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 10 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/mVZ8tHwt/IMG-1180.webp" alt="Anel Prata 925 Regulável Estrela e Pedra">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Regulável Estrela e Pedra</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 89,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Regulável Estrela e Pedra', 89.99, 'https://i.ibb.co/mVZ8tHwt/IMG-1180.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 11 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/tPQ1RTDz/IMG-1179.webp" alt="Anel Prata 925 Patinha">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Patinha</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 84,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Patinha', 84.99, 'https://i.ibb.co/tPQ1RTDz/IMG-1179.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 12 -->
+      <div class="card" data-categoria="Solitarios">
+        <img src="https://i.ibb.co/vCVjzXFc/IMG-1178.webp" alt="Anel Solitário Prata 925 Infinito na Lateral">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Solitários</span>
+            <h4 class="card-titulo">Anel Solitário Infinito na Lateral</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 169,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Solitário Infinito na Lateral', 169.99, 'https://i.ibb.co/vCVjzXFc/IMG-1178.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 13 -->
+      <div class="card" data-categoria="Solitarios">
+        <img src="https://i.ibb.co/rGXrffx1/IMG-1177.webp" alt="Anel Solitário Prata 925 4 Garras">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis Solitários</span>
+            <h4 class="card-titulo">Anel Solitário 4 Garras</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 119,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Solitário 4 Garras', 119.99, 'https://i.ibb.co/rGXrffx1/IMG-1177.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 14 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/s98FHwmt/IMG-1176.webp" alt="Anel Prata 925 Pendurado">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Pendurado</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 119,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Pendurado', 119.99, 'https://i.ibb.co/s98FHwmt/IMG-1176.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 15 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/bg05BzMt/IMG-1175.webp" alt="Anel Prata 925 Fé">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Fé</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 89,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Fé', 89.99, 'https://i.ibb.co/bg05BzMt/IMG-1175.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 16 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/JRkdB9YS/IMG-1173.webp" alt="Anel Infinito Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Infinito Prata 925</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 89,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Infinito Prata 925', 89.99, 'https://i.ibb.co/JRkdB9YS/IMG-1173.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 17 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/Z6pGrkx8/IMG-1172.webp" alt="Anel Prata 925 Triângulo">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Triângulo</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 94,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Triângulo', 94.99, 'https://i.ibb.co/Z6pGrkx8/IMG-1172.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 18 -->
+      <div class="card" data-categoria="Aneis">
+        <img src="https://i.ibb.co/V0X4jRDL/IMG-1171.webp" alt="Anel Prata 925 Trançado">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Anéis</span>
+            <h4 class="card-titulo">Anel Prata 925 Trançado</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 84,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Trançado', 84.99, 'https://i.ibb.co/V0X4jRDL/IMG-1171.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 19 -->
+      <div class="card" data-categoria="Gargantilhas">
+        <img src="https://i.ibb.co/6cc02nWY/IMG-1222.webp" alt="Gargantilha Ponto de Luz Redondo 8mm Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Gargantilhas</span>
+            <h4 class="card-titulo">Gargantilha Ponto de Luz Redondo 8mm</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 144,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Redondo 8mm', 144.99, 'https://i.ibb.co/6cc02nWY/IMG-1222.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 20 -->
+      <div class="card" data-categoria="Gargantilhas">
+        <img src="https://i.ibb.co/NgGrCwx1/IMG-1211.webp" alt="Gargantilha Ponto de Luz Redondo Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Gargantilhas</span>
+            <h4 class="card-titulo">Gargantilha Ponto de Luz Redondo</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 139,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Redondo', 139.99, 'https://i.ibb.co/NgGrCwx1/IMG-1211.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 21 -->
+      <div class="card" data-categoria="Gargantilhas">
+        <img src="https://i.ibb.co/mFXbhN9K/IMG-1212.webp" alt="Gargantilha Ponto de Luz Gota Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Gargantilhas</span>
+            <h4 class="card-titulo">Gargantilha Ponto de Luz Gota</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 139,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Gota', 139.99, 'https://i.ibb.co/mFXbhN9K/IMG-1212.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 22 -->
+      <div class="card" data-categoria="Gargantilhas">
+        <img src="https://i.ibb.co/V51Hzbj/IMG-1213.webp" alt="Gargantilha Ponto de Luz Gota Colorido Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Gargantilhas</span>
+            <h4 class="card-titulo">Gargantilha Ponto de Luz Gota Colorido</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 139,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Gota Colorido', 139.99, 'https://i.ibb.co/V51Hzbj/IMG-1213.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 23 -->
+      <div class="card" data-categoria="Gargantilhas">
+        <img src="https://i.ibb.co/Pv3XHw3C/IMG-1214.webp" alt="Gargantilha Ponto de Luz Oval Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Gargantilhas</span>
+            <h4 class="card-titulo">Gargantilha Ponto de Luz Oval</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 139,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Oval', 139.99, 'https://i.ibb.co/Pv3XHw3C/IMG-1214.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 24 -->
+      <div class="card" data-categoria="Gargantilhas">
+        <img src="https://i.ibb.co/XZGmGJmr/IMG-1218.webp" alt="Gargantilha Ponto de Luz Hexagonal Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Gargantilhas</span>
+            <h4 class="card-titulo">Gargantilha Ponto de Luz Hexagonal</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 139,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Hexagonal', 139.99, 'https://i.ibb.co/XZGmGJmr/IMG-1218.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 25 -->
+      <div class="card" data-categoria="Gargantilhas">
+        <img src="https://i.ibb.co/1YJ0HfMP/IMG-1215.webp" alt="Gargantilha Ponto de Luz Retangular Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Gargantilhas</span>
+            <h4 class="card-titulo">Gargantilha Ponto de Luz Retangular</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 139,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Retangular', 139.99, 'https://i.ibb.co/1YJ0HfMP/IMG-1215.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 26 -->
+      <div class="card" data-categoria="Gargantilhas">
+        <img src="https://i.ibb.co/zVy6gR43/IMG-1216.webp" alt="Gargantilha Trevo Hematita 40+5 cm V12 Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Gargantilhas</span>
+            <h4 class="card-titulo">Gargantilha Trevo Hematita 40+5 cm</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 149,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Trevo Hematita 40+5 cm', 149.99, 'https://i.ibb.co/zVy6gR43/IMG-1216.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 27 -->
+      <div class="card" data-categoria="Gargantilhas">
+        <img src="https://i.ibb.co/pBBX27Qc/IMG-1217.webp" alt="Gargantilha Sereia P Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Gargantilhas</span>
+            <h4 class="card-titulo">Gargantilha Sereia P</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 144,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Sereia P', 144.99, 'https://i.ibb.co/pBBX27Qc/IMG-1217.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 28 -->
+      <div class="card" data-categoria="Gargantilhas">
+        <img src="https://i.ibb.co/TMxhwkvf/IMG-1221.webp" alt="Gargantilha Nossa Senhora Cravejada Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Gargantilhas</span>
+            <h4 class="card-titulo">Gargantilha Nossa Senhora Cravejada</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 149,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Nossa Senhora Cravejada', 149.99, 'https://i.ibb.co/TMxhwkvf/IMG-1221.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peça 29 -->
+      <div class="card" data-categoria="Gargantilhas">
+        <img src="https://i.ibb.co/xt44y397/IMG-1220.webp" alt="Gargantilha 3 Zircônia Penduradas Prata 925">
+        <div class="card-info">
+          <div>
+            <span class="card-categoria">Gargantilhas</span>
+            <h4 class="card-titulo">Gargantilha 3 Zircônia Penduradas</h4>
+          </div>
+          <div>
+            <div class="card-preco">R$ 159,99</div>
+            <button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha 3 Zircônia Penduradas', 159.99, 'https://i.ibb.co/xt44y397/IMG-1220.webp')">Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Paginação (20 fotos por página) -->
+    <div class="paginacao">
+      <button class="btn-pag" id="btn-ant" onclick="mudarPagina(-1)">Anterior</button>
+      <span id="info-pagina">Página 1</span>
+      <button class="btn-pag" id="btn-prox" onclick="mudarPagina(1)">Próxima</button>
+    </div>
+
+  </div>
+
+  <!-- Carrinho Fixo Rodapé -->
+  <div class="carrinho-fixo">
+    <div class="carrinho-info">
+      <div><strong id="qtd-itens">0</strong> itens selecionados</div>
+      <div class="carrinho-total">Total: R$ <span id="valor-total">0,00</span></div>
+    </div>
+    <button class="btn-finalizar" onclick="enviarPedido()">Enviar Pedido</button>
+  </div>
+
+  <script>
+    let carrinho = [];
+    let paginaAtual = 1;
+    const itensPorPagina = 20;
+
+    // Embaralha as peças na exibição inicial
+    function embaralharProdutos() {
+      const grid = document.getElementById('grid-produtos');
+      const cards = Array.from(grid.children);
+      
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        grid.appendChild(cards[j]);
+      }
+    }
+
+    function adicionarAoCarrinho(nome, preco, imagemUrl) {
+      carrinho.push({ nome, preco, imagemUrl });
+      atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+      document.getElementById('qtd-itens').innerText = carrinho.length;
+      const total = carrinho.reduce((sum, item) => sum + item.preco, 0);
+      document.getElementById('valor-total').innerText = total.toFixed(2).replace('.', ',');
+    }
+
+    function enviarPedido() {
+      if (carrinho.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+      }
+      
+      let mensagem = "Olá! Gostaria de fazer o pedido das seguintes peças:\n\n";
+      let total = 0;
+      
+      carrinho.forEach((item, index) => {
+        mensagem += `${index + 1}. *${item.nome}* - R$ ${item.preco.toFixed(2).replace('.', ',')}\n   Foto: ${item.imagemUrl}\n\n`;
+        total += item.preco;
+      });
+
+      mensagem += `*Total do Pedido: R$ ${total.toFixed(2).replace('.', ',')}*`;
+      
+      const numeroWhatsapp = "5561981642480";
+      const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, '_blank');
+    }
+
+    function renderizarPagina() {
+      const cards = Array.from(document.querySelectorAll('.card'));
+      const totalPaginas = Math.ceil(cards.length / itensPorPagina) || 1;
+
+      cards.forEach((card, index) => {
+        const inicio = (paginaAtual - 1) * itensPorPagina;
+        const fim = inicio + itensPorPagina;
+        
+        if (index >= inicio && index < fim) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('info-pagina').innerText = `Página ${paginaAtual} de ${totalPaginas}`;
+      document.getElementById('btn-ant').disabled = paginaAtual === 1;
+      document.getElementById('btn-prox').disabled = paginaAtual >= totalPaginas;
+    }
+
+    function mudarPagina(direcao) {
+      paginaAtual += direcao;
+      renderizarPagina();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function filtrar(categoria) {
+      const cards = document.querySelectorAll('.card');
+      const botoes = document.querySelectorAll('.btn-filtro');
+      
+      botoes.forEach(btn => btn.classList.remove('ativo'));
+      event.target.classList.add('ativo');
+
+      if (categoria === 'todos') {
+        paginaAtual = 1;
+        renderizarPagina();
+      } else {
+        cards.forEach(card => {
+          if (card.getAttribute('data-categoria') === categoria) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        document.getElementById('info-pagina').innerText = "Filtrado";
+      }
+    }
+
+    // Inicialização: embaralha e renderiza a primeira página
+    embaralharProdutos();
+    renderizarPagina();
+  </script>
 </body>
 </html>
