@@ -1,753 +1,741 @@
 <!DOCTYPE html>
-<html lang="pt-BR" translate="no">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google" content="notranslate">
-  <title>Underground Pratas 925 | Catálogo Oficial</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { background-color: #0f0f0f; color: #f1f1f1; padding-bottom: 90px; }
-    
-    header { width: 100%; background: #000; border-bottom: 2px solid #333; padding: 15px 10px; text-align: center; }
-    .header-content { display: flex; align-items: center; justify-content: center; gap: 12px; max-width: 1200px; margin: 0 auto; }
-    .logo-u { width: 55px; height: 55px; object-fit: contain; border-radius: 4px; }
-    .brand-name { font-size: 1.4rem; font-weight: 800; letter-spacing: 1.5px; color: #fff; text-transform: uppercase; }
-    .brand-name span { color: #fff; }
-    
-    .banner-itinerante { background: linear-gradient(135deg, #1c1c1c, #292929); border: 1px solid #444; border-radius: 8px; margin: 15px auto; padding: 15px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.5); max-width: 1200px; }
-    .banner-grid { display: grid; grid-template-columns: 1fr; gap: 15px; align-items: center; }
-    @media(min-width: 768px) { .banner-grid { grid-template-columns: 1fr 1fr; text-align: left; } }
-    
-    .banner-col h3 { color: #fff; font-size: 1rem; margin-bottom: 6px; font-weight: bold; }
-    .banner-col p { color: #ddd; font-size: 0.85rem; margin-bottom: 10px; line-height: 1.4; }
-    .banner-col ul { list-style: disc; padding-left: 18px; color: #ddd; font-size: 0.82rem; margin-bottom: 10px; line-height: 1.4; }
-    .banner-col ul li { margin-bottom: 4px; }
-    .btn-agendar { background-color: #25d366; color: #fff; text-decoration: none; font-weight: bold; padding: 8px 18px; border-radius: 20px; display: inline-block; font-size: 0.85rem; box-shadow: 0 2px 6px rgba(37,211,102,0.3); text-align: center; }
-    
-    .controles-topo { display: flex; flex-direction: column; align-items: center; gap: 12px; margin: 15px 0; }
-    .filtros { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-    .btn-filtro { background: #222; color: #fff; border: 1px solid #444; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; }
-    .btn-filtro.ativo { background: #fff; color: #000; font-weight: bold; }
-    
-    .ordenacao-container { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #ccc; }
-    .select-ordenacao { background: #222; color: #fff; border: 1px solid #444; padding: 6px 10px; border-radius: 6px; font-size: 0.85rem; outline: none; cursor: pointer; }
-    
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 10px; }
-    .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; min-height: 200px; }
-    .card { background: #181818; border: 1px solid #282828; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
-    .card img { width: 100%; height: 180px; object-fit: cover; background: #222; cursor: zoom-in; }
-    .card-info { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-    .card-categoria { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
-    .card-titulo { font-size: 0.9rem; margin: 4px 0; font-weight: 600; color: #fff; }
-    .card-preco { font-size: 1.1rem; font-weight: bold; color: #25d366; margin: 6px 0; }
-    .btn-add { background: #fff; color: #000; border: none; padding: 8px; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%; font-size: 0.8rem; }
-    
-    .paginacao { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 25px 0; }
-    .btn-pag { background: #222; color: #fff; border: 1px solid #444; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
-    .btn-pag:disabled { opacity: 0.4; cursor: not-allowed; }
-    #info-pagina { font-size: 0.9rem; font-weight: bold; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Underground Pratas 925</title>
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg: #161616;
+            --text-color: #ffffff;
+            --text-secondary: #b3b3b3;
+            --accent-color: #25d366;
+            --accent-hover: #1ebd59;
+            --border-color: #262626;
+        }
 
-    .carrinho-fixo { position: fixed; bottom: 0; left: 0; width: 100%; background: #111; border-top: 1px solid #333; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 15px rgba(0,0,0,0.8); z-index: 100; }
-    .carrinho-info { font-size: 0.9rem; }
-    .carrinho-total { font-weight: bold; color: #25d366; font-size: 1.1rem; }
-    .btn-finalizar { background: #25d366; color: #fff; border: none; padding: 10px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 0.9rem; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-    .modal-zoom { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
-    .modal-zoom img { max-width: 90%; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
-    .fechar-modal { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 35px; font-weight: bold; cursor: pointer; z-index: 1001; }
-  </style>
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-bottom: 100px;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 16px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Logo aumentada um pouco */
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+
+        .brand-title {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .differential-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px;
+            text-align: center;
+        }
+
+        .differential-box h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .differential-box p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .warranty-list {
+            text-align: left;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            padding-left: 20px;
+        }
+
+        .warranty-list li {
+            margin-bottom: 4px;
+        }
+
+        .categories {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 0 16px 12px 16px;
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-btn {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .cat-btn.active {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            font-weight: bold;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 0 16px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background-color: #222;
+        }
+
+        .product-info {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .product-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-color);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 32px;
+        }
+
+        .product-price {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .add-btn {
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            width: 100%;
+            padding: 6px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 6px;
+            transition: all 0.2s;
+        }
+
+        .add-btn:hover {
+            background-color: var(--accent-color);
+            color: #000;
+        }
+
+        /* Barra Inferior de Carrinho */
+        .cart-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #121212;
+            border-top: 1px solid var(--border-color);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 200;
+        }
+
+        .cart-info {
+            cursor: pointer;
+        }
+
+        .cart-info span {
+            display: block;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .cart-info strong {
+            font-size: 16px;
+            color: var(--accent-color);
+        }
+
+        .checkout-btn {
+            background-color: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Modal / Gaveta de Visualização dos Produtos Selecionados */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 300;
+            display: none;
+            justify-content: flex-end;
+            flex-direction: column;
+        }
+
+        .cart-modal.open {
+            display: flex;
+        }
+
+        .cart-content {
+            background-color: var(--card-bg);
+            width: 100%;
+            max-height: 80vh;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .cart-header h3 {
+            font-size: 16px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .cart-items-list {
+            overflow-y: auto;
+            max-height: 45vh;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #1f1f1f;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .cart-item-price {
+            font-size: 12px;
+            color: var(--accent-color);
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-item-controls button {
+            background: var(--border-color);
+            color: var(--text-color);
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <div class="header-content">
-      <img src="https://i.ibb.co/DHvbcwG3/IMG-0962.png" alt="Logo Underground Pratas" class="logo-u">
-      <h1 class="brand-name">Underground <span>Pratas 925</span></h1>
-    </div>
-  </header>
-
-  <div class="container">
-    <div class="banner-itinerante">
-      <div class="banner-grid">
-        <div class="banner-col">
-          <h3>Nosso Diferencial: Atendimento Onde Você Estiver!</h3>
-          <p>Nós levamos a loja até você! Atendemos presencialmente no conforto do seu lar, no trabalho ou enquanto você relaxa em bares e restaurantes. Agende uma visita VIP para ver as peças de perto!</p>
-          <a href="https://wa.me/5561981642480?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20onde%20estou!" class="btn-agendar" target="_blank">Agendar Visita no WhatsApp</a>
+    <header>
+        <div class="logo-container">
+            <!-- Insira o link da sua logo real no src abaixo -->
+            <img src="https://i.ibb.co/jPdnqM97/IMG-1302.webp" alt="Logo Underground" class="logo-img">
+            <h1 class="brand-title">Underground Pratas 925</h1>
         </div>
-        <div class="banner-col" style="border-left: 1px solid #444; padding-left: 15px;">
-          <h3>Qualidade e Garantia</h3>
-          <ul>
+    </header>
+
+    <div class="differential-box">
+        <h3>Nosso Diferencial: Atendimento Onde Você Estiver!</h3>
+        <p>Nós levamos a loja até você! Atendemos presencialmente no conforto do seu lar, no trabalho ou enquanto você relaxa em bares e restaurantes. Agende uma visita VIP para ver as peças de perto!</p>
+        <a href="https://wa.me/55SEUNUMERO" target="_blank" class="whatsapp-btn">Agendar Visita no WhatsApp</a>
+        
+        <ul class="warranty-list">
             <li>Peças em <strong>prata 925 legítima</strong>.</li>
             <li>Todas as peças possuem <strong>certificado de garantia</strong>.</li>
-            <li>Garantia de que a peça <strong>não vai descascar nem trocar de cor</strong>.</li>
-          </ul>
-        </div>
-      </div>
+        </ul>
     </div>
 
-    <div class="controles-topo">
-      <div class="filtros">
-        <button class="btn-filtro ativo" onclick="filtrar('todos')">Todos</button>
-        <button class="btn-filtro" onclick="filtrar('Aneis')">Anéis</button>
-        <button class="btn-filtro" onclick="filtrar('AneisMasculinos')">Anéis Masculinos</button>
-        <button class="btn-filtro" onclick="filtrar('Brincos')">Brincos</button>
-        <button class="btn-filtro" onclick="filtrar('Solitarios')">Anéis Solitários</button>
-        <button class="btn-filtro" onclick="filtrar('Gargantilhas')">Gargantilhas</button>
-        <button class="btn-filtro" onclick="filtrar('Correntes')">Correntes</button>
-        <button class="btn-filtro" onclick="filtrar('Pulseiras')">Pulseiras</button>
-        <button class="btn-filtro" onclick="filtrar('Pingentes')">Pingentes</button>
-      </div>
-
-      <div class="ordenacao-container">
-        <label for="select-ordenar">Ordenar por:</label>
-        <select id="select-ordenar" class="select-ordenacao" onchange="ordenarProdutos(this.value)">
-          <option value="padrao">Destaques</option>
-          <option value="novos">Novos Produtos</option>
-          <option value="menor-preco">Menor Preço</option>
-          <option value="maior-preco">Maior Preço</option>
-        </select>
-      </div>
+    <div class="categories">
+        <button class="cat-btn active">Todos</button>
+        <button class="cat-btn">Argolas</button>
+        <button class="cat-btn">Anéis</button>
+        <button class="cat-btn">Brincos</button>
+        <button class="cat-btn">Gargantilhas</button>
     </div>
 
-    <div class="grid-produtos" id="grid-produtos">
-      <div class="card" data-categoria="Aneis" data-id="1" data-preco="89.99">
-        <img src="https://i.ibb.co/4RpHNRzZ/IMG-1189.webp" alt="Anel Prata 925 Coração" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Prata 925 Coração</h4></div>
-          <div><div class="card-preco">R$ 89,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Coração', 89.99, 'https://i.ibb.co/4RpHNRzZ/IMG-1189.webp')">Adicionar</button></div>
+    <!-- LISTA DE PRODUTOS COM TODAS AS ARGOLAS ENVIADAS -->
+    <div class="products-grid" id="product-grid">
+        <!-- 1 -->
+        <div class="product-card" data-name="Argola Prata 925 Coração fio trançado 2mm 3,3 cm" data-price="0.01" data-img="https://i.ibb.co/jPdnqM97/IMG-1302.webp">
+            <img src="https://i.ibb.co/jPdnqM97/IMG-1302.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Coração fio trançado 2mm 3,3 cm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Solitarios" data-id="2" data-preco="129.99">
-        <img src="https://i.ibb.co/YTYG7XRj/IMG-1188.webp" alt="Anel Solitário Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Solitários</span><h4 class="card-titulo">Anel Solitário Prata 925</h4></div>
-          <div><div class="card-preco">R$ 129,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Solitário Prata 925', 129.99, 'https://i.ibb.co/YTYG7XRj/IMG-1188.webp')">Adicionar</button></div>
+        <!-- 2 -->
+        <div class="product-card" data-name="Argola Prata 925 Fio trançado 2 mm 1,9 cm" data-price="0.01" data-img="https://i.ibb.co/KRmFB7L/IMG-1301.webp">
+            <img src="https://i.ibb.co/KRmFB7L/IMG-1301.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Fio trançado 2 mm 1,9 cm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Aneis" data-id="3" data-preco="79.99">
-        <img src="https://i.ibb.co/QFqNLC41/IMG-1187.webp" alt="Anel Folha Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Folha</h4></div>
-          <div><div class="card-preco">R$ 79,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Folha', 79.99, 'https://i.ibb.co/QFqNLC41/IMG-1187.webp')">Adicionar</button></div>
+        <!-- 3 -->
+        <div class="product-card" data-name="Argola Prata 925 Coração fio chanfrado 1,5 cm 2 mm" data-price="0.01" data-img="https://i.ibb.co/b5GBdtBD/IMG-1303.webp">
+            <img src="https://i.ibb.co/b5GBdtBD/IMG-1303.webp" class="product-img" alt="Argola" onerror="this.src='https://i.ibb.co/jPdnqM97/IMG-1302.webp'">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Coração fio chanfrado 1,5 cm 2 mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Aneis" data-id="4" data-preco="99.99">
-        <img src="https://i.ibb.co/XZc1yRxc/IMG-1186.webp" alt="Anel Prata 925 Dois Palitos" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Prata 925 Dois Palitos</h4></div>
-          <div><div class="card-preco">R$ 99,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Dois Palitos', 99.99, 'https://i.ibb.co/XZc1yRxc/IMG-1186.webp')">Adicionar</button></div>
+        <!-- 4 -->
+        <div class="product-card" data-name="Argola Prata 925 Coração fio chanfrado 2,2cm 2 mm" data-price="0.01" data-img="https://i.ibb.co/gZ9B8n7r/IMG-1269.webp">
+            <img src="https://i.ibb.co/gZ9B8n7r/IMG-1269.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Coração fio chanfrado 2,2cm 2 mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Aneis" data-id="5" data-preco="84.99">
-        <img src="https://i.ibb.co/f3r8dCC/IMG-1185.webp" alt="Anel Prata 925 Coração" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Prata 925 Coração</h4></div>
-          <div><div class="card-preco">R$ 84,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Coração', 84.99, 'https://i.ibb.co/f3r8dCC/IMG-1185.webp')">Adicionar</button></div>
+        <!-- 5 -->
+        <div class="product-card" data-name="Argola Prata 925 Coração fio chanfrado 2,2 cm 2mm" data-price="0.01" data-img="https://i.ibb.co/b5w8zBYM/IMG-1270.webp">
+            <img src="https://i.ibb.co/b5w8zBYM/IMG-1270.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Coração fio chanfrado 2,2 cm 2mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Aneis" data-id="6" data-preco="99.99">
-        <img src="https://i.ibb.co/DPb9Q8Hr/IMG-1184.webp" alt="Anel Prata 925 3 Corações" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Prata 925 3 Corações</h4></div>
-          <div><div class="card-preco">R$ 99,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 3 Corações', 99.99, 'https://i.ibb.co/DPb9Q8Hr/IMG-1184.webp')">Adicionar</button></div>
+        <!-- 6 -->
+        <div class="product-card" data-name="Argola Prata 925 Meia cana 1,6 cm 2 mm" data-price="0.01" data-img="https://i.ibb.co/60yCTRL9/IMG-1279.webp">
+            <img src="https://i.ibb.co/60yCTRL9/IMG-1279.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Meia cana 1,6 cm 2 mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Aneis" data-id="7" data-preco="129.99">
-        <img src="https://i.ibb.co/BHsJ9qj7/IMG-1183.webp" alt="Anel Prata 925 Tartaruga" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Prata 925 Tartaruga</h4></div>
-          <div><div class="card-preco">R$ 129,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Tartaruga', 129.99, 'https://i.ibb.co/BHsJ9qj7/IMG-1183.webp')">Adicionar</button></div>
+        <!-- 7 -->
+        <div class="product-card" data-name="Argola Prata 925 Meia cana 2,2 cm 2mm" data-price="0.01" data-img="https://i.ibb.co/WpNFYYxB/IMG-1280.webp">
+            <img src="https://i.ibb.co/WpNFYYxB/IMG-1280.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Meia cana 2,2 cm 2mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Aneis" data-id="8" data-preco="99.99">
-        <img src="https://i.ibb.co/fVj6Tw5K/IMG-1182.webp" alt="Anel Prata 925 Ondulado Quadrado" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Prata 925 Ondulado Quadrado</h4></div>
-          <div><div class="card-preco">R$ 99,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Ondulado Quadrado', 99.99, 'https://i.ibb.co/fVj6Tw5K/IMG-1182.webp')">Adicionar</button></div>
+        <!-- 8 -->
+        <div class="product-card" data-name="Argola Prata 925 Meia cana 2,3 cm 2mm" data-price="0.01" data-img="https://i.ibb.co/Rpd9h0t3/IMG-1281.webp">
+            <img src="https://i.ibb.co/Rpd9h0t3/IMG-1281.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Meia cana 2,3 cm 2mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Solitarios" data-id="9" data-preco="129.99">
-        <img src="https://i.ibb.co/0RYhy6vG/IMG-1181.webp" alt="Anel Solitário Prata 925 Coração Verde" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Solitários</span><h4 class="card-titulo">Anel Solitário Coração Verde</h4></div>
-          <div><div class="card-preco">R$ 129,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Solitário Coração Verde', 129.99, 'https://i.ibb.co/0RYhy6vG/IMG-1181.webp')">Adicionar</button></div>
+        <!-- 9 -->
+        <div class="product-card" data-name="Argola Prata 925 Meia cana 3,2 cm 4mm" data-price="0.01" data-img="https://i.ibb.co/fzgv0Kc1/IMG-1282.webp">
+            <img src="https://i.ibb.co/fzgv0Kc1/IMG-1282.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Meia cana 3,2 cm 4mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Aneis" data-id="10" data-preco="89.99">
-        <img src="https://i.ibb.co/mVZ8tHwt/IMG-1180.webp" alt="Anel Prata 925 Regulável Estrela e Pedra" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Regulável Estrela e Pedra</h4></div>
-          <div><div class="card-preco">R$ 89,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Regulável Estrela e Pedra', 89.99, 'https://i.ibb.co/mVZ8tHwt/IMG-1180.webp')">Adicionar</button></div>
+        <!-- 10 -->
+        <div class="product-card" data-name="Argola Prata 925 Meia cana 3,8 cm 4mm" data-price="0.01" data-img="https://i.ibb.co/yB8WFX7J/IMG-1283.webp">
+            <img src="https://i.ibb.co/yB8WFX7J/IMG-1283.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Meia cana 3,8 cm 4mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Aneis" data-id="11" data-preco="84.99">
-        <img src="https://i.ibb.co/tPQ1RTDz/IMG-1179.webp" alt="Anel Prata 925 Patinha" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Prata 925 Patinha</h4></div>
-          <div><div class="card-preco">R$ 84,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Patinha', 84.99, 'https://i.ibb.co/tPQ1RTDz/IMG-1179.webp')">Adicionar</button></div>
+        <!-- 11 -->
+        <div class="product-card" data-name="Argola Prata 925 Meia cana 3,9 cm 2mm" data-price="0.01" data-img="https://i.ibb.co/8DF3bmrw/IMG-1284.webp">
+            <img src="https://i.ibb.co/8DF3bmrw/IMG-1284.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Meia cana 3,9 cm 2mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Solitarios" data-id="12" data-preco="169.99">
-        <img src="https://i.ibb.co/vCVjzXFc/IMG-1178.webp" alt="Anel Solitário Prata 925 Infinito na Lateral" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Solitários</span><h4 class="card-titulo">Anel Solitário Infinito na Lateral</h4></div>
-          <div><div class="card-preco">R$ 169,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Solitário Infinito na Lateral', 169.99, 'https://i.ibb.co/vCVjzXFc/IMG-1178.webp')">Adicionar</button></div>
+        <!-- 12 -->
+        <div class="product-card" data-name="Argola Prata 925 Meia cana 5,4 cm 2mm" data-price="0.01" data-img="https://i.ibb.co/ymDCDNXN/IMG-1285.webp">
+            <img src="https://i.ibb.co/ymDCDNXN/IMG-1285.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Meia cana 5,4 cm 2mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Solitarios" data-id="13" data-preco="119.99">
-        <img src="https://i.ibb.co/rGXrffx1/IMG-1177.webp" alt="Anel Solitário Prata 925 4 Garras" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Solitários</span><h4 class="card-titulo">Anel Solitário 4 Garras</h4></div>
-          <div><div class="card-preco">R$ 119,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Solitário 4 Garras', 119.99, 'https://i.ibb.co/rGXrffx1/IMG-1177.webp')">Adicionar</button></div>
+        <!-- 13 -->
+        <div class="product-card" data-name="Argola Prata 925 Quadrado 2,2 cm 3 mm" data-price="0.01" data-img="https://i.ibb.co/PZPqFBkf/IMG-1286.webp">
+            <img src="https://i.ibb.co/PZPqFBkf/IMG-1286.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Quadrado 2,2 cm 3 mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Aneis" data-id="14" data-preco="119.99">
-        <img src="https://i.ibb.co/s98FHwmt/IMG-1176.webp" alt="Anel Prata 925 Pendurado" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Prata 925 Pendurado</h4></div>
-          <div><div class="card-preco">R$ 119,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Pendurado', 119.99, 'https://i.ibb.co/s98FHwmt/IMG-1176.webp')">Adicionar</button></div>
+        <!-- 14 -->
+        <div class="product-card" data-name="Argola Prata 925 Quadrado 3,2 cm 3mm" data-price="0.01" data-img="https://i.ibb.co/DHMNsfg6/IMG-1287.webp">
+            <img src="https://i.ibb.co/DHMNsfg6/IMG-1287.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Quadrado 3,2 cm 3mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Aneis" data-id="15" data-preco="89.99">
-        <img src="https://i.ibb.co/bg05BzMt/IMG-1175.webp" alt="Anel Prata 925 Fé" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Prata 925 Fé</h4></div>
-          <div><div class="card-preco">R$ 89,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Fé', 89.99, 'https://i.ibb.co/bg05BzMt/IMG-1175.webp')">Adicionar</button></div>
+        <!-- 15 -->
+        <div class="product-card" data-name="Argola Prata 925 Quadrado 3,8 cm 1 mm" data-price="0.01" data-img="https://i.ibb.co/vxwQms6Z/IMG-1288.webp">
+            <img src="https://i.ibb.co/vxwQms6Z/IMG-1288.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Quadrado 3,8 cm 1 mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Aneis" data-id="16" data-preco="89.99">
-        <img src="https://i.ibb.co/JRkdB9YS/IMG-1173.webp" alt="Anel Infinito Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Infinito Prata 925</h4></div>
-          <div><div class="card-preco">R$ 89,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Infinito Prata 925', 89.99, 'https://i.ibb.co/JRkdB9YS/IMG-1173.webp')">Adicionar</button></div>
+        <!-- 16 -->
+        <div class="product-card" data-name="Argola Prata 925 Quadrado 3,2 cm 3mm" data-price="0.01" data-img="https://i.ibb.co/gLBW8T66/IMG-1289.webp">
+            <img src="https://i.ibb.co/gLBW8T66/IMG-1289.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Quadrado 3,2 cm 3mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Aneis" data-id="17" data-preco="94.99">
-        <img src="https://i.ibb.co/Z6pGrkx8/IMG-1172.webp" alt="Anel Prata 925 Triângulo" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Prata 925 Triângulo</h4></div>
-          <div><div class="card-preco">R$ 94,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Triângulo', 94.99, 'https://i.ibb.co/Z6pGrkx8/IMG-1172.webp')">Adicionar</button></div>
+        <!-- 17 -->
+        <div class="product-card" data-name="Argola Prata 925 Quadrado 3,9 cm 3mm" data-price="0.01" data-img="https://i.ibb.co/gLBW8T66/IMG-1289.webp">
+            <img src="https://i.ibb.co/gLBW8T66/IMG-1289.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Quadrado 3,9 cm 3mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Aneis" data-id="18" data-preco="84.99">
-        <img src="https://i.ibb.co/V0X4jRDL/IMG-1171.webp" alt="Anel Prata 925 Trançado" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis</span><h4 class="card-titulo">Anel Prata 925 Trançado</h4></div>
-          <div><div class="card-preco">R$ 84,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Prata 925 Trançado', 84.99, 'https://i.ibb.co/V0X4jRDL/IMG-1171.webp')">Adicionar</button></div>
+        <!-- 18 -->
+        <div class="product-card" data-name="Argola Prata 925 Quadrado 5,4 cm 3mm" data-price="0.01" data-img="https://i.ibb.co/60cr5YKZ/IMG-1290.webp">
+            <img src="https://i.ibb.co/60cr5YKZ/IMG-1290.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Quadrado 5,4 cm 3mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Gargantilhas" data-id="19" data-preco="144.99">
-        <img src="https://i.ibb.co/6cc02nWY/IMG-1222.webp" alt="Gargantilha Ponto de Luz Redondo 8mm Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Gargantilhas</span><h4 class="card-titulo">Gargantilha Ponto de Luz Redondo 8mm</h4></div>
-          <div><div class="card-preco">R$ 144,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Redondo 8mm', 144.99, 'https://i.ibb.co/6cc02nWY/IMG-1222.webp')">Adicionar</button></div>
+        <!-- 19 -->
+        <div class="product-card" data-name="Argola Prata 925 Chanfrada quadrada 2,5 cm 2 mm" data-price="0.01" data-img="https://i.ibb.co/4gmPGKz2/IMG-1291.webp">
+            <img src="https://i.ibb.co/4gmPGKz2/IMG-1291.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Chanfrada quadrada 2,5 cm 2 mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Gargantilhas" data-id="20" data-preco="139.99">
-        <img src="https://i.ibb.co/NgGrCwx1/IMG-1211.webp" alt="Gargantilha Ponto de Luz Redondo Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Gargantilhas</span><h4 class="card-titulo">Gargantilha Ponto de Luz Redondo</h4></div>
-          <div><div class="card-preco">R$ 139,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Redondo', 139.99, 'https://i.ibb.co/NgGrCwx1/IMG-1211.webp')">Adicionar</button></div>
+        <!-- 20 -->
+        <div class="product-card" data-name="Argola Prata 925 Chanfrada quadrada 3,5 cm 3 mm" data-price="0.01" data-img="https://i.ibb.co/xqswrctF/IMG-1293.webp">
+            <img src="https://i.ibb.co/xqswrctF/IMG-1293.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Chanfrada quadrada 3,5 cm 3 mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Gargantilhas" data-id="21" data-preco="139.99">
-        <img src="https://i.ibb.co/mFXbhN9K/IMG-1212.webp" alt="Gargantilha Ponto de Luz Gota Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Gargantilhas</span><h4 class="card-titulo">Gargantilha Ponto de Luz Gota</h4></div>
-          <div><div class="card-preco">R$ 139,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Gota', 139.99, 'https://i.ibb.co/mFXbhN9K/IMG-1212.webp')">Adicionar</button></div>
+        <!-- 21 -->
+        <div class="product-card" data-name="Argola Prata 925 Gota fio redondo 3,4 cm 2mm" data-price="0.01" data-img="https://i.ibb.co/RGwpY5qf/IMG-1294.webp">
+            <img src="https://i.ibb.co/RGwpY5qf/IMG-1294.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Gota fio redondo 3,4 cm 2mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Gargantilhas" data-id="22" data-preco="139.99">
-        <img src="https://i.ibb.co/V51Hzbj/IMG-1213.webp" alt="Gargantilha Ponto de Luz Gota Colorido Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Gargantilhas</span><h4 class="card-titulo">Gargantilha Ponto de Luz Gota Colorido</h4></div>
-          <div><div class="card-preco">R$ 139,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Gota Colorido', 139.99, 'https://i.ibb.co/V51Hzbj/IMG-1213.webp')">Adicionar</button></div>
+        <!-- 22 -->
+        <div class="product-card" data-name="Argola Prata 925 Gota fio redondo 4,3 cm 2 mm" data-price="0.01" data-img="https://i.ibb.co/n8MWwkNS/IMG-1295.webp">
+            <img src="https://i.ibb.co/n8MWwkNS/IMG-1295.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Gota fio redondo 4,3 cm 2 mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Gargantilhas" data-id="23" data-preco="139.99">
-        <img src="https://i.ibb.co/Pv3XHw3C/IMG-1214.webp" alt="Gargantilha Ponto de Luz Oval Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Gargantilhas</span><h4 class="card-titulo">Gargantilha Ponto de Luz Oval</h4></div>
-          <div><div class="card-preco">R$ 139,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Oval', 139.99, 'https://i.ibb.co/Pv3XHw3C/IMG-1214.webp')">Adicionar</button></div>
+        <!-- 23 -->
+        <div class="product-card" data-name="Argola Prata 925 Fio ondulado 1,7 cm 2 mm" data-price="0.01" data-img="https://i.ibb.co/cc4dVWZC/IMG-1296.webp">
+            <img src="https://i.ibb.co/cc4dVWZC/IMG-1296.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Fio ondulado 1,7 cm 2 mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
 
-      <div class="card" data-categoria="Gargantilhas" data-id="24" data-preco="139.99">
-        <img src="https://i.ibb.co/XZGmGJmr/IMG-1218.webp" alt="Gargantilha Ponto de Luz Hexagonal Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Gargantilhas</span><h4 class="card-titulo">Gargantilha Ponto de Luz Hexagonal</h4></div>
-          <div><div class="card-preco">R$ 139,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Hexagonal', 139.99, 'https://i.ibb.co/XZGmGJmr/IMG-1218.webp')">Adicionar</button></div>
+        <!-- 24 -->
+        <div class="product-card" data-name="Argola Prata 925 Fio ondulado 3,1 cm 2mm" data-price="0.01" data-img="https://i.ibb.co/k2gXYJVZ/IMG-1298.webp">
+            <img src="https://i.ibb.co/k2gXYJVZ/IMG-1298.webp" class="product-img" alt="Argola">
+            <div class="product-info">
+                <div class="product-name">Argola Prata 925 Fio ondulado 3,1 cm 2mm</div>
+                <div class="product-price">R$ 0,01</div>
+                <button class="add-btn" onclick="addItem(this)">Adicionar</button>
+            </div>
         </div>
-      </div>
-
-      <div class="card" data-categoria="Gargantilhas" data-id="25" data-preco="139.99">
-        <img src="https://i.ibb.co/1YJ0HfMP/IMG-1215.webp" alt="Gargantilha Ponto de Luz Retangular Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Gargantilhas</span><h4 class="card-titulo">Gargantilha Ponto de Luz Retangular</h4></div>
-          <div><div class="card-preco">R$ 139,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Ponto de Luz Retangular', 139.99, 'https://i.ibb.co/1YJ0HfMP/IMG-1215.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Gargantilhas" data-id="26" data-preco="149.99">
-        <img src="https://i.ibb.co/zVy6gR43/IMG-1216.webp" alt="Gargantilha Trevo Hematita 40+5 cm V12 Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Gargantilhas</span><h4 class="card-titulo">Gargantilha Trevo Hematita 40+5 cm</h4></div>
-          <div><div class="card-preco">R$ 149,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Trevo Hematita 40+5 cm', 149.99, 'https://i.ibb.co/zVy6gR43/IMG-1216.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Gargantilhas" data-id="27" data-preco="144.99">
-        <img src="https://i.ibb.co/pBBX27Qc/IMG-1217.webp" alt="Gargantilha Sereia P Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Gargantilhas</span><h4 class="card-titulo">Gargantilha Sereia P</h4></div>
-          <div><div class="card-preco">R$ 144,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Sereia P', 144.99, 'https://i.ibb.co/pBBX27Qc/IMG-1217.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Gargantilhas" data-id="28" data-preco="149.99">
-        <img src="https://i.ibb.co/TMxhwkvf/IMG-1221.webp" alt="Gargantilha Nossa Senhora Cravejada Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Gargantilhas</span><h4 class="card-titulo">Gargantilha Nossa Senhora Cravejada</h4></div>
-          <div><div class="card-preco">R$ 149,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha Nossa Senhora Cravejada', 149.99, 'https://i.ibb.co/TMxhwkvf/IMG-1221.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Gargantilhas" data-id="29" data-preco="159.99">
-        <img src="https://i.ibb.co/xt44y397/IMG-1220.webp" alt="Gargantilha 3 Zircônia Penduradas Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Gargantilhas</span><h4 class="card-titulo">Gargantilha 3 Zircônia Penduradas</h4></div>
-          <div><div class="card-preco">R$ 159,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Gargantilha 3 Zircônia Penduradas', 159.99, 'https://i.ibb.co/xt44y397/IMG-1220.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="30" data-preco="239.99">
-        <img src="https://i.ibb.co/hR4Gs19p/IMG-1242.webp" alt="Anel Masculino Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Masculino Prata 925</h4></div>
-          <div><div class="card-preco">R$ 239,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Prata 925', 239.99, 'https://i.ibb.co/hR4Gs19p/IMG-1242.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="31" data-preco="339.99">
-        <img src="https://i.ibb.co/20v79gfL/IMG-1241.webp" alt="Anel Masculino Caveira Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Masculino Caveira Prata 925</h4></div>
-          <div><div class="card-preco">R$ 339,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Caveira Prata 925', 339.99, 'https://i.ibb.co/20v79gfL/IMG-1241.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="32" data-preco="324.99">
-        <img src="https://i.ibb.co/2YjH52PB/IMG-1240.webp" alt="Anel Masculino Liso Giratório Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Masculino Liso Giratório Prata 925</h4></div>
-          <div><div class="card-preco">R$ 324,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Liso Giratório Prata 925', 324.99, 'https://i.ibb.co/2YjH52PB/IMG-1240.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="33" data-preco="249.99">
-        <img src="https://i.ibb.co/yFXNQWLY/IMG-1239.webp" alt="Anel Masculino Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Masculino Prata 925</h4></div>
-          <div><div class="card-preco">R$ 249,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Prata 925', 249.99, 'https://i.ibb.co/yFXNQWLY/IMG-1239.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="34" data-preco="239.99">
-        <img src="https://i.ibb.co/VYf6yMbD/IMG-1238.webp" alt="Anel Harley Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Harley Prata 925</h4></div>
-          <div><div class="card-preco">R$ 239,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Harley Prata 925', 239.99, 'https://i.ibb.co/VYf6yMbD/IMG-1238.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="35" data-preco="179.99">
-        <img src="https://i.ibb.co/PvfRjN57/IMG-1237.webp" alt="Anel Unissex Envelhecido" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Unissex Envelhecido</h4></div>
-          <div><div class="card-preco">R$ 179,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Unissex Envelhecido', 179.99, 'https://i.ibb.co/PvfRjN57/IMG-1237.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="36" data-preco="139.99">
-        <img src="https://i.ibb.co/C3j0x7J1/IMG-1236.webp" alt="Anel São Bento Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel São Bento Prata 925</h4></div>
-          <div><div class="card-preco">R$ 139,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel São Bento Prata 925', 139.99, 'https://i.ibb.co/C3j0x7J1/IMG-1236.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="37" data-preco="159.99">
-        <img src="https://i.ibb.co/hRq4xWJ4/IMG-1235.webp" alt="Anel Masculino Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Masculino Prata 925</h4></div>
-          <div><div class="card-preco">R$ 159,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Prata 925', 159.99, 'https://i.ibb.co/hRq4xWJ4/IMG-1235.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="38" data-preco="189.99">
-        <img src="https://i.ibb.co/9vD6bJz/IMG-1234.webp" alt="Anel Masculino Zircônia Preta Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Masculino Zircônia Preta</h4></div>
-          <div><div class="card-preco">R$ 189,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Zircônia Preta', 189.99, 'https://i.ibb.co/9vD6bJz/IMG-1234.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="39" data-preco="189.99">
-        <img src="https://i.ibb.co/53R3G53/IMG-1233.webp" alt="Anel Masculino Quadrado Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Masculino Quadrado</h4></div>
-          <div><div class="card-preco">R$ 189,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Quadrado', 189.99, 'https://i.ibb.co/53R3G53/IMG-1233.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="40" data-preco="139.99">
-        <img src="https://i.ibb.co/LDr0c40x/IMG-1232.webp" alt="Anel Masculino Pai Nosso Envelhecido Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Pai Nosso Envelhecido</h4></div>
-          <div><div class="card-preco">R$ 139,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Pai Nosso Envelhecido', 139.99, 'https://i.ibb.co/LDr0c40x/IMG-1232.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="41" data-preco="149.99">
-        <img src="https://i.ibb.co/sJc3d4sM/IMG-1231.webp" alt="Anel Masculino Pai Nosso Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Pai Nosso Prata 925</h4></div>
-          <div><div class="card-preco">R$ 149,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Pai Nosso Prata 925', 149.99, 'https://i.ibb.co/sJc3d4sM/IMG-1231.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="42" data-preco="124.99">
-        <img src="https://i.ibb.co/Kzw4V41p/IMG-1230.webp" alt="Anel Masculino Trabalhado Envelhecido Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Trabalhado Envelhecido</h4></div>
-          <div><div class="card-preco">R$ 124,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Trabalhado Envelhecido', 124.99, 'https://i.ibb.co/Kzw4V41p/IMG-1230.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="43" data-preco="169.99">
-        <img src="https://i.ibb.co/C311LgJq/IMG-1229.webp" alt="Anel Masculino São Bento Envelhecido Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel São Bento Envelhecido</h4></div>
-          <div><div class="card-preco">R$ 169,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel São Bento Envelhecido', 169.99, 'https://i.ibb.co/C311LgJq/IMG-1229.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="44" data-preco="149.99">
-        <img src="https://i.ibb.co/Y4xsn3D1/IMG-1228.webp" alt="Anel Masculino Solitário Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Masculino Solitário</h4></div>
-          <div><div class="card-preco">R$ 149,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Masculino Solitário', 149.99, 'https://i.ibb.co/Y4xsn3D1/IMG-1228.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="45" data-preco="149.99">
-        <img src="https://i.ibb.co/7dJg3M5s/IMG-1227.webp" alt="Anel Masculino Regulável Envelhecido Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel Regulável Envelhecido</h4></div>
-          <div><div class="card-preco">R$ 149,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel Regulável Envelhecido', 149.99, 'https://i.ibb.co/7dJg3M5s/IMG-1227.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="AneisMasculinos" data-id="46" data-preco="139.99">
-        <img src="https://i.ibb.co/21kQjQ1Q/IMG-1225.webp" alt="Anel Masculino São Bento Quadrado Prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Anéis Masculinos</span><h4 class="card-titulo">Anel São Bento Quadrado</h4></div>
-          <div><div class="card-preco">R$ 139,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Anel São Bento Quadrado', 139.99, 'https://i.ibb.co/21kQjQ1Q/IMG-1225.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="47" data-preco="39.99">
-        <img src="https://i.ibb.co/wNJ5RsBz/IMG-1262.webp" alt="Zircônia estrela 6mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Zircônia Estrela 6mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 39,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Zircônia Estrela 6mm Prata 925', 39.99, 'https://i.ibb.co/wNJ5RsBz/IMG-1262.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="48" data-preco="39.99">
-        <img src="https://i.ibb.co/S7BSVdpv/IMG-1261.webp" alt="Zircônia coração 6mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Zircônia Coração 6mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 39,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Zircônia Coração 6mm Prata 925', 39.99, 'https://i.ibb.co/S7BSVdpv/IMG-1261.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="49" data-preco="34.99">
-        <img src="https://i.ibb.co/1thjRS6p/IMG-1260.webp" alt="Brinco bola 3mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Brinco Bola 3mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 34,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Brinco Bola 3mm Prata 925', 34.99, 'https://i.ibb.co/1thjRS6p/IMG-1260.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="50" data-preco="34.99">
-        <img src="https://i.ibb.co/sv8Nmkcy/IMG-1259.webp" alt="Zircônia estrela 5mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Zircônia Estrela 5mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 34,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Zircônia Estrela 5mm Prata 925', 34.99, 'https://i.ibb.co/sv8Nmkcy/IMG-1259.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="51" data-preco="34.99">
-        <img src="https://i.ibb.co/C3PL8Gxh/IMG-1258.webp" alt="Zircônia coração 5mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Zircônia Coração 5mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 34,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Zircônia Coração 5mm Prata 925', 34.99, 'https://i.ibb.co/C3PL8Gxh/IMG-1258.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="52" data-preco="34.99">
-        <img src="https://i.ibb.co/6Jfgy4yz/IMG-1256.webp" alt="Brinco zircônia 6mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Brinco Zircônia 6mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 34,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Brinco Zircônia 6mm Prata 925', 34.99, 'https://i.ibb.co/6Jfgy4yz/IMG-1256.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="53" data-preco="34.99">
-        <img src="https://i.ibb.co/nMKR7Qjd/IMG-1255.webp" alt="Brinco zircônia 5mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Brinco Zircônia 5mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 34,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Brinco Zircônia 5mm Prata 925', 34.99, 'https://i.ibb.co/nMKR7Qjd/IMG-1255.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="54" data-preco="29.99">
-        <img src="https://i.ibb.co/sd4p9xrJ/IMG-1254.webp" alt="Zircônia estrela 4mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Zircônia Estrela 4mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 29,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Zircônia Estrela 4mm Prata 925', 29.99, 'https://i.ibb.co/sd4p9xrJ/IMG-1254.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="55" data-preco="29.99">
-        <img src="https://i.ibb.co/kVvdfPCF/IMG-1253.webp" alt="Zircônia coração 4mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Zircônia Coração 4mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 29,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Zircônia Coração 4mm Prata 925', 29.99, 'https://i.ibb.co/kVvdfPCF/IMG-1253.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="56" data-preco="29.99">
-        <img src="https://i.ibb.co/TDjnksfx/IMG-1252.webp" alt="Zircônia 5mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Brinco Zircônia 5mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 29,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Brinco Zircônia 5mm Prata 925', 29.99, 'https://i.ibb.co/TDjnksfx/IMG-1252.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="57" data-preco="29.99">
-        <img src="https://i.ibb.co/bgJD9HX1/IMG-1251.webp" alt="Brinco baby prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Brinco Baby Prata 925</h4></div>
-          <div><div class="card-preco">R$ 29,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Brinco Baby Prata 925', 29.99, 'https://i.ibb.co/bgJD9HX1/IMG-1251.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="58" data-preco="29.99">
-        <img src="https://i.ibb.co/0RmtLBPL/IMG-1250.webp" alt="Brinco zircônia 4mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Brinco Zircônia 4mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 29,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Brinco Zircônia 4mm Prata 925', 29.99, 'https://i.ibb.co/0RmtLBPL/IMG-1250.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="59" data-preco="29.99">
-        <img src="https://i.ibb.co/tptwzk8c/IMG-1249.webp" alt="Zircônia quadrada 4mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Zircônia Quadrada 4mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 29,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Zircônia Quadrada 4mm Prata 925', 29.99, 'https://i.ibb.co/tptwzk8c/IMG-1249.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="60" data-preco="24.99">
-        <img src="https://i.ibb.co/5Wbyfr0h/IMG-1248.webp" alt="Zircônia 3mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Brinco Zircônia 3mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 24,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Brinco Zircônia 3mm Prata 925', 24.99, 'https://i.ibb.co/5Wbyfr0h/IMG-1248.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="61" data-preco="24.99">
-        <img src="https://i.ibb.co/4RnP5CkW/IMG-1245.webp" alt="Zircônia colorida 4mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Zircônia Colorida 4mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 24,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Zircônia Colorida 4mm Prata 925', 24.99, 'https://i.ibb.co/4RnP5CkW/IMG-1245.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
-      <div class="card" data-categoria="Brincos" data-id="62" data-preco="24.99">
-        <img src="https://i.ibb.co/mVDJ1cQq/IMG-1244.webp" alt="Zircônia 3mm prata 925" loading="lazy" onclick="abrirZoom(this.src)">
-        <div class="card-info">
-          <div><span class="card-categoria">Brincos</span><h4 class="card-titulo">Brinco Zircônia 3mm Prata 925</h4></div>
-          <div><div class="card-preco">R$ 24,99</div><button class="btn-add" onclick="adicionarAoCarrinho('Brinco Zircônia 3mm Prata 925', 24.99, 'https://i.ibb.co/mVDJ1cQq/IMG-1244.webp')">Adicionar</button></div>
-        </div>
-      </div>
-
     </div>
 
-    <div class="paginacao">
-      <button class="btn-pag" id="btn-anterior" onclick="mudarPagina(-1)">Anterior</button>
-      <span id="info-pagina">Página 1</span>
-      <button class="btn-pag" id="btn-proximo" onclick="mudarPagina(1)">Próxima</button>
+    <!-- BARRA INFERIOR -->
+    <div class="cart-bar">
+        <div class="cart-info" onclick="toggleCartModal()">
+            <span id="cart-count">0 item(s) selecionado(s)</span>
+            <strong id="cart-total">Total: R$ 0,00</strong>
+            <small style="font-size: 10px; color: var(--accent-color); text-decoration: underline;">Ver produtos escolhidos</small>
+        </div>
+        <button class="checkout-btn" onclick="finalizeWhatsApp()">Finalizar no WhatsApp</button>
     </div>
-  </div>
 
-  <div class="carrinho-fixo">
-    <div class="carrinho-info">
-      <div><span id="cart-count">0</span> item(ns) selecionado(s)</div>
-      <div class="carrinho-total">Total: R$ <span id="cart-total">0,00</span></div>
+    <!-- MODAL DE VISUALIZAÇÃO DO CARRINHO -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Sua Seleção de Peças</h3>
+                <button class="close-modal" onclick="toggleCartModal()">&times;</button>
+            </div>
+            <div class="cart-items-list" id="cartItemsList">
+                <!-- Itens adicionados aparecem aqui dinamicamente -->
+            </div>
+            <button class="whatsapp-btn" style="text-align: center; width: 100%;" onclick="finalizeWhatsApp()">Finalizar no WhatsApp</button>
+        </div>
     </div>
-    <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar no WhatsApp</button>
-  </div>
 
-  <div class="modal-zoom" id="modal-zoom" onclick="fecharZoom()">
-    <span class="fechar-modal">&times;</span>
-    <img id="img-zoom" src="" alt="Zoom do Produto">
-  </div>
+    <script>
+        let cart = [];
 
-  <script>
-    let carrinho = [];
-    let paginaAtual = 1;
-    const itensPorPagina = 20;
-    let categoriaAtual = 'todos';
-    let ordemAtual = 'padrao';
+        function addItem(button) {
+            const card = button.closest('.product-card');
+            const name = card.getAttribute('data-name');
+            const price = parseFloat(card.getAttribute('data-price'));
+            const img = card.getAttribute('data-img');
 
-    const todosOsCards = Array.from(document.querySelectorAll('.card'));
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ name, price, img, quantity: 1 });
+            }
+            updateCartUI();
+        }
 
-    function embaralhar(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
+        function changeQuantity(name, change) {
+            const item = cart.find(i => i.name === name);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+            }
+            updateCartUI();
+        }
 
-    embaralhar(todosOsCards);
+        function updateCartUI() {
+            let totalItems = 0;
+            let totalPrice = 0;
+            const listEl = document.getElementById('cartItemsList');
+            listEl.innerHTML = '';
 
-    function ordenarProdutos(criterio) {
-      ordemAtual = criterio;
-      paginaAtual = 1;
-      atualizarExibicao();
-    }
+            if (cart.length === 0) {
+                listEl.innerHTML = '<p style="text-align: center; color: var(--text-secondary); font-size: 13px; padding: 20px;">Nenhum produto selecionado ainda.</p>';
+            }
 
-    function filtrar(categoria) {
-      categoriaAtual = categoria;
-      paginaAtual = 1;
-      
-      const botoes = document.querySelectorAll('.btn-filtro');
-      botoes.forEach(btn => btn.classList.remove('ativo'));
-      if (event && event.target) {
-        event.target.classList.add('ativo');
-      }
+            cart.forEach(item => {
+                totalItems += item.quantity;
+                totalPrice += item.price * item.quantity;
 
-      atualizarExibicao();
-    }
+                const itemRow = document.createElement('div');
+                itemRow.className = 'cart-item';
+                itemRow.innerHTML = `
+                    <img src="${item.img}" alt="Peça">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button onclick="changeQuantity('${item.name}', -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="changeQuantity('${item.name}', 1)">+</button>
+                    </div>
+                `;
+                listEl.appendChild(itemRow);
+            });
 
-    function atualizarExibicao() {
-      const grid = document.getElementById('grid-produtos');
-      grid.innerHTML = '';
+            document.getElementById('cart-count').innerText = `${totalItems} item(s) selecionado(s)`;
+            document.getElementById('cart-total').innerText = `Total: R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+        }
 
-      let filtrados = todosOsCards.filter(card => {
-        if (categoriaAtual === 'todos') return true;
-        return card.getAttribute('data-categoria') === categoriaAtual;
-      });
+        function toggleCartModal() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.toggle('open');
+        }
 
-      if (ordemAtual === 'menor-preco') {
-        filtrados.sort((a, b) => parseFloat(a.getAttribute('data-preco')) - parseFloat(b.getAttribute('data-preco')));
-      } else if (ordemAtual === 'maior-preco') {
-        filtrados.sort((a, b) => parseFloat(b.getAttribute('data-preco')) - parseFloat(a.getAttribute('data-preco')));
-      } else if (ordemAtual === 'novos') {
-        filtrados.sort((a, b) => parseInt(b.getAttribute('data-id')) - parseInt(a.getAttribute('data-id')));
-      }
+        function finalizeWhatsApp() {
+            if (cart.length === 0) {
+                alert("Por favor, selecione ao menos uma peça antes de finalizar.");
+                return;
+            }
 
-      const totalPaginas = Math.ceil(filtrados.length / itensPorPagina) || 1;
-      if (paginaAtual > totalPaginas) paginaAtual = totalPaginas;
+            let message = "Olá! Gostaria de encomendar as seguintes peças:%0A";
+            cart.forEach(item => {
+                message += `- ${item.quantity}x ${item.name}%0A`;
+            });
+            message += `%0ATotal estimado: R$ ${cart.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2).replace('.', ',')}`;
 
-      const inicio = (paginaAtual - 1) * itensPorPagina;
-      const fim = inicio + itensPorPagina;
-      const itensPagina = filtrados.slice(inicio, fim);
-
-      itensPagina.forEach(card => grid.appendChild(card));
-
-      document.getElementById('info-pagina').innerText = `Página ${paginaAtual} de ${totalPaginas}`;
-      document.getElementById('btn-anterior').disabled = paginaAtual === 1;
-      document.getElementById('btn-proximo').disabled = paginaAtual === totalPaginas || totalPaginas === 0;
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function mudarPagina(direcao) {
-      paginaAtual += direcao;
-      atualizarExibicao();
-    }
-
-    function adicionarAoCarrinho(nome, preco, img) {
-      carrinho.push({ nome, preco, img });
-      atualizarCarrinho();
-    }
-
-    function atualizarCarrinho() {
-      document.getElementById('cart-count').innerText = carrinho.length;
-      const total = carrinho.reduce((acc, item) => acc + item.preco, 0);
-      document.getElementById('cart-total').innerText = total.toFixed(2).replace('.', ',');
-    }
-
-    function finalizarPedido() {
-      if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
-      }
-      
-      let mensagem = "Olá! Gostaria de fazer o pedido das seguintes peças:\n\n";
-      let total = 0;
-      
-      carrinho.forEach((item, index) => {
-        mensagem += `${index + 1}. *${item.nome}* - R$ ${item.preco.toFixed(2).replace('.', ',')}\n`;
-        mensagem += `   Foto: ${item.img}\n\n`;
-        total += item.preco;
-      });
-      
-      mensagem += `*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
-      
-      const fone = "5561981642480";
-      const url = `https://wa.me/${fone}?text=${encodeURIComponent(mensagem)}`;
-      window.open(url, '_blank');
-    }
-
-    function abrirZoom(src) {
-      document.getElementById('img-zoom').src = src;
-      document.getElementById('modal-zoom').style.display = 'flex';
-    }
-
-    function fecharZoom() {
-      document.getElementById('modal-zoom').style.display = 'none';
-    }
-
-    atualizarExibicao();
-  </script>
+            // Substitua 55SEUNUMERO pelo seu número de WhatsApp com DDD (Ex: 5511999999999)
+            const phone = "55SEUNUMERO";
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+    </script>
 </body>
 </html>
