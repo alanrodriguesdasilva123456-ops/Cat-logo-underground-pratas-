@@ -7,9 +7,17 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
     body { background: #0f0f0f; color: #fff; padding-bottom: 120px; }
-    header { background: #000; padding: 20px; text-align: center; border-bottom: 2px solid #333; display: flex; align-items: center; justify-content: center; gap: 15px; }
-    header img { width: 55px; height: auto; object-fit: contain; }
-    header h1 { font-size: 1.4rem; color: #fff; text-align: left; line-height: 1.2; }
+    
+    /* Aviso de Garantia e Prata 925 */
+    .aviso-topo { background: #222; color: #fff; text-align: center; font-size: 0.8rem; padding: 8px 10px; border-bottom: 1px solid #333; letter-spacing: 0.5px; }
+
+    /* Header com Logo Ocupando Todo o Espaço */
+    header { background: #000; border-bottom: 2px solid #333; display: flex; align-items: stretch; height: 90px; }
+    .logo-container { width: 110px; background: #000; display: flex; align-items: center; justify-content: center; border-right: 1px solid #222; }
+    .logo-container img { width: 100%; height: 100%; object-fit: cover; }
+    .header-info { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-left: 15px; }
+    header h1 { font-size: 1.3rem; color: #fff; line-height: 1.1; }
+
     .filtros { display: flex; gap: 10px; overflow-x: auto; padding: 15px 20px; background: #141414; white-space: nowrap; border-bottom: 1px solid #222; }
     .filtros::-webkit-scrollbar { display: none; }
     .btn-filtro { background: #222; color: #ccc; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
@@ -24,15 +32,30 @@
     .carrinho-fixo { position: fixed; bottom: 0; width: 100%; background: #111; padding: 15px 20px; border-top: 2px solid #25d366; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 200; overflow-y: auto; padding: 20px; }
     .lista { max-width: 500px; margin: 50px auto; background: #222; padding: 20px; border-radius: 8px; }
-    .item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #444; }
+    
+    /* Estilo do Item no Carrinho com Foto */
+    .item-carrinho { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #444; gap: 10px; }
+    .item-carrinho img { width: 45px; height: 45px; object-fit: cover; border-radius: 4px; background: #333; }
+    .item-info { flex: 1; font-size: 0.85rem; }
+    
     #modal-zoom { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 300; justify-content: center; align-items: center; cursor: pointer; padding: 20px; }
     #modal-zoom img { max-width: 90%; max-height: 90%; border-radius: 8px; object-fit: contain; }
   </style>
 </head>
 <body>
+
+  <div class="aviso-topo">
+    ✨ Peças em <strong>Prata 925 Legítima</strong> com <strong>Certificado de Garantia</strong> ✨
+  </div>
+
   <header>
-    <img src="https://i.ibb.co/cc6BcyR8/IMG-0962.png" alt="Logo Underground Pratas">
-    <h1>Underground Pratas <br><span style="font-size: 1rem; font-weight: normal; color: #ccc;">925</span></h1>
+    <div class="logo-container">
+      <img src="https://i.ibb.co/cc6BcyR8/IMG-0962.png" alt="Logo Underground Pratas">
+    </div>
+    <div class="header-info">
+      <h1>Underground Pratas</h1>
+      <span style="font-size: 0.95rem; color: #ccc;">925</span>
+    </div>
   </header>
 
   <div class="filtros" id="filtros">
@@ -69,7 +92,6 @@
 
   <script>
     const produtos = [
-      // 20 NOVOS ANÉIS ADICIONADOS
       { id: 401, nome: "Anel em V Prata 925", preco: 89.99, categoria: "Aneis", img: "https://i.ibb.co/v4vWnnH3/IMG-1158.webp" },
       { id: 402, nome: "Anel Solitário Prata 925", preco: 99.99, categoria: "Aneis", img: "https://i.ibb.co/nsCz8Xjt/IMG-1156.webp" },
       { id: 403, nome: "Anel Mão de Fátima Prata 925", preco: 69.99, categoria: "Aneis", img: "https://i.ibb.co/TBM54P15/IMG-1442.webp" },
@@ -84,8 +106,6 @@
       { id: 412, nome: "Anel Lua Prata 925", preco: 69.99, categoria: "Aneis", img: "https://i.ibb.co/bMC5yxf6/IMG-1433.webp" },
       { id: 413, nome: "Anel Estrela Prata 925", preco: 69.99, categoria: "Aneis", img: "https://i.ibb.co/4DRv3k9/IMG-1432.webp" },
       { id: 414, nome: "Anel Olho Grego Prata 925", preco: 69.99, categoria: "Aneis", img: "https://i.ibb.co/nq9Lh2GH/IMG-1430.webp" },
-
-      // PEÇAS COM ROTAÇÃO DE IMAGENS CORRIGIDA NAS GARGANTILHAS
       { id: 301, nome: "Gargantilha 2 Fios 40 cm Prata 925", preco: 274.99, categoria: "Gargantilhas", img: "https://i.ibb.co/WNNQBQn3/IMG-1415.webp" },
       { id: 302, nome: "Gargantilha 3 Fios 37 cm Prata 925", preco: 289.99, categoria: "Gargantilhas", img: "https://i.ibb.co/YVLTNN5/IMG-1417.webp" },
       { id: 303, nome: "Gargantilha 4 Fios Prata 925", preco: 359.99, categoria: "Gargantilhas", img: "https://i.ibb.co/ycvgDq0h/IMG-1424.webp" },
@@ -96,8 +116,6 @@
       { id: 308, nome: "Bracelete 2 Fios Prata 925", preco: 174.99, categoria: "Pulseiras", img: "https://i.ibb.co/Q77YSVcF/IMG-1418.webp" },
       { id: 309, nome: "Pulseira 2 Fios Brilhantes Prata 925", preco: 179.99, categoria: "Pulseiras", img: "https://i.ibb.co/6JRZ9BrV/IMG-1414.webp" },
       { id: 310, nome: "Pulseira 4 Fios Prata 925", preco: 289.99, categoria: "Pulseiras", img: "https://i.ibb.co/HTxkyp60/IMG-1423.webp" },
-
-      // 20 NOVAS PEÇAS DE PIERCING (R$ 59,99)
       { id: 223, nome: "Piercing Argola Articulada com Zircônias Prata 925", preco: 59.99, categoria: "Brincos", img: "https://i.ibb.co/XrmG04wY/IMG-1377.webp" },
       { id: 224, nome: "Piercing Clicker Cravejado Prata 925", preco: 59.99, categoria: "Brincos", img: "https://i.ibb.co/Q32sFPZg/IMG-1378.webp" },
       { id: 225, nome: "Piercing Argola com Strass Prata 925", preco: 59.99, categoria: "Brincos", img: "https://i.ibb.co/NgHdCg5f/IMG-1379.webp" },
@@ -118,8 +136,6 @@
       { id: 240, nome: "Piercing Nostril Cravejado Prata 925", preco: 59.99, categoria: "Brincos", img: "https://i.ibb.co/r2D0dhZ1/IMG-1394.webp" },
       { id: 241, nome: "Piercing Conch com Zircônias Prata 925", preco: 59.99, categoria: "Brincos", img: "https://i.ibb.co/tPPjTcWC/IMG-1395.webp" },
       { id: 242, nome: "Piercing Argola Full Cravejada Prata 925", preco: 59.99, categoria: "Brincos", img: "https://i.ibb.co/Mx2HqR9z/IMG-1396.webp" },
-
-      // 8 PIERCINGS ANTERIORES (R$ 39,99)
       { id: 215, nome: "Piercing Argola Articulada Prata 925", preco: 39.99, categoria: "Brincos", img: "https://i.ibb.co/KzpgLJLP/IMG-1369.webp" },
       { id: 216, nome: "Piercing Clicker Prata 925", preco: 39.99, categoria: "Brincos", img: "https://i.ibb.co/Cp3wbB6N/IMG-1370.webp" },
       { id: 217, nome: "Piercing Helix Prata 925", preco: 39.99, categoria: "Brincos", img: "https://i.ibb.co/bgjr9dP1/IMG-1371.webp" },
@@ -128,16 +144,12 @@
       { id: 220, nome: "Piercing Daith Prata 925", preco: 39.99, categoria: "Brincos", img: "https://i.ibb.co/wrLP6W1s/IMG-1374.webp" },
       { id: 221, nome: "Piercing Rook Prata 925", preco: 39.99, categoria: "Brincos", img: "https://i.ibb.co/TMGh4GGx/IMG-1375.webp" },
       { id: 222, nome: "Piercing Nostril Prata 925", preco: 39.99, categoria: "Brincos", img: "https://i.ibb.co/353sSd2h/IMG-1376.webp" },
-
-      // 6 PRIMEIROS PIERCINGS (R$ 29,99)
       { id: 201, nome: "Piercing Argola Trabalhada Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/gbyqh5xc/IMG-1360.webp" },
       { id: 202, nome: "Piercing Argola Zircônia Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/7tgdfLYL/IMG-1359.webp" },
       { id: 203, nome: "Piercing Conch Cravejado Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/7x9rpB3j/IMG-1358.webp" },
       { id: 204, nome: "Piercing Clicker Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/b5Dy2NDp/IMG-1357.webp" },
       { id: 205, nome: "Piercing Helix Zircônia Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/jXyW2zN/IMG-1356.webp" },
       { id: 206, nome: "Piercing Nostril Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/4Rtz5LZz/IMG-1355.webp" },
-
-      // 8 SEGUINTES PIERCINGS (R$ 34,99)
       { id: 207, nome: "Piercing Argola Articulada Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/7J5yQPC0/IMG-1368.webp" },
       { id: 208, nome: "Piercing Tragus Cravejado Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/pBQhgjHL/IMG-1367.webp" },
       { id: 209, nome: "Piercing Ear Cuff Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/hFPgL704/IMG-1366.webp" },
@@ -146,8 +158,6 @@
       { id: 212, nome: "Piercing Nostril com Pedra Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/LdtNvss8/IMG-1363.webp" },
       { id: 213, nome: "Piercing Argola Dupla Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/fYSz2knz/IMG-1362.webp" },
       { id: 214, nome: "Piercing Argola com Pingente Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/kgWTc8mC/IMG-1361.webp" },
-
-      // ITENS ANTERIORES
       { id: 107, nome: "Trio Brinco Quadrado Prata 925", preco: 99.99, categoria: "Brincos", img: "https://i.ibb.co/1tNqzKpW/IMG-1342.webp" },
       { id: 108, nome: "Trio Argola Rebitada Prata 925", preco: 99.99, categoria: "Argolas", img: "https://i.ibb.co/nqgbLRXc/IMG-1343.webp" },
       { id: 109, nome: "Trio Argola Hexagonal Prata 925", preco: 99.99, categoria: "Argolas", img: "https://i.ibb.co/F4B7qSrt/IMG-1344.webp" },
@@ -318,12 +328,16 @@
 
     function atualizar() {
       document.getElementById('itens').innerHTML = carrinho.map(i => `
-        <div class="item">
-          <span>${i.nome}</span>
-          <div style="display:flex; align-items:center; gap:10px;">
-            <button onclick="alterar(${i.id}, -1)" style="padding:2px 8px; background:#444; color:#fff; border:none; cursor:pointer;">-</button>
+        <div class="item-carrinho">
+          <img src="${i.img}" alt="${i.nome}">
+          <div class="item-info">
+            <div>${i.nome}</div>
+            <div style="color:#25d366; font-weight:bold; margin-top:3px;">R$ ${(i.preco * i.qtd).toFixed(2).replace('.', ',')}</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <button onclick="alterar(${i.id}, -1)" style="padding:2px 8px; background:#444; color:#fff; border:none; cursor:pointer; border-radius:3px;">-</button>
             <span>${i.qtd}</span>
-            <button onclick="alterar(${i.id}, 1)" style="padding:2px 8px; background:#444; color:#fff; border:none; cursor:pointer;">+</button>
+            <button onclick="alterar(${i.id}, 1)" style="padding:2px 8px; background:#444; color:#fff; border:none; cursor:pointer; border-radius:3px;">+</button>
           </div>
         </div>
       `).join('') || '<p style="color:#777; text-align:center;">Seu carrinho está vazio</p>';
