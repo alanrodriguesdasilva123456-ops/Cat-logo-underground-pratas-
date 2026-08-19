@@ -68,21 +68,23 @@
 
   <script>
     const produtos = [
-      // NOVOS PIERCINGS / BRINCOS (LOTES RECENTES)
-      { id: 201, nome: "Piercing Argola Trabalhada Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/gbyqh5xc/IMG-1360.webp" },
-      { id: 202, nome: "Piercing Argola Zircônia Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/7tgdfLYL/IMG-1359.webp" },
-      { id: 203, nome: "Piercing Conch Cravejado Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/7x9rpB3j/IMG-1358.webp" },
-      { id: 204, nome: "Piercing Clicker Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/b5Dy2NDp/IMG-1357.webp" },
-      { id: 205, nome: "Piercing Helix Zircônia Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/jXyW2zN/IMG-1356.webp" },
-      { id: 206, nome: "Piercing Nostril Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/4Rtz5LZz/IMG-1355.webp" },
-      { id: 207, nome: "Piercing Argola Articulada Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/7J5yQPC0/IMG-1368.webp" },
-      { id: 208, nome: "Piercing Tragus Cravejado Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/pBQhgjHL/IMG-1367.webp" },
-      { id: 209, nome: "Piercing Ear Cuff Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/hFPgL704/IMG-1366.webp" },
-      { id: 210, nome: "Piercing Falso Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/wrjTRk3N/IMG-1365.webp" },
-      { id: 211, nome: "Piercing Labret Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/d0k8Bcgf/IMG-1364.webp" },
-      { id: 212, nome: "Piercing Nostril com Pedra Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/LdtNvss8/IMG-1363.webp" },
-      { id: 213, nome: "Piercing Argola Dupla Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/fYSz2knz/IMG-1362.webp" },
-      { id: 214, nome: "Piercing Argola com Pingente Prata 925", preco: 44.99, categoria: "Brincos", img: "https://i.ibb.co/kgWTc8mC/IMG-1361.webp" },
+      // 6 PRIMEIROS PIERCINGS (R$ 29,99)
+      { id: 201, nome: "Piercing Argola Trabalhada Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/gbyqh5xc/IMG-1360.webp" },
+      { id: 202, nome: "Piercing Argola Zircônia Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/7tgdfLYL/IMG-1359.webp" },
+      { id: 203, nome: "Piercing Conch Cravejado Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/7x9rpB3j/IMG-1358.webp" },
+      { id: 204, nome: "Piercing Clicker Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/b5Dy2NDp/IMG-1357.webp" },
+      { id: 205, nome: "Piercing Helix Zircônia Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/jXyW2zN/IMG-1356.webp" },
+      { id: 206, nome: "Piercing Nostril Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/4Rtz5LZz/IMG-1355.webp" },
+
+      // 8 SEGUINTES PIERCINGS (R$ 34,99)
+      { id: 207, nome: "Piercing Argola Articulada Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/7J5yQPC0/IMG-1368.webp" },
+      { id: 208, nome: "Piercing Tragus Cravejado Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/pBQhgjHL/IMG-1367.webp" },
+      { id: 209, nome: "Piercing Ear Cuff Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/hFPgL704/IMG-1366.webp" },
+      { id: 210, nome: "Piercing Falso Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/wrjTRk3N/IMG-1365.webp" },
+      { id: 211, nome: "Piercing Labret Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/d0k8Bcgf/IMG-1364.webp" },
+      { id: 212, nome: "Piercing Nostril com Pedra Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/LdtNvss8/IMG-1363.webp" },
+      { id: 213, nome: "Piercing Argola Dupla Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/fYSz2knz/IMG-1362.webp" },
+      { id: 214, nome: "Piercing Argola com Pingente Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/kgWTc8mC/IMG-1361.webp" },
 
       // ITENS ANTERIORES
       { id: 107, nome: "Trio Brinco Quadrado Prata 925", preco: 99.99, categoria: "Brincos", img: "https://i.ibb.co/1tNqzKpW/IMG-1342.webp" },
