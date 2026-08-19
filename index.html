@@ -25,8 +25,6 @@
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 200; overflow-y: auto; padding: 20px; }
     .lista { max-width: 500px; margin: 50px auto; background: #222; padding: 20px; border-radius: 8px; }
     .item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #444; }
-    
-    /* Estilo do Modal de Zoom da Foto */
     #modal-zoom { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 300; justify-content: center; align-items: center; cursor: pointer; padding: 20px; }
     #modal-zoom img { max-width: 90%; max-height: 90%; border-radius: 8px; object-fit: contain; }
   </style>
@@ -41,6 +39,7 @@
     <button class="btn-filtro ativo" onclick="filtrar('todos', this)">Todos</button>
     <button class="btn-filtro" onclick="filtrar('Aneis', this)">Anéis</button>
     <button class="btn-filtro" onclick="filtrar('Gargantilhas', this)">Gargantilhas</button>
+    <button class="btn-filtro" onclick="filtrar('Argolas', this)">Argolas</button>
     <button class="btn-filtro" onclick="filtrar('Anel Masculino', this)">Anel Masculino</button>
     <button class="btn-filtro" onclick="filtrar('Brincos', this)">Brincos e Zircônias</button>
   </div>
@@ -63,13 +62,19 @@
     </div>
   </div>
 
-  <!-- Modal para Zoom da Foto -->
   <div id="modal-zoom" onclick="fecharZoom()">
     <img id="img-zoom-conteudo" src="" alt="Zoom da Peça">
   </div>
 
   <script>
     const produtos = [
+      // NOVAS ARGOLAS
+      { id: 82, nome: "Argola Gota Fio Redondo 3,4 cm 2mm", preco: 0.00, categoria: "Argolas", img: "https://i.ibb.co/RGwpY5qf/IMG-1294.webp" },
+      { id: 83, nome: "Argola Gota Fio Redondo 4,3 cm 2mm", preco: 0.00, categoria: "Argolas", img: "https://i.ibb.co/n8MWwkNS/IMG-1295.webp" },
+      { id: 84, nome: "Argola Fio Ondulado 1,7 cm 2mm", preco: 0.00, categoria: "Argolas", img: "https://i.ibb.co/cc4dVWZC/IMG-1296.webp" },
+      { id: 85, nome: "Argola Fio Ondulado", preco: 0.00, categoria: "Argolas", img: "https://i.ibb.co/N2qc6vzd/IMG-1297.webp" },
+      { id: 86, nome: "Argola Fio Ondulado", preco: 0.00, categoria: "Argolas", img: "https://i.ibb.co/k2gXYJVZ/IMG-1298.webp" },
+      // PRODUTOS ANTERIORES
       { id: 1, nome: "Anel Prata 925 Coração", preco: 89.99, categoria: "Aneis", img: "https://i.ibb.co/4RpHNRzZ/IMG-1189.jpg" },
       { id: 2, nome: "Anel Solitário Prata 925", preco: 129.99, categoria: "Aneis", img: "https://i.ibb.co/YTYG7XRj/IMG-1188.jpg" },
       { id: 3, nome: "Anel Folha", preco: 79.99, categoria: "Aneis", img: "https://i.ibb.co/QFqNLC41/IMG-1187.jpg" },
@@ -98,7 +103,9 @@
       { id: 26, nome: "Gargantilha Trevo Hematita 40+5 cm", preco: 149.99, categoria: "Gargantilhas", img: "https://i.ibb.co/zVy6gR43/IMG-1216.jpg" },
       { id: 27, nome: "Gargantilha Sereia P", preco: 144.99, categoria: "Gargantilhas", img: "https://i.ibb.co/pBBX27Qc/IMG-1217.jpg" },
       { id: 28, nome: "Gargantilha Nossa Senhora Cravejada", preco: 149.99, categoria: "Gargantilhas", img: "https://i.ibb.co/TMxhwkvf/IMG-1221.jpg" },
-      { id: 29, nome: "Gargantilha 3 Zircônia Penduradas", preco: 159.99, categoria: "Gargantilhas", img: "https://i.ibb.co/xt44y397/IMG-1220.jpg" },
+      { id: 29, nome: "Gargantilha 3 Zircônia Penduradas", preco: 159.99, categoria: "Gargantilhas", img: "https://i.ibb.co/xt44y397/IMG-1220.jpg" }
+    ];    // CONTINUAÇÃO DOS PRODUTOS
+    const produtosParte2 = [
       { id: 30, nome: "Anel Masculino Prata 925", preco: 239.99, categoria: "Anel Masculino", img: "https://i.ibb.co/hR4Gs19p/IMG-1242.jpg" },
       { id: 31, nome: "Anel Masculino Caveira Prata 925", preco: 339.99, categoria: "Anel Masculino", img: "https://i.ibb.co/20v79gfL/IMG-1241.jpg" },
       { id: 32, nome: "Anel Masculino Liso Giratório Prata 925", preco: 324.99, categoria: "Anel Masculino", img: "https://i.ibb.co/2YjH52PB/IMG-1240.jpg" },
@@ -153,6 +160,9 @@
       { id: 81, nome: "Coração na Plaquinha Prata 925", preco: 74.99, categoria: "Aneis", img: "https://i.ibb.co/zVMX9Zkx/IMG-1320.jpg" }
     ];
 
+    // JUNTAR TUDO
+    produtos.push(...produtosParte2);
+
     let carrinho = [];
     let categoriaAtual = 'todos';
 
@@ -168,7 +178,7 @@
             <p>${p.nome}</p>
           </div>
           <div>
-            <p style="color:#25d366; font-weight:bold;">R$ ${p.preco.toFixed(2).replace('.', ',')}</p>
+            <p style="color:#25d366; font-weight:bold;">${p.preco === 0 ? 'Preço sob consulta' : 'R$ ' + p.preco.toFixed(2).replace('.', ',')}</p>
             <button class="btn-add" onclick="adicionar(${p.id})">Adicionar</button>
           </div>
         </div>
@@ -231,3 +241,5 @@
   </script>
 </body>
 </html>
+
+
