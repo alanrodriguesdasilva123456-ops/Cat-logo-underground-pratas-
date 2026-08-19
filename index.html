@@ -8,48 +8,163 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
     body { background: #0f0f0f; color: #fff; padding-bottom: 120px; }
     header { background: #000; padding: 20px; text-align: center; border-bottom: 2px solid #333; }
+    header h1 { font-size: 1.5rem; color: #fff; margin-bottom: 5px; }
+    .filtros { display: flex; gap: 10px; overflow-x: auto; padding: 15px 20px; background: #141414; white-space: nowrap; border-bottom: 1px solid #222; }
+    .filtros::-webkit-scrollbar { display: none; }
+    .btn-filtro { background: #222; color: #ccc; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
+    .btn-filtro.ativo, .btn-filtro:hover { background: #fff; color: #000; font-weight: bold; }
     .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
-    .card { background: #181818; border-radius: 8px; overflow: hidden; padding: 10px; }
-    .card img { width: 100%; height: 180px; object-fit: cover; border-radius: 4px; }
-    .btn-add { background: #fff; color: #000; border: none; padding: 10px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 4px; margin-top: 10px; }
-    .carrinho-fixo { position: fixed; bottom: 0; width: 100%; background: #111; padding: 15px; border-top: 2px solid #25d366; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+    .card { background: #181818; border-radius: 8px; overflow: hidden; padding: 10px; display: flex; flex-direction: column; justify-content: space-between; }
+    .card img { width: 100%; height: 180px; object-fit: cover; border-radius: 4px; background: #222; }
+    .card p { font-size: 0.9rem; margin: 8px 0; }
+    .btn-add { background: #fff; color: #000; border: none; padding: 10px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 4px; }
+    .carrinho-fixo { position: fixed; bottom: 0; width: 100%; background: #111; padding: 15px 20px; border-top: 2px solid #25d366; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+    .footer-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-brand img { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 1px solid #25d366; }
+    .footer-brand span { font-weight: bold; font-size: 0.95rem; color: #fff; }
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 200; overflow-y: auto; padding: 20px; }
     .lista { max-width: 500px; margin: 50px auto; background: #222; padding: 20px; border-radius: 8px; }
     .item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #444; }
   </style>
 </head>
 <body>
-  <header><h1>Underground Pratas 925</h1></header>
-  <div class="container" id="grid"></div>
+  <header>
+    <h1>Underground Pratas 925</h1>
+  </header>
+
+  <div class="filtros" id="filtros">
+    <button class="btn-filtro ativo" onclick="filtrar('todos', this)">Todos</button>
+    <button class="btn-filtro" onclick="filtrar('Aneis', this)">Anéis</button>
+    <button class="btn-filtro" onclick="filtrar('Gargantilhas', this)">Gargantilhas</button>
+    <button class="btn-filtro" onclick="filtrar('Anel Masculino', this)">Anel Masculino</button>
+    <button class="btn-filtro" onclick="filtrar('Brincos', this)">Brincos e Zircônias</button>
+  </div>
+
+  <div class="container">
+    <div class="grid" id="grid"></div>
+  </div>
   
   <div class="carrinho-fixo">
-    <div>Total: R$ <span id="total">0,00</span></div>
-    <button onclick="document.getElementById('modal').style.display='block'" style="background:#25d366; border:none; padding:10px 20px; color:#fff; border-radius:20px; cursor:pointer;">Ver Carrinho (<span id="count">0</span>)</button>
+    <div class="footer-brand">
+      <img src="https://i.ibb.co/cc6BcyR8/IMG-0962.png" alt="Logo Underground Pratas">
+      <div>
+        <span>Underground Pratas</span><br>
+        <small style="color:#25d366;">Total: R$ <span id="total">0,00</span></small>
+      </div>
+    </div>
+    <button onclick="document.getElementById('modal').style.display='block'" style="background:#25d366; border:none; padding:10px 20px; color:#fff; border-radius:20px; cursor:pointer; font-weight:bold;">Ver Carrinho (<span id="count">0</span>)</button>
   </div>
 
   <div class="modal" id="modal">
     <div class="lista">
       <h2>Seu Carrinho</h2>
-      <div id="itens"></div>
-      <button onclick="document.getElementById('modal').style.display='none'" style="width:100%; padding:10px; margin-top:20px;">Continuar Comprando</button>
-      <button onclick="finalizar()" style="width:100%; padding:10px; background:#25d366; border:none; color:#fff; margin-top:10px;">Finalizar no WhatsApp</button>
+      <div id="itens" style="margin: 15px 0;"></div>
+      <button onclick="document.getElementById('modal').style.display='none'" style="width:100%; padding:10px; margin-top:10px; background:#444; color:#fff; border:none; border-radius:4px; cursor:pointer;">Continuar Comprando</button>
+      <button onclick="finalizar()" style="width:100%; padding:10px; background:#25d366; border:none; color:#fff; font-weight:bold; border-radius:4px; margin-top:10px; cursor:pointer;">Finalizar no WhatsApp</button>
     </div>
   </div>
 
   <script>
-    const produtos = [{"id": 1, "nome": "Anel Prata 925 Coração", "preco": 89.99, "img": "https://i.ibb.co/4RpHNRzZ/IMG-1189.jpg"}, {"id": 2, "nome": "Anel Solitário Prata 925", "preco": 129.99, "img": "https://i.ibb.co/YTYG7XRj/IMG-1188.jpg"}, {"id": 3, "nome": "Anel Folha", "preco": 79.99, "img": "https://i.ibb.co/QFqNLC41/IMG-1187.jpg"}, {"id": 4, "nome": "Anel Prata 925 Dois Palitos", "preco": 99.99, "img": "https://i.ibb.co/XZc1yRxc/IMG-1186.jpg"}, {"id": 5, "nome": "Anel Prata 925 Coração", "preco": 84.99, "img": "https://i.ibb.co/f3r8dCC/IMG-1185.jpg"}, {"id": 6, "nome": "Anel Prata 925 3 Corações", "preco": 99.99, "img": "https://i.ibb.co/DPb9Q8Hr/IMG-1184.jpg"}, {"id": 7, "nome": "Anel Prata 925 Tartaruga", "preco": 129.99, "img": "https://i.ibb.co/BHsJ9qj7/IMG-1183.jpg"}, {"id": 8, "nome": "Anel Prata 925 Ondulado Quadrado", "preco": 99.99, "img": "https://i.ibb.co/fVj6Tw5K/IMG-1182.jpg"}, {"id": 9, "nome": "Anel Solitário Coração Verde", "preco": 129.99, "img": "https://i.ibb.co/0RYhy6vG/IMG-1181.jpg"}, {"id": 10, "nome": "Anel Regulável Estrela e Pedra", "preco": 89.99, "img": "https://i.ibb.co/mVZ8tHwt/IMG-1180.jpg"}, {"id": 11, "nome": "Anel Prata 925 Patinha", "preco": 84.99, "img": "https://i.ibb.co/tPQ1RTDz/IMG-1179.jpg"}, {"id": 12, "nome": "Anel Solitário Infinito na Lateral", "preco": 169.99, "img": "https://i.ibb.co/vCVjzXFc/IMG-1178.jpg"}, {"id": 13, "nome": "Anel Solitário 4 Garras", "preco": 119.99, "img": "https://i.ibb.co/rGXrffx1/IMG-1177.jpg"}, {"id": 14, "nome": "Anel Prata 925 Pendurado", "preco": 119.99, "img": "https://i.ibb.co/s98FHwmt/IMG-1176.jpg"}, {"id": 15, "nome": "Anel Prata 925 Fé", "preco": 89.99, "img": "https://i.ibb.co/bg05BzMt/IMG-1175.jpg"}, {"id": 16, "nome": "Anel Infinito Prata 925", "preco": 89.99, "img": "https://i.ibb.co/JRkdB9YS/IMG-1173.jpg"}, {"id": 17, "nome": "Anel Prata 925 Triângulo", "preco": 94.99, "img": "https://i.ibb.co/Z6pGrkx8/IMG-1172.jpg"}, {"id": 18, "nome": "Anel Prata 925 Trançado", "preco": 84.99, "img": "https://i.ibb.co/V0X4jRDL/IMG-1171.jpg"}, {"id": 19, "nome": "Gargantilha Ponto de Luz Redondo 8mm", "preco": 144.99, "img": "https://i.ibb.co/6cc02nWY/IMG-1222.jpg"}, {"id": 20, "nome": "Gargantilha Ponto de Luz Redondo", "preco": 139.99, "img": "https://i.ibb.co/NgGrCwx1/IMG-1211.jpg"}, {"id": 21, "nome": "Gargantilha Ponto de Luz Gota", "preco": 139.99, "img": "https://i.ibb.co/mFXbhN9K/IMG-1212.jpg"}, {"id": 22, "nome": "Gargantilha Ponto de Luz Gota Colorido", "preco": 139.99, "img": "https://i.ibb.co/V51Hzbj/IMG-1213.jpg"}, {"id": 23, "nome": "Gargantilha Ponto de Luz Oval", "preco": 139.99, "img": "https://i.ibb.co/Pv3XHw3C/IMG-1214.jpg"}, {"id": 24, "nome": "Gargantilha Ponto de Luz Hexagonal", "preco": 139.99, "img": "https://i.ibb.co/XZGmGJmr/IMG-1218.jpg"}, {"id": 25, "nome": "Gargantilha Ponto de Luz Retangular", "preco": 139.99, "img": "https://i.ibb.co/1YJ0HfMP/IMG-1215.jpg"}, {"id": 26, "nome": "Gargantilha Trevo Hematita 40+5 cm", "preco": 149.99, "img": "https://i.ibb.co/zVy6gR43/IMG-1216.jpg"}, {"id": 27, "nome": "Gargantilha Sereia P", "preco": 144.99, "img": "https://i.ibb.co/pBBX27Qc/IMG-1217.jpg"}, {"id": 28, "nome": "Gargantilha Nossa Senhora Cravejada", "preco": 149.99, "img": "https://i.ibb.co/TMxhwkvf/IMG-1221.jpg"}, {"id": 29, "nome": "Gargantilha 3 Zircônia Penduradas", "preco": 159.99, "img": "https://i.ibb.co/xt44y397/IMG-1220.jpg"}, {"id": 30, "nome": "Anel Masculino Prata 925", "preco": 239.99, "img": "https://i.ibb.co/hR4Gs19p/IMG-1242.jpg"}, {"id": 31, "nome": "Anel Masculino Caveira Prata 925", "preco": 339.99, "img": "https://i.ibb.co/20v79gfL/IMG-1241.jpg"}, {"id": 32, "nome": "Anel Masculino Liso Giratório Prata 925", "preco": 324.99, "img": "https://i.ibb.co/2YjH52PB/IMG-1240.jpg"}, {"id": 33, "nome": "Anel Masculino Prata 925", "preco": 249.99, "img": "https://i.ibb.co/yFXNQWLY/IMG-1239.jpg"}, {"id": 34, "nome": "Anel Harley Prata 925", "preco": 239.99, "img": "https://i.ibb.co/VYf6yMbD/IMG-1238.jpg"}, {"id": 35, "nome": "Anel Unissex Envelhecido", "preco": 179.99, "img": "https://i.ibb.co/PvfRjN57/IMG-1237.jpg"}, {"id": 36, "nome": "Anel São Bento Prata 925", "preco": 139.99, "img": "https://i.ibb.co/C3j0x7J1/IMG-1236.jpg"}, {"id": 37, "nome": "Anel Masculino Prata 925", "preco": 159.99, "img": "https://i.ibb.co/hRq4xWJ4/IMG-1235.jpg"}, {"id": 38, "nome": "Anel Masculino Zircônia Preta", "preco": 189.99, "img": "https://i.ibb.co/9vD6bJz/IMG-1234.jpg"}, {"id": 39, "nome": "Anel Masculino Quadrado", "preco": 189.99, "img": "https://i.ibb.co/53R3G53/IMG-1233.jpg"}, {"id": 40, "nome": "Anel Pai Nosso Envelhecido", "preco": 139.99, "img": "https://i.ibb.co/LDr0c40x/IMG-1232.jpg"}, {"id": 41, "nome": "Anel Pai Nosso Prata 925", "preco": 149.99, "img": "https://i.ibb.co/sJc3d4sM/IMG-1231.jpg"}, {"id": 42, "nome": "Anel Trabalhado Envelhecido", "preco": 124.99, "img": "https://i.ibb.co/Kzw4V41p/IMG-1230.jpg"}, {"id": 43, "nome": "Anel São Bento Envelhecido", "preco": 169.99, "img": "https://i.ibb.co/C311LgJq/IMG-1229.jpg"}, {"id": 44, "nome": "Anel Masculino Solitário", "preco": 149.99, "img": "https://i.ibb.co/Y4xsn3D1/IMG-1228.jpg"}, {"id": 45, "nome": "Anel Regulável Envelhecido", "preco": 149.99, "img": "https://i.ibb.co/7dJg3M5s/IMG-1227.jpg"}, {"id": 46, "nome": "Anel São Bento Quadrado", "preco": 139.99, "img": "https://i.ibb.co/21kQjQ1Q/IMG-1225.jpg"}, {"id": 47, "nome": "Zircônia Estrela 6mm Prata 925", "preco": 39.99, "img": "https://i.ibb.co/wNJ5RsBz/IMG-1262.jpg"}, {"id": 48, "nome": "Zircônia Coração 6mm Prata 925", "preco": 39.99, "img": "https://i.ibb.co/S7BSVdpv/IMG-1261.jpg"}, {"id": 49, "nome": "Brinco Bola 3mm Prata 925", "preco": 34.99, "img": "https://i.ibb.co/1thjRS6p/IMG-1260.jpg"}, {"id": 50, "nome": "Zircônia Estrela 5mm Prata 925", "preco": 34.99, "img": "https://i.ibb.co/sv8Nmkcy/IMG-1259.jpg"}, {"id": 51, "nome": "Zircônia Coração 5mm Prata 925", "preco": 34.99, "img": "https://i.ibb.co/C3PL8Gxh/IMG-1258.jpg"}, {"id": 52, "nome": "Brinco Zircônia 6mm Prata 925", "preco": 34.99, "img": "https://i.ibb.co/6Jfgy4yz/IMG-1256.jpg"}, {"id": 53, "nome": "Brinco Zircônia 5mm Prata 925", "preco": 34.99, "img": "https://i.ibb.co/nMKR7Qjd/IMG-1255.jpg"}, {"id": 54, "nome": "Zircônia Estrela 4mm Prata 925", "preco": 29.99, "img": "https://i.ibb.co/sd4p9xrJ/IMG-1254.jpg"}, {"id": 55, "nome": "Zircônia Coração 4mm Prata 925", "preco": 29.99, "img": "https://i.ibb.co/kVvdfPCF/IMG-1253.jpg"}, {"id": 56, "nome": "Brinco Zircônia 5mm Prata 925", "preco": 29.99, "img": "https://i.ibb.co/TDjnksfx/IMG-1252.jpg"}, {"id": 57, "nome": "Brinco Baby Prata 925", "preco": 29.99, "img": "https://i.ibb.co/bgJD9HX1/IMG-1251.jpg"}, {"id": 58, "nome": "Brinco Zircônia 4mm Prata 925", "preco": 29.99, "img": "https://i.ibb.co/0RmtLBPL/IMG-1250.jpg"}, {"id": 59, "nome": "Zircônia Quadrada 4mm Prata 925", "preco": 29.99, "img": "https://i.ibb.co/tptwzk8c/IMG-1249.jpg"}, {"id": 60, "nome": "Brinco Zircônia 3mm Prata 925", "preco": 24.99, "img": "https://i.ibb.co/5Wbyfr0h/IMG-1248.jpg"}, {"id": 61, "nome": "Zircônia Colorida 4mm Prata 925", "preco": 24.99, "img": "https://i.ibb.co/4RnP5CkW/IMG-1245.jpg"}, {"id": 62, "nome": "Brinco Zircônia 3mm Prata 925", "preco": 24.99, "img": "https://i.ibb.co/mVDJ1cQq/IMG-1244.jpg"}, {"id": 63, "nome": "Anel Mandala Flor Prata 925", "preco": 79.99, "img": "https://i.ibb.co/Rk0qyX4w/IMG-1338.jpg"}, {"id": 64, "nome": "Anel Coração Zircônia Prata 925", "preco": 74.99, "img": "https://i.ibb.co/8Lj5PTpq/IMG-1337.jpg"}, {"id": 65, "nome": "Anel Losango Zircônia Prata 925", "preco": 69.99, "img": "https://i.ibb.co/vnpv7Hg/IMG-1336.jpg"}, {"id": 66, "nome": "Anel Triângulo Zircônia Prata 925", "preco": 74.99, "img": "https://i.ibb.co/fYFxpDjq/IMG-1335.jpg"}, {"id": 67, "nome": "Anel Flor Trabalhada Zircônia Ponta", "preco": 79.99, "img": "https://i.ibb.co/kRG1Yj0/IMG-1334.jpg"}, {"id": 68, "nome": "Anel Regulável Prata 925", "preco": 84.99, "img": "https://i.ibb.co/Xk7pG3n1/IMG-1333.jpg"}, {"id": 69, "nome": "Anel Redondo Zircônia Trabalhado", "preco": 79.99, "img": "https://i.ibb.co/HTg0mGJD/IMG-1332.jpg"}];
+    const produtos = [
+      { id: 1, nome: "Anel Prata 925 Coração", preco: 89.99, categoria: "Aneis", img: "https://i.ibb.co/4RpHNRzZ/IMG-1189.jpg" },
+      { id: 2, nome: "Anel Solitário Prata 925", preco: 129.99, categoria: "Aneis", img: "https://i.ibb.co/YTYG7XRj/IMG-1188.jpg" },
+      { id: 3, nome: "Anel Folha", preco: 79.99, categoria: "Aneis", img: "https://i.ibb.co/QFqNLC41/IMG-1187.jpg" },
+      { id: 4, nome: "Anel Prata 925 Dois Palitos", preco: 99.99, categoria: "Aneis", img: "https://i.ibb.co/XZc1yRxc/IMG-1186.jpg" },
+      { id: 5, nome: "Anel Prata 925 Coração", preco: 84.99, categoria: "Aneis", img: "https://i.ibb.co/f3r8dCC/IMG-1185.jpg" },
+      { id: 6, nome: "Anel Prata 925 3 Corações", preco: 99.99, categoria: "Aneis", img: "https://i.ibb.co/DPb9Q8Hr/IMG-1184.jpg" },
+      { id: 7, nome: "Anel Prata 925 Tartaruga", preco: 129.99, categoria: "Aneis", img: "https://i.ibb.co/BHsJ9qj7/IMG-1183.jpg" },
+      { id: 8, nome: "Anel Prata 925 Ondulado Quadrado", preco: 99.99, categoria: "Aneis", img: "https://i.ibb.co/fVj6Tw5K/IMG-1182.jpg" },
+      { id: 9, nome: "Anel Solitário Coração Verde", preco: 129.99, categoria: "Aneis", img: "https://i.ibb.co/0RYhy6vG/IMG-1181.jpg" },
+      { id: 10, nome: "Anel Regulável Estrela e Pedra", preco: 89.99, categoria: "Aneis", img: "https://i.ibb.co/mVZ8tHwt/IMG-1180.jpg" },
+      { id: 11, nome: "Anel Prata 925 Patinha", preco: 84.99, categoria: "Aneis", img: "https://i.ibb.co/tPQ1RTDz/IMG-1179.jpg" },
+      { id: 12, nome: "Anel Solitário Infinito na Lateral", preco: 169.99, categoria: "Aneis", img: "https://i.ibb.co/vCVjzXFc/IMG-1178.jpg" },
+      { id: 13, nome: "Anel Solitário 4 Garras", preco: 119.99, categoria: "Aneis", img: "https://i.ibb.co/rGXrffx1/IMG-1177.jpg" },
+      { id: 14, nome: "Anel Prata 925 Pendurado", preco: 119.99, categoria: "Aneis", img: "https://i.ibb.co/s98FHwmt/IMG-1176.jpg" },
+      { id: 15, nome: "Anel Prata 925 Fé", preco: 89.99, categoria: "Aneis", img: "https://i.ibb.co/bg05BzMt/IMG-1175.jpg" },
+      { id: 16, nome: "Anel Infinito Prata 925", preco: 89.99, categoria: "Aneis", img: "https://i.ibb.co/JRkdB9YS/IMG-1173.jpg" },
+      { id: 17, name: "Anel Prata 925 Triângulo", preco: 94.99, categoria: "Aneis", img: "https://i.ibb.co/Z6pGrkx8/IMG-1172.jpg" },
+      { id: 18, nome: "Anel Prata 925 Trançado", preco: 84.99, categoria: "Aneis", img: "https://i.ibb.co/V0X4jRDL/IMG-1171.jpg" },
+      { id: 19, nome: "Gargantilha Ponto de Luz Redondo 8mm", preco: 144.99, categoria: "Gargantilhas", img: "https://i.ibb.co/6cc02nWY/IMG-1222.jpg" },
+      { id: 20, nome: "Gargantilha Ponto de Luz Redondo", preco: 139.99, categoria: "Gargantilhas", img: "https://i.ibb.co/NgGrCwx1/IMG-1211.jpg" },
+      { id: 21, nome: "Gargantilha Ponto de Luz Gota", preco: 139.99, categoria: "Gargantilhas", img: "https://i.ibb.co/mFXbhN9K/IMG-1212.jpg" },
+      { id: 22, nome: "Gargantilha Ponto de Luz Gota Colorido", preco: 139.99, categoria: "Gargantilhas", img: "https://i.ibb.co/V51Hzbj/IMG-1213.jpg" },
+      { id: 23, nome: "Gargantilha Ponto de Luz Oval", preco: 139.99, categoria: "Gargantilhas", img: "https://i.ibb.co/Pv3XHw3C/IMG-1214.jpg" },
+      { id: 24, nome: "Gargantilha Ponto de Luz Hexagonal", preco: 139.99, categoria: "Gargantilhas", img: "https://i.ibb.co/XZGmGJmr/IMG-1218.jpg" },
+      { id: 25, nome: "Gargantilha Ponto de Luz Retangular", preco: 139.99, categoria: "Gargantilhas", img: "https://i.ibb.co/1YJ0HfMP/IMG-1215.jpg" },
+      { id: 26, nome: "Gargantilha Trevo Hematita 40+5 cm", preco: 149.99, categoria: "Gargantilhas", img: "https://i.ibb.co/zVy6gR43/IMG-1216.jpg" },
+      { id: 27, nome: "Gargantilha Sereia P", preco: 144.99, categoria: "Gargantilhas", img: "https://i.ibb.co/pBBX27Qc/IMG-1217.jpg" },
+      { id: 28, nome: "Gargantilha Nossa Senhora Cravejada", preco: 149.99, categoria: "Gargantilhas", img: "https://i.ibb.co/TMxhwkvf/IMG-1221.jpg" },
+      { id: 29, nome: "Gargantilha 3 Zircônia Penduradas", preco: 159.99, categoria: "Gargantilhas", img: "https://i.ibb.co/xt44y397/IMG-1220.jpg" },
+      { id: 30, nome: "Anel Masculino Prata 925", preco: 239.99, categoria: "Anel Masculino", img: "https://i.ibb.co/hR4Gs19p/IMG-1242.jpg" },
+      { id: 31, nome: "Anel Masculino Caveira Prata 925", preco: 339.99, categoria: "Anel Masculino", img: "https://i.ibb.co/20v79gfL/IMG-1241.jpg" },
+      { id: 32, nome: "Anel Masculino Liso Giratório Prata 925", preco: 324.99, categoria: "Anel Masculino", img: "https://i.ibb.co/2YjH52PB/IMG-1240.jpg" },
+      { id: 33, nome: "Anel Masculino Prata 925", preco: 249.99, categoria: "Anel Masculino", img: "https://i.ibb.co/yFXNQWLY/IMG-1239.jpg" },
+      { id: 34, nome: "Anel Harley Prata 925", preco: 239.99, categoria: "Anel Masculino", img: "https://i.ibb.co/VYf6yMbD/IMG-1238.jpg" },
+      { id: 35, nome: "Anel Unissex Envelhecido", preco: 179.99, categoria: "Anel Masculino", img: "https://i.ibb.co/PvfRjN57/IMG-1237.jpg" },
+      { id: 36, nome: "Anel São Bento Prata 925", preco: 139.99, categoria: "Anel Masculino", img: "https://i.ibb.co/C3j0x7J1/IMG-1236.jpg" },
+      { id: 37, nome: "Anel Masculino Prata 925", preco: 159.99, categoria: "Anel Masculino", img: "https://i.ibb.co/hRq4xWJ4/IMG-1235.jpg" },
+      { id: 38, nome: "Anel Masculino Zircônia Preta", preco: 189.99, categoria: "Anel Masculino", img: "https://i.ibb.co/9vD6bJz/IMG-1234.jpg" },
+      { id: 39, nome: "Anel Masculino Quadrado", preco: 189.99, categoria: "Anel Masculino", img: "https://i.ibb.co/53R3G53/IMG-1233.jpg" },
+      { id: 40, nome: "Anel Pai Nosso Envelhecido", preco: 139.99, categoria: "Anel Masculino", img: "https://i.ibb.co/LDr0c40x/IMG-1232.jpg" },
+      { id: 41, nome: "Anel Pai Nosso Prata 925", preco: 149.99, categoria: "Anel Masculino", img: "https://i.ibb.co/sJc3d4sM/IMG-1231.jpg" },
+      { id: 42, nome: "Anel Trabalhado Envelhecido", preco: 124.99, categoria: "Anel Masculino", img: "https://i.ibb.co/Kzw4V41p/IMG-1230.jpg" },
+      { id: 43, nome: "Anel São Bento Envelhecido", preco: 169.99, categoria: "Anel Masculino", img: "https://i.ibb.co/C311LgJq/IMG-1229.jpg" },
+      { id: 44, nome: "Anel Masculino Solitário", preco: 149.99, categoria: "Anel Masculino", img: "https://i.ibb.co/Y4xsn3D1/IMG-1228.jpg" },
+      { id: 45, nome: "Anel Regulável Envelhecido", preco: 149.99, categoria: "Anel Masculino", img: "https://i.ibb.co/7dJg3M5s/IMG-1227.jpg" },
+      { id: 46, nome: "Anel São Bento Quadrado", preco: 139.99, categoria: "Anel Masculino", img: "https://i.ibb.co/21kQjQ1Q/IMG-1225.jpg" },
+      { id: 47, nome: "Zircônia Estrela 6mm Prata 925", preco: 39.99, categoria: "Brincos", img: "https://i.ibb.co/wNJ5RsBz/IMG-1262.jpg" },
+      { id: 48, nome: "Zircônia Coração 6mm Prata 925", preco: 39.99, categoria: "Brincos", img: "https://i.ibb.co/S7BSVdpv/IMG-1261.jpg" },
+      { id: 49, nome: "Brinco Bola 3mm Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/1thjRS6p/IMG-1260.jpg" },
+      { id: 50, nome: "Zircônia Estrela 5mm Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/sv8Nmkcy/IMG-1259.jpg" },
+      { id: 51, nome: "Zircônia Coração 5mm Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/C3PL8Gxh/IMG-1258.jpg" },
+      { id: 52, nome: "Brinco Zircônia 6mm Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/6Jfgy4yz/IMG-1256.jpg" },
+      { id: 53, nome: "Brinco Zircônia 5mm Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/nMKR7Qjd/IMG-1255.jpg" },
+      { id: 54, nome: "Zircônia Estrela 4mm Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/sd4p9xrJ/IMG-1254.jpg" },
+      { id: 55, nome: "Zircônia Coração 4mm Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/kVvdfPCF/IMG-1253.jpg" },
+      { id: 56, nome: "Brinco Zircônia 5mm Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/TDjnksfx/IMG-1252.jpg" },
+      { id: 57, nome: "Brinco Baby Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/bgJD9HX1/IMG-1251.jpg" },
+      { id: 58, nome: "Brinco Zircônia 4mm Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/0RmtLBPL/IMG-1250.jpg" },
+      { id: 59, nome: "Zircônia Quadrada 4mm Prata 925", preco: 29.99, categoria: "Brincos", img: "https://i.ibb.co/tptwzk8c/IMG-1249.jpg" },
+      { id: 60, nome: "Brinco Zircônia 3mm Prata 925", preco: 24.99, categoria: "Brincos", img: "https://i.ibb.co/5Wbyfr0h/IMG-1248.jpg" },
+      { id: 61, nome: "Zircônia Colorida 4mm Prata 925", preco: 24.99, categoria: "Brincos", img: "https://i.ibb.co/4RnP5CkW/IMG-1245.jpg" },
+      { id: 62, nome: "Brinco Zircônia 3mm Prata 925", preco: 24.99, categoria: "Brincos", img: "https://i.ibb.co/mVDJ1cQq/IMG-1244.jpg" },
+      { id: 63, nome: "Anel Mandala Flor Prata 925", preco: 79.99, categoria: "Aneis", img: "https://i.ibb.co/Rk0qyX4w/IMG-1338.jpg" },
+      { id: 64, nome: "Anel Coração Zircônia Prata 925", preco: 74.99, categoria: "Aneis", img: "https://i.ibb.co/8Lj5PTpq/IMG-1337.jpg" },
+      { id: 65, nome: "Anel Losango Zircônia Prata 925", preco: 69.99, categoria: "Aneis", img: "https://i.ibb.co/vnpv7Hg/IMG-1336.jpg" },
+      { id: 66, nome: "Anel Triângulo Zircônia Prata 925", preco: 74.99, categoria: "Aneis", img: "https://i.ibb.co/fYFxpDjq/IMG-1335.jpg" },
+      { id: 67, nome: "Anel Flor Trabalhada Zircônia Ponta", preco: 79.99, categoria: "Aneis", img: "https://i.ibb.co/kRG1Yj0/IMG-1334.jpg" },
+      { id: 68, nome: "Anel Regulável Prata 925", preco: 84.99, categoria: "Aneis", img: "https://i.ibb.co/Xk7pG3n1/IMG-1333.jpg" },
+      { id: 69, nome: "Anel Redondo Zircônia Trabalhado", preco: 79.99, categoria: "Aneis", img: "https://i.ibb.co/HTg0mGJD/IMG-1332.jpg" }
+    ];
+
     let carrinho = [];
+    let categoriaAtual = 'todos';
 
     function renderizar() {
-      document.getElementById('grid').innerHTML = produtos.map(p => `
+      const filtrados = categoriaAtual === 'todos' 
+        ? produtos 
+        : produtos.filter(p => p.categoria === categoriaAtual);
+
+      document.getElementById('grid').innerHTML = filtrados.map(p => `
         <div class="card">
-          <img src="${p.img}" alt="${p.nome}">
-          <p>${p.nome}</p>
-          <p style="color:#25d366; font-weight:bold;">R$ ${p.preco.toFixed(2)}</p>
-          <button class="btn-add" onclick="adicionar(${p.id})">Adicionar</button>
+          <div>
+            <img src="${p.img}" alt="${p.nome}">
+            <p>${p.nome}</p>
+          </div>
+          <div>
+            <p style="color:#25d366; font-weight:bold;">R$ ${p.preco.toFixed(2).replace('.', ',')}</p>
+            <button class="btn-add" onclick="adicionar(${p.id})">Adicionar</button>
+          </div>
         </div>
       `).join('');
+    }
+
+    function filtrar(cat, btn) {
+      categoriaAtual = cat;
+      document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('ativo'));
+      btn.classList.add('ativo');
+      renderizar();
     }
 
     function adicionar(id) {
@@ -69,14 +184,15 @@
     function atualizar() {
       document.getElementById('itens').innerHTML = carrinho.map(i => `
         <div class="item">
-          ${i.nome}
-          <div>
-            <button onclick="alterar(${i.id}, -1)">-</button>
-            ${i.qtd}
-            <button onclick="alterar(${i.id}, 1)">+</button>
+          <span>${i.nome}</span>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <button onclick="alterar(${i.id}, -1)" style="padding:2px 8px; background:#444; color:#fff; border:none; cursor:pointer;">-</button>
+            <span>${i.qtd}</span>
+            <button onclick="alterar(${i.id}, 1)" style="padding:2px 8px; background:#444; color:#fff; border:none; cursor:pointer;">+</button>
           </div>
         </div>
-      `).join('');
+      `).join('') || '<p style="color:#777; text-align:center;">Seu carrinho está vazio</p>';
+      
       const total = carrinho.reduce((acc, i) => acc + (i.preco * i.qtd), 0);
       document.getElementById('total').innerText = total.toFixed(2).replace('.', ',');
       document.getElementById('count').innerText = carrinho.reduce((acc, i) => acc + i.qtd, 0);
@@ -91,4 +207,3 @@
   </script>
 </body>
 </html>
-
