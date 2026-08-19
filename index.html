@@ -68,7 +68,7 @@
 
   <script>
     const produtos = [
-      // ÚLTIMAS ARGOLAS E TRIOS ADICIONADOS
+      // ARGOLAS E TRIOS
       { id: 107, nome: "Trio Brinco Quadrado Prata 925", preco: 99.99, categoria: "Brincos", img: "https://i.ibb.co/1tNqzKpW/IMG-1342.webp" },
       { id: 108, nome: "Trio Argola Rebitada Prata 925", preco: 99.99, categoria: "Argolas", img: "https://i.ibb.co/nqgbLRXc/IMG-1343.webp" },
       { id: 109, nome: "Trio Argola Hexagonal Prata 925", preco: 99.99, categoria: "Argolas", img: "https://i.ibb.co/F4B7qSrt/IMG-1344.webp" },
@@ -100,7 +100,7 @@
       { id: 94, nome: "Argola Quadrado 5,4 cm 3mm", preco: 0.00, categoria: "Argolas", img: "https://i.ibb.co/60cr5YKZ/IMG-1290.webp" },
       { id: 95, nome: "Argola Chanfrada Quadrada 2,5 cm 2 mm", preco: 0.00, categoria: "Argolas", img: "https://i.ibb.co/4gmPGKz2/IMG-1291.webp" },
       { id: 96, nome: "Argola Chanfrada Quadrada 3,5 cm 3 mm", preco: 0.00, categoria: "Argolas", img: "https://i.ibb.co/xqswrctF/IMG-1293.webp" },
-      // ANÉIS E GARGANTILHAS
+      // ANÉIS FEMININOS E GARGANTILHAS
       { id: 1, nome: "Anel Prata 925 Coração", preco: 89.99, categoria: "Aneis", img: "https://i.ibb.co/4RpHNRzZ/IMG-1189.jpg" },
       { id: 2, nome: "Anel Solitário Prata 925", preco: 129.99, categoria: "Aneis", img: "https://i.ibb.co/YTYG7XRj/IMG-1188.jpg" },
       { id: 3, nome: "Anel Folha", preco: 79.99, categoria: "Aneis", img: "https://i.ibb.co/QFqNLC41/IMG-1187.jpg" },
@@ -130,23 +130,27 @@
       { id: 27, nome: "Gargantilha Sereia P", preco: 144.99, categoria: "Gargantilhas", img: "https://i.ibb.co/pBBX27Qc/IMG-1217.jpg" },
       { id: 28, nome: "Gargantilha Nossa Senhora Cravejada", preco: 149.99, categoria: "Gargantilhas", img: "https://i.ibb.co/TMxhwkvf/IMG-1221.jpg" },
       { id: 29, nome: "Gargantilha 3 Zircônia Penduradas", preco: 159.99, categoria: "Gargantilhas", img: "https://i.ibb.co/xt44y397/IMG-1220.jpg" }
-      { id: 30, nome: "Anel Masculino Prata 925", preco: 239.99, categoria: "Anel Masculino", img: "https://i.ibb.co/hR4Gs19p/IMG-1242.jpg" },
-      { id: 31, nome: "Anel Masculino Caveira Prata 925", preco: 339.99, categoria: "Anel Masculino", img: "https://i.ibb.co/20v79gfL/IMG-1241.jpg" },
-      { id: 32, nome: "Anel Masculino Liso Giratório Prata 925", preco: 324.99, categoria: "Anel Masculino", img: "https://i.ibb.co/2YjH52PB/IMG-1240.jpg" },
-      { id: 33, nome: "Anel Masculino Prata 925", preco: 249.99, categoria: "Anel Masculino", img: "https://i.ibb.co/yFXNQWLY/IMG-1239.jpg" },
-      { id: 34, nome: "Anel Harley Prata 925", preco: 239.99, categoria: "Anel Masculino", img: "https://i.ibb.co/VYf6yMbD/IMG-1238.jpg" },
-      { id: 35, nome: "Anel Unissex Envelhecido", preco: 179.99, categoria: "Anel Masculino", img: "https://i.ibb.co/PvfRjN57/IMG-1237.jpg" },
-      { id: 36, nome: "Anel São Bento Prata 925", preco: 139.99, categoria: "Anel Masculino", img: "https://i.ibb.co/C3j0x7J1/IMG-1236.jpg" },
-      { id: 37, nome: "Anel Masculino Prata 925", preco: 159.99, categoria: "Anel Masculino", img: "https://i.ibb.co/hRq4xWJ4/IMG-1235.jpg" },
-      { id: 38, nome: "Anel Masculino Zircônia Preta", preco: 189.99, categoria: "Anel Masculino", img: "https://i.ibb.co/9vD6bJz/IMG-1234.jpg" },
-      { id: 39, nome: "Anel Masculino Quadrado", preco: 189.99, categoria: "Anel Masculino", img: "https://i.ibb.co/53R3G53/IMG-1233.jpg" },
-      { id: 40, nome: "Anel Pai Nosso Envelhecido", preco: 139.99, categoria: "Anel Masculino", img: "https://i.ibb.co/LDr0c40x/IMG-1232.jpg" },
-      { id: 41, nome: "Anel Pai Nosso Prata 925", preco: 149.99, categoria: "Anel Masculino", img: "https://i.ibb.co/sJc3d4sM/IMG-1231.jpg" },
-      { id: 42, nome: "Anel Trabalhado Envelhecido", preco: 124.99, categoria: "Anel Masculino", img: "https://i.ibb.co/Kzw4V41p/IMG-1230.jpg" },
-      { id: 43, nome: "Anel São Bento Envelhecido", preco: 169.99, categoria: "Anel Masculino", img: "https://i.ibb.co/C311LgJq/IMG-1229.jpg" },
-      { id: 44, nome: "Anel Masculino Solitário", preco: 149.99, categoria: "Anel Masculino", img: "https://i.ibb.co/Y4xsn3D1/IMG-1228.jpg" },
-      { id: 45, nome: "Anel Regulável Envelhecido", preco: 149.99, categoria: "Anel Masculino", img: "https://i.ibb.co/7dJg3M5s/IMG-1227.jpg" },
-      { id: 46, nome: "Anel São Bento Quadrado", preco: 139.99, categoria: "Anel Masculino", img: "https://i.ibb.co/21kQjQ1Q/IMG-1225.jpg" },
+      // ANÉIS MASCULINOS (NOVOS LINKS DIRETO i.ibb.co ATUALIZADOS)
+      { id: 30, nome: "Anel Masculino Prata 925", preco: 239.99, categoria: "Anel Masculino", img: "https://i.ibb.co/bgMHt8v2/IMG-1242.webp" },
+      { id: 31, nome: "Anel Masculino Caveira Prata 925", preco: 339.99, categoria: "Anel Masculino", img: "https://i.ibb.co/wNQdhc8k/IMG-1241.webp" },
+      { id: 32, nome: "Anel Masculino Liso Giratório Prata 925", preco: 324.99, categoria: "Anel Masculino", img: "https://i.ibb.co/Xx9Tz6b5/IMG-1240.webp" },
+      { id: 33, nome: "Anel Masculino Prata 925", preco: 249.99, categoria: "Anel Masculino", img: "https://i.ibb.co/XZyvGFSL/IMG-1239.webp" },
+      { id: 34, nome: "Anel Harley Prata 925", preco: 239.99, categoria: "Anel Masculino", img: "https://i.ibb.co/21S0rTxX/IMG-1238.webp" },
+      { id: 35, nome: "Anel Unissex Envelhecido", preco: 179.99, categoria: "Anel Masculino", img: "https://i.ibb.co/5gn5wC6Q/IMG-1237.webp" },
+      { id: 36, nome: "Anel São Bento Prata 925", preco: 139.99, categoria: "Anel Masculino", img: "https://i.ibb.co/WNXpFjjm/IMG-1236.webp" },
+      { id: 37, nome: "Anel Masculino Prata 925", preco: 159.99, categoria: "Anel Masculino", img: "https://i.ibb.co/MD2BK8H7/IMG-1235.webp" },
+      { id: 38, nome: "Anel Masculino Zircônia Preta", preco: 189.99, categoria: "Anel Masculino", img: "https://i.ibb.co/KxykLX4X/IMG-1234.webp" },
+      { id: 39, nome: "Anel Masculino Quadrado", preco: 189.99, categoria: "Anel Masculino", img: "https://i.ibb.co/fVShvFkq/IMG-1233.webp" },
+      { id: 40, nome: "Anel Pai Nosso Envelhecido", preco: 139.99, categoria: "Anel Masculino", img: "https://i.ibb.co/Zz2cTpwv/IMG-1232.webp" },
+      { id: 41, nome: "Anel Pai Nosso Prata 925", preco: 149.99, categoria: "Anel Masculino", img: "https://i.ibb.co/qMqg9Qfx/IMG-1231.webp" },
+      { id: 42, nome: "Anel Trabalhado Envelhecido", preco: 124.99, categoria: "Anel Masculino", img: "https://i.ibb.co/QvzxC2tf/IMG-1230.webp" },
+      { id: 43, nome: "Anel São Bento Envelhecido", preco: 169.99, categoria: "Anel Masculino", img: "https://i.ibb.co/G4jhgWT0/IMG-1229.webp" },
+      { id: 44, nome: "Anel Masculino Solitário", preco: 149.99, categoria: "Anel Masculino", img: "https://i.ibb.co/PsHNWLLL/IMG-1228.webp" },
+      { id: 45, nome: "Anel Regulável Envelhecido", preco: 149.99, categoria: "Anel Masculino", img: "https://i.ibb.co/rGk2X7P5/IMG-1226.webp" },
+      { id: 46, nome: "Anel São Bento Quadrado", preco: 139.99, categoria: "Anel Masculino", img: "https://i.ibb.co/WvK0kwNY/IMG-1225.webp" },
+      { id: 46.1, nome: "Anel Masculino Adicional Prata 925", preco: 149.99, categoria: "Anel Masculino", img: "https://i.ibb.co/Mx2MzgCJ/IMG-1224.webp" },
+      { id: 46.2, nome: "Anel Masculino Destaque Prata 925", preco: 159.99, categoria: "Anel Masculino", img: "https://i.ibb.co/21Q1rmJg/IMG-1223.webp" },
+      // BRINCOS E ZIRCÔNIAS
       { id: 47, nome: "Zircônia Estrela 6mm Prata 925", preco: 39.99, categoria: "Brincos", img: "https://i.ibb.co/wNJ5RsBz/IMG-1262.jpg" },
       { id: 48, nome: "Zircônia Coração 6mm Prata 925", preco: 39.99, categoria: "Brincos", img: "https://i.ibb.co/S7BSVdpv/IMG-1261.jpg" },
       { id: 49, nome: "Brinco Bola 3mm Prata 925", preco: 34.99, categoria: "Brincos", img: "https://i.ibb.co/1thjRS6p/IMG-1260.jpg" },
