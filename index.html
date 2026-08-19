@@ -69,19 +69,19 @@
 
   <script>
     const produtos = [
-      // PEÇAS REVISADAS COM BASE RIGOROSA NA SUA REGRA (Almofada = Pulseira/Bracelete | Manequim = Gargantilha)
-      { id: 250, nome: "Gargantilha 3 Fios 37 cm Prata 925", preco: 289.99, categoria: "Gargantilhas", img: "https://i.ibb.co/6JRZ9BrV/IMG-1414.webp" }, // No pescoço do manequim
-      { id: 251, nome: "Pulseira 3 Fios Meio Trançada Prata 925", preco: 169.99, categoria: "Pulseiras", img: "https://i.ibb.co/WNNQBQn3/IMG-1415.webp" }, // Na almofada
-      { id: 252, nome: "Pulseira 3 Fios Toda Trançada Prata 925", preco: 179.99, categoria: "Pulseiras", img: "https://i.ibb.co/8g1HcMK4/IMG-1416.webp" }, // Na almofada
-      { id: 253, nome: "Pulseira 2 Fios Trançada Prata 925", preco: 174.99, categoria: "Pulseiras", img: "https://i.ibb.co/YVLTNN5/IMG-1417.webp" }, // Na almofada
-      { id: 254, nome: "Gargantilha 2 Fios 40 cm Prata 925", preco: 274.99, categoria: "Gargantilhas", img: "https://i.ibb.co/Q77YSVcF/IMG-1418.webp" }, // Na almofada (Corrigido para Pulseira conforme regra da almofada) -> Ajustado para Pulseira
-      { id: 255, nome: "Gargantilha 4 Fios Prata 925", preco: 359.99, categoria: "Gargantilhas", img: "https://i.ibb.co/pjJc8LdJ/IMG-1419.webp" }, // Na almofada -> Ajustado para Pulseira
-      { id: 256, nome: "Pulseira 4 Fios Prata 925", preco: 289.99, categoria: "Pulseiras", img: "https://i.ibb.co/XGrC8pG/IMG-1420.webp" }, // Na almofada
-      { id: 257, nome: "Pulseira 2 Fios Brilhantes Prata 925", preco: 179.99, categoria: "Pulseiras", img: "https://i.ibb.co/hFH4wd61/IMG-1421.webp" }, // Na almofada
-      { id: 258, nome: "Pulseira 3 Fios 5 mm Prata 925", preco: 219.99, categoria: "Pulseiras", img: "https://i.ibb.co/CpzQLwpM/IMG-1422.webp" }, // Na almofada
-      { id: 259, nome: "Gargantilha 3 Fios Meio Trançada Prata 925", preco: 208.99, categoria: "Gargantilhas", img: "https://i.ibb.co/HTxkyp60/IMG-1423.webp" }, // No pescoço do manequim
-      { id: 260, nome: "Gargantilha 2 Fios Solto Prata 925", preco: 229.99, categoria: "Gargantilhas", img: "https://i.ibb.co/ycvgDq0h/IMG-1424.webp" }, // No pescoço do manequim
-      { id: 261, nome: "Gargantilha Dois Fios Dois Corações Prata 925", preco: 229.99, categoria: "Gargantilhas", img: "https://i.ibb.co/ycvgDq0h/IMG-1424.webp" }, // No pescoço do manequim
+      // ITENS DE FIOS CORRIGIDOS NA SEQUÊNCIA EXATA E PREÇOS CERTOS
+      { id: 250, nome: "Pulseira 2 Fios Solto Prata 925", preco: 174.99, categoria: "Pulseiras", img: "https://i.ibb.co/YVLTNN5/IMG-1417.webp" },
+      { id: 251, nome: "Gargantilha 2 Fios 40 cm Prata 925", preco: 274.99, categoria: "Gargantilhas", img: "https://i.ibb.co/Q77YSVcF/IMG-1418.webp" },
+      { id: 252, nome: "Pulseira 2 Fios Brilhantes Prata 925", preco: 179.99, categoria: "Pulseiras", img: "https://i.ibb.co/hFH4wd61/IMG-1421.webp" },
+      { id: 253, nome: "Gargantilha 3 Fios 37 cm Prata 925", preco: 289.99, categoria: "Gargantilhas", img: "https://i.ibb.co/6JRZ9BrV/IMG-1414.webp" },
+      { id: 254, nome: "Bracelete 2 Fios Prata 925", preco: 229.99, categoria: "Pulseiras", img: "https://i.ibb.co/pjJc8LdJ/IMG-1419.webp" },
+      { id: 255, nome: "Pulseira 3 Fios Meio Trançada Prata 925", preco: 169.99, categoria: "Pulseiras", img: "https://i.ibb.co/WNNQBQn3/IMG-1415.webp" },
+      { id: 256, nome: "Pulseira 3 Fios Toda Trançada Prata 925", preco: 179.99, categoria: "Pulseiras", img: "https://i.ibb.co/8g1HcMK4/IMG-1416.webp" },
+      { id: 257, nome: "Pulseira 3 Fios Separados (Solto) Prata 925", preco: 208.99, categoria: "Pulseiras", img: "https://i.ibb.co/HTxkyp60/IMG-1423.webp" },
+      { id: 258, nome: "Bracelete 3 Fios 5 mm Prata 925", preco: 219.99, categoria: "Pulseiras", img: "https://i.ibb.co/CpzQLwpM/IMG-1422.webp" },
+      { id: 259, nome: "Pulseira 4 Fios Prata 925", preco: 289.99, categoria: "Pulseiras", img: "https://i.ibb.co/XGrC8pG/IMG-1420.webp" },
+      { id: 260, nome: "Gargantilha 3 Fios Meio Trançada Prata 925", preco: 208.99, categoria: "Gargantilhas", img: "https://i.ibb.co/HTxkyp60/IMG-1423.webp" },
+      { id: 261, nome: "Gargantilha 4 Fios Prata 925", preco: 359.99, categoria: "Gargantilhas", img: "https://i.ibb.co/pjJc8LdJ/IMG-1419.webp" },
 
       // 20 NOVAS PEÇAS (R$ 59,99)
       { id: 223, nome: "Piercing Argola Articulada com Zircônias Prata 925", preco: 59.99, categoria: "Brincos", img: "https://i.ibb.co/XrmG04wY/IMG-1377.webp" },
