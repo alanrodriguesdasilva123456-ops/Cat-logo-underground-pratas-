@@ -5,47 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Underground Pratas 925 | Catálogo Oficial</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
-    body { background: #0f0f0f; color: #fff; padding-bottom: 120px; }
-    
-    /* Aviso de Garantia e Prata 925 */
-    .aviso-topo { background: #222; color: #fff; text-align: center; font-size: 0.8rem; padding: 8px 10px; border-bottom: 1px solid #333; letter-spacing: 0.5px; }
-
-    /* Header com Logo Ocupando Todo o Espaço */
-    header { background: #000; border-bottom: 2px solid #333; display: flex; align-items: stretch; height: 90px; }
-    .logo-container { width: 110px; background: #000; display: flex; align-items: center; justify-content: center; border-right: 1px solid #222; }
-    .logo-container img { width: 100%; height: 100%; object-fit: cover; }
-    .header-info { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-left: 15px; }
-    header h1 { font-size: 1.3rem; color: #fff; line-height: 1.1; }
-
-    .filtros { display: flex; gap: 10px; overflow-x: auto; padding: 15px 20px; background: #141414; white-space: nowrap; border-bottom: 1px solid #222; }
-    .filtros::-webkit-scrollbar { display: none; }
-    .btn-filtro { background: #222; color: #ccc; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
-    .btn-filtro.ativo, .btn-filtro:hover { background: #fff; color: #000; font-weight: bold; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
-    .card { background: #181818; border-radius: 8px; overflow: hidden; padding: 10px; display: flex; flex-direction: column; justify-content: space-between; }
-    .card img { width: 100%; height: 180px; object-fit: cover; border-radius: 4px; background: #222; cursor: pointer; transition: opacity 0.2s; }
-    .card img:hover { opacity: 0.85; }
-    .card p { font-size: 0.9rem; margin: 8px 0; }
-    .btn-add { background: #fff; color: #000; border: none; padding: 10px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 4px; }
-    .carrinho-fixo { position: fixed; bottom: 0; width: 100%; background: #111; padding: 15px 20px; border-top: 2px solid #25d366; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 200; overflow-y: auto; padding: 20px; }
-    .lista { max-width: 500px; margin: 50px auto; background: #222; padding: 20px; border-radius: 8px; }
-    
-    /* Estilo do Item no Carrinho com Foto */
-    .item-carrinho { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #444; gap: 10px; }
-    .item-carrinho img { width: 45px; height: 45px; object-fit: cover; border-radius: 4px; background: #333; }
-    .item-info { flex: 1; font-size: 0.85rem; }
-    
-    #modal-zoom { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 300; justify-content: center; align-items: center; cursor: pointer; padding: 20px; }
-    #modal-zoom img { max-width: 90%; max-height: 90%; border-radius: 8px; object-fit: contain; }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif}body{background:#0f0f0f;color:#fff;padding-bottom:120px}.aviso-topo{background:#222;color:#fff;text-align:center;font-size:0.8rem;padding:8px 10px;border-bottom:1px solid #333;letter-spacing:0.5px;display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap}.aviso-topo a{color:#25d366;text-decoration:none;font-weight:bold;background:#111;padding:3px 10px;border-radius:12px;border:1px solid #333}header{background:#000;border-bottom:2px solid #333;display:flex;align-items:stretch;height:90px}.logo-container{width:110px;background:#000;display:flex;align-items:center;justify-content:center;border-right:1px solid #222}.logo-container img{width:100%;height:100%;object-fit:cover}.header-info{flex:1;display:flex;flex-direction:column;justify-content:center;padding-left:15px}header h1{font-size:1.3rem;color:#fff;line-height:1.1}.filtros{display:flex;gap:10px;overflow-x:auto;padding:15px 20px;background:#141414;white-space:nowrap;border-bottom:1px solid #222}.filtros::-webkit-scrollbar{display:none}.btn-filtro{background:#222;color:#ccc;border:none;padding:8px 16px;border-radius:20px;cursor:pointer;font-size:0.9rem;transition:0.2s}.btn-filtro.ativo,.btn-filtro:hover{background:#fff;color:#000;font-weight:bold}.container{max-width:1200px;margin:0 auto;padding:20px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:15px}.card{background:#181818;border-radius:8px;overflow:hidden;padding:10px;display:flex;flex-direction:column;justify-content:space-between}.card img{width:100%;height:180px;object-fit:cover;border-radius:4px;background:#222;cursor:pointer;transition:opacity 0.2s}.card img:hover{opacity:0.85}.card p{font-size:0.9rem;margin:8px 0}.btn-add{background:#fff;color:#000;border:none;padding:10px;width:100%;font-weight:bold;cursor:pointer;border-radius:4px}.carrinho-fixo{position:fixed;bottom:0;width:100%;background:#111;padding:15px 20px;border-top:2px solid #25d366;display:flex;justify-content:space-between;align-items:center;z-index:100}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:200;overflow-y:auto;padding:20px}.lista{max-width:500px;margin:50px auto;background:#222;padding:20px;border-radius:8px}.item-carrinho{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #444;gap:10px}.item-carrinho img{width:45px;height:45px;object-fit:cover;border-radius:4px;background:#333}.item-info{flex:1;font-size:0.85rem}#modal-zoom{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:300;justify-content:center;align-items:center;cursor:pointer;padding:20px}#modal-zoom img{max-width:90%;max-height:90%;border-radius:8px;object-fit:contain}
   </style>
 </head>
 <body>
 
   <div class="aviso-topo">
-    ✨ Peças em <strong>Prata 925 Legítima</strong> com <strong>Certificado de Garantia</strong> ✨
+    <span>✨ Prata 925 Legítima com Garantia ✨</span>
+    <a href="https://instagram.com/undergroundpratas" target="_blank">📸 Siga no Instagram</a>
   </div>
 
   <header>
@@ -92,7 +59,6 @@
 
   <script>
     const produtos = [
-      /* Novos Anéis Adicionados */
       { id: 501, nome: "Anel Prata 925", preco: 149.99, categoria: "Aneis", img: "https://i.ibb.co/5WrYf6pj/IMG-1457.webp" },
       { id: 502, nome: "Anel Prata 925", preco: 149.99, categoria: "Aneis", img: "https://i.ibb.co/hR1M0VrF/IMG-1458.webp" },
       { id: 503, nome: "Anel Prata 925", preco: 149.99, categoria: "Aneis", img: "https://i.ibb.co/LXyR4QyN/IMG-1459.webp" },
@@ -109,8 +75,6 @@
       { id: 514, nome: "Anel Prata 925", preco: 149.99, categoria: "Aneis", img: "https://i.ibb.co/Ps5LQMj2/IMG-1470.webp" },
       { id: 515, nome: "Anel Prata 925", preco: 149.99, categoria: "Aneis", img: "https://i.ibb.co/qSn2zSS/IMG-1471.webp" },
       { id: 516, nome: "Anel Prata 925", preco: 149.99, categoria: "Aneis", img: "https://i.ibb.co/G4qcB5Jd/IMG-1472.webp" },
-
-      /* Produtos Anteriores */
       { id: 401, nome: "Anel em V Prata 925", preco: 89.99, categoria: "Aneis", img: "https://i.ibb.co/v4vWnnH3/IMG-1158.webp" },
       { id: 402, nome: "Anel Solitário Prata 925", preco: 99.99, categoria: "Aneis", img: "https://i.ibb.co/nsCz8Xjt/IMG-1156.webp" },
       { id: 403, nome: "Anel Mão de Fátima Prata 925", preco: 69.99, categoria: "Aneis", img: "https://i.ibb.co/TBM54P15/IMG-1442.webp" },
@@ -297,10 +261,7 @@
     let categoriaAtual = 'todos';
 
     function renderizar() {
-      const filtrados = categoriaAtual === 'todos' 
-        ? produtos 
-        : produtos.filter(p => p.categoria === categoriaAtual);
-
+      const filtrados = categoriaAtual === 'todos' ? produtos : produtos.filter(p => p.categoria === categoriaAtual);
       document.getElementById('grid').innerHTML = filtrados.map(p => `
         <div class="card">
           <div>
