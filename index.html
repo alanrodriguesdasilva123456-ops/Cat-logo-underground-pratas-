@@ -262,7 +262,17 @@
     let categoriaAtual = 'todos';
 
     function renderizar() {
-      const filtrados = categoriaAtual === 'todos' ? produtos : produtos.filter(p => p.categoria === categoriaAtual);
+      // Filtra por categoria
+      let filtrados = categoriaAtual === 'todos' ? [...produtos] : produtos.filter(p => p.categoria === categoriaAtual);
+      
+      // Ordena misturando aleatoriamente, mas mantendo as mais baratas no topo
+      filtrados.sort((a, b) => {
+        if (a.preco !== b.preco) {
+          return a.preco - b.preco; // Garante que menor preço vem primeiro
+        }
+        return Math.random() - 0.5; // Embaralha itens que têm o mesmo preço
+      });
+
       document.getElementById('grid').innerHTML = filtrados.map(p => `
         <div class="card">
           <div>
